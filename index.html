@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valkyria — Predictive. Preventive. Personalized.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --rose:#C2637A;--rose-lt:#F5E6EB;--rose-dk:#8A3A50;
+  --mauve:#7B5EA7;--mauve-lt:#EDE8F5;
+  --sage:#6B8F71;--sage-lt:#E7F0E8;
+  --gold:#C4923A;--gold-lt:#FBF0DC;
+  --cream:#FBF7F2;--ink:#1E1618;--ink-muted:#6B5860;
+  --border:rgba(194,99,122,0.15);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;background:rgba(251,247,242,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garant',serif;font-size:1.75rem;font-weight:600;color:var(--rose-dk);letter-spacing:-0.02em;}
+.nav-logo span{color:var(--mauve);font-style:italic;}
+.nav-sub{font-size:0.6rem;color:var(--ink-muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:-2px;}
+.nav-links{display:flex;gap:2.5rem;}
+.nav-links a{font-size:0.85rem;font-weight:400;letter-spacing:0.04em;text-decoration:none;color:var(--ink-muted);text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--rose);}
+.nav-cta{background:var(--rose);color:white;border:none;border-radius:2rem;padding:0.65rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;transition:background 0.2s,transform 0.15s;}
+.nav-cta:hover{background:var(--rose-dk);transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 6rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 75% 50%,rgba(194,99,122,0.09) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 15% 85%,rgba(123,94,167,0.07) 0%,transparent 55%),radial-gradient(ellipse 35% 35% at 90% 10%,rgba(196,146,58,0.06) 0%,transparent 50%);}
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none;}
+.hero-orb-1{width:480px;height:480px;right:-60px;top:50%;transform:translateY(-50%);background:radial-gradient(circle,rgba(194,99,122,0.1) 0%,rgba(123,94,167,0.06) 55%,transparent 75%);animation:floatA 9s ease-in-out infinite;}
+.hero-orb-2{width:260px;height:260px;right:240px;top:8%;background:radial-gradient(circle,rgba(196,146,58,0.09) 0%,transparent 70%);animation:floatB 11s ease-in-out infinite;}
+.hero-orb-3{width:180px;height:180px;left:8%;bottom:12%;background:radial-gradient(circle,rgba(107,143,113,0.09) 0%,transparent 70%);animation:floatB 13s ease-in-out infinite;}
+@keyframes floatA{0%,100%{transform:translateY(-50%) scale(1);}50%{transform:translateY(calc(-50% - 22px)) scale(1.03);}}
+@keyframes floatB{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-16px) scale(1.04);}}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;width:100%;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold-lt);border:1px solid rgba(196,146,58,0.25);border-radius:2rem;padding:0.4rem 1rem;font-size:0.78rem;font-weight:500;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2rem;animation:fadeUp 0.8s ease both;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.hero h1{font-family:'Cormorant Garant',serif;font-size:clamp(3rem,5vw,5.2rem);font-weight:300;line-height:1.06;letter-spacing:-0.02em;animation:fadeUp 0.8s 0.1s ease both;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero h1 strong{font-weight:600;}
+.hero-tagline{margin-top:0.75rem;font-size:0.85rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--mauve);animation:fadeUp 0.8s 0.15s ease both;}
+.hero-sub{margin-top:1.25rem;font-size:1.05rem;font-weight:300;line-height:1.85;color:var(--ink-muted);animation:fadeUp 0.8s 0.2s ease both;}
+.hero-actions{display:flex;align-items:center;gap:1.25rem;margin-top:2.5rem;animation:fadeUp 0.8s 0.3s ease both;}
+.btn-primary{background:var(--ink);color:white;padding:1rem 2.5rem;border-radius:3rem;font-size:0.95rem;font-weight:500;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:var(--rose-dk);transform:translateY(-2px);}
+.btn-try{background:linear-gradient(135deg,var(--rose),var(--mauve));color:white;padding:1rem 2.5rem;border-radius:3rem;font-size:0.95rem;font-weight:500;border:none;cursor:pointer;transition:transform 0.15s,box-shadow 0.2s;box-shadow:0 8px 24px rgba(194,99,122,0.3);}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(194,99,122,0.4);}
+.btn-ghost{color:var(--ink);font-size:0.9rem;font-weight:400;text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;background:none;border:none;cursor:pointer;}
+.btn-ghost:hover{color:var(--rose);}
+.btn-ghost::after{content:'→';transition:transform 0.2s;}
+.btn-ghost:hover::after{transform:translateX(4px);}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);animation:fadeUp 0.8s 0.4s ease both;}
+.stat-num{font-family:'Cormorant Garant',serif;font-size:2.2rem;font-weight:600;color:var(--rose);}
+.stat-label{font-size:0.8rem;color:var(--ink-muted);margin-top:0.1rem;line-height:1.4;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* HERO VISUAL */
+.hero-visual{animation:fadeUp 0.9s 0.35s ease both;}
+.try-app-visual{background:white;border:1px solid var(--border);border-radius:1.75rem;overflow:hidden;box-shadow:0 32px 80px rgba(194,99,122,0.1),0 8px 24px rgba(0,0,0,0.04);}
+.tav-header{background:linear-gradient(140deg,#2D1F28 0%,#1E1A30 100%);padding:1.5rem;}
+.tav-title{font-size:0.6rem;font-weight:500;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;}
+.tav-use-cases{display:flex;flex-direction:column;gap:0.5rem;}
+.tav-uc{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.85rem;border-radius:0.75rem;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);}
+.tav-uc.active{background:rgba(194,99,122,0.2);border-color:rgba(194,99,122,0.35);}
+.tav-uc-icon{font-size:1rem;}
+.tav-uc-text{font-size:0.7rem;color:rgba(255,255,255,0.7);font-weight:400;}
+.tav-uc.active .tav-uc-text{color:white;font-weight:500;}
+.tav-uc-badge{margin-left:auto;font-size:0.5rem;padding:0.1rem 0.4rem;border-radius:1rem;background:rgba(107,143,113,0.2);color:rgba(140,190,148,0.9);border:1px solid rgba(107,143,113,0.2);}
+.tav-body{padding:1.25rem 1.5rem;}
+.tav-feature-label{font-size:0.6rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.6rem;}
+.tav-features{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;}
+.tav-feat{padding:0.65rem 0.4rem;background:var(--cream);border:1px solid var(--border);border-radius:0.65rem;text-align:center;}
+.tav-feat.hl{background:var(--rose-lt);border-color:rgba(194,99,122,0.2);}
+.tav-feat-icon{font-size:1rem;margin-bottom:0.2rem;}
+.tav-feat-lbl{font-size:0.52rem;font-weight:500;color:var(--ink);line-height:1.3;}
+.tav-cta-strip{background:linear-gradient(90deg,var(--rose-lt),var(--mauve-lt));padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.tav-cta-text{font-size:0.78rem;font-weight:500;color:var(--rose-dk);}
+.tav-cta-btn{background:var(--rose);color:white;border:none;border-radius:1.5rem;padding:0.45rem 1rem;font-size:0.72rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* SECTIONS */
+.section{padding:7rem 4rem;}
+.section-label{font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;}
+.section-title{font-family:'Cormorant Garant',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;line-height:1.15;letter-spacing:-0.02em;}
+.section-title em{font-style:italic;color:var(--rose);}
+
+/* TRY APP SECTION */
+.try-section{background:linear-gradient(135deg,#1E1618 0%,#2D1F28 50%,#1A1A2E 100%);padding:6rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.try-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(194,99,122,0.12) 0%,transparent 65%);}
+.try-section>*{position:relative;z-index:1;}
+.try-section .section-label{color:var(--gold);}
+.try-section .section-title{color:white;max-width:680px;margin:0 auto;}
+.try-section .section-title em{color:#F5C6D4;}
+.try-section p{color:rgba(255,255,255,0.6);font-size:1.05rem;font-weight:300;margin:1.5rem auto 3rem;max-width:520px;line-height:1.8;}
+.try-features-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
+.try-feat-pill{padding:0.5rem 1.1rem;border-radius:2rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);font-size:0.78rem;display:flex;align-items:center;gap:0.4rem;}
+
+/* PROBLEM */
+.problem-section{background:var(--ink);color:white;}
+.problem-section .section-label{color:var(--gold);}
+.problem-section .section-title{color:white;}
+.problem-section .section-title em{color:var(--rose-lt);}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:4rem;border:1px solid rgba(255,255,255,0.08);border-radius:1.5rem;overflow:hidden;}
+.problem-item{padding:2.5rem;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);transition:background 0.3s;}
+.problem-item:hover{background:rgba(194,99,122,0.08);}
+.problem-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);font-size:1.3rem;margin-bottom:1rem;}
+.problem-item h3{font-size:1rem;font-weight:500;color:white;margin-bottom:0.5rem;}
+.problem-item p{font-size:0.875rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.5);}
+
+/* FEATURES */
+.features-section{background:white;}
+.features-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:4rem;}
+.features-intro p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--ink-muted);padding-top:1rem;}
+.features-tabs{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap;}
+.tab-btn{padding:0.6rem 1.4rem;border-radius:2rem;border:1px solid var(--border);background:var(--cream);color:var(--ink-muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:400;cursor:pointer;transition:all 0.2s;}
+.tab-btn.active,.tab-btn:hover{background:var(--rose);color:white;border-color:var(--rose);}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.feature-card{background:var(--cream);border:1px solid var(--border);border-radius:1.25rem;padding:2rem;transition:transform 0.2s,box-shadow 0.2s;}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(194,99,122,0.1);}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.25rem;}
+.icon-rose{background:var(--rose-lt);}.icon-mauve{background:var(--mauve-lt);}.icon-sage{background:var(--sage-lt);}.icon-gold{background:var(--gold-lt);}
+.feature-card h3{font-size:0.95rem;font-weight:500;margin-bottom:0.4rem;}
+.feature-card p{font-size:0.82rem;font-weight:300;line-height:1.7;color:var(--ink-muted);}
+
+/* COMPANION */
+.companion-section{background:linear-gradient(135deg,#1E1618 0%,#2D1F28 50%,#1A1A2E 100%);color:white;position:relative;overflow:hidden;}
+.companion-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 50%,rgba(123,94,167,0.18) 0%,transparent 60%);}
+.companion-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
+.companion-content .section-label{color:rgba(196,146,58,0.8);}
+.companion-content .section-title{color:white;}
+.companion-content .section-title em{color:#C4A0E8;}
+.companion-content p{margin-top:1.5rem;font-size:1rem;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.6);}
+.trust-badges{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:2rem;}
+.trust-badge{padding:0.5rem 1rem;border-radius:2rem;border:1px solid rgba(196,146,58,0.35);color:rgba(255,255,255,0.75);font-size:0.8rem;font-weight:300;background:rgba(196,146,58,0.08);display:flex;align-items:center;gap:0.4rem;}
+.trust-badge::before{content:'✓';font-size:0.7rem;color:var(--gold);}
+.evidence-legend{margin-top:2rem;padding:1.25rem;border-radius:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);}
+.legend-title{font-size:0.68rem;font-weight:500;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.9rem;}
+.legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1.5rem;}
+.legend-item{font-size:0.75rem;color:rgba(255,255,255,0.4);line-height:1.5;}
+.legend-item strong{color:rgba(255,255,255,0.65);font-weight:500;}
+
+/* PHONE MOCKUP */
+.phone-wrap{display:flex;justify-content:center;position:relative;}
+.phone-frame{width:270px;background:#12101A;border-radius:3rem;padding:1rem 0.85rem;box-shadow:0 48px 100px rgba(30,22,24,0.25),0 0 0 1px rgba(255,255,255,0.06);position:relative;}
+.phone-notch{width:72px;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;margin:0 auto 0.9rem;}
+.phone-screen{background:linear-gradient(160deg,#2D1F28 0%,#1A1A2E 100%);border-radius:2.2rem;overflow:hidden;}
+.ph2-screen{background:linear-gradient(160deg,#1A1A2E 0%,#2D1F28 100%);border-radius:2.2rem;overflow:hidden;}
+.ph2-header{padding:1rem 1.1rem 0.5rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid rgba(255,255,255,0.05);}
+.ph2-back{font-size:0.7rem;color:rgba(255,255,255,0.3);}
+.ph2-title{font-size:0.7rem;font-weight:500;color:white;}
+.ph2-badge{margin-left:auto;background:rgba(123,94,167,0.25);border:1px solid rgba(123,94,167,0.3);border-radius:1rem;padding:0.15rem 0.5rem;font-size:0.5rem;color:rgba(180,160,220,0.9);}
+.ph2-progress{height:3px;background:rgba(255,255,255,0.06);margin:0 1.1rem 0.75rem;border-radius:2px;}
+.ph2-progress-fill{height:100%;width:70%;background:linear-gradient(90deg,var(--rose),var(--mauve));border-radius:2px;}
+.ph2-q{padding:0 1.1rem;margin-bottom:0.6rem;}
+.ph2-q-text{font-size:0.6rem;color:rgba(255,255,255,0.6);margin-bottom:0.4rem;line-height:1.4;}
+.ph2-opts{display:flex;flex-direction:column;gap:0.3rem;}
+.ph2-opt{padding:0.35rem 0.65rem;border-radius:0.5rem;font-size:0.55rem;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);}
+.ph2-opt.sel{background:rgba(194,99,122,0.18);border-color:rgba(194,99,122,0.35);color:var(--rose-lt);}
+.ph2-divider{height:1px;background:rgba(255,255,255,0.05);margin:0.6rem 1.1rem;}
+.ph2-result{margin:0 1.1rem 0.5rem;background:rgba(194,99,122,0.1);border:1px solid rgba(194,99,122,0.2);border-radius:0.75rem;padding:0.75rem;}
+.ph2-result-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;}
+.ph2-risk-dot{width:8px;height:8px;border-radius:50%;background:#E8A04A;flex-shrink:0;}
+.ph2-risk-label{font-size:0.58rem;font-weight:500;color:rgba(255,255,255,0.8);}
+.ph2-risk-level{margin-left:auto;font-size:0.5rem;background:rgba(232,160,74,0.2);border:1px solid rgba(232,160,74,0.3);border-radius:0.35rem;padding:0.1rem 0.4rem;color:#E8C07A;}
+.ph2-recs-title{font-size:0.52rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.35rem;}
+.ph2-rec{display:flex;align-items:flex-start;gap:0.35rem;margin-bottom:0.25rem;}
+.ph2-rec-dot{width:4px;height:4px;border-radius:50%;background:var(--sage);margin-top:0.25rem;flex-shrink:0;}
+.ph2-rec-text{font-size:0.52rem;color:rgba(255,255,255,0.5);line-height:1.4;}
+.ph2-evb{display:flex;gap:0.25rem;flex-wrap:wrap;padding:0 1.1rem 0.9rem;margin-top:0.4rem;}
+.ph2-evb-chip{padding:0.15rem 0.4rem;border-radius:0.35rem;font-size:0.48rem;}
+.ph2-evb-type{background:rgba(123,94,167,0.2);border:1px solid rgba(123,94,167,0.3);color:rgba(180,160,220,0.9);}
+.ph2-evb-q{background:rgba(196,146,58,0.15);border:1px solid rgba(196,146,58,0.25);color:rgba(210,170,80,0.9);}
+.ph2-evb-s{background:rgba(107,143,113,0.15);border:1px solid rgba(107,143,113,0.25);color:rgba(140,190,148,0.9);}
+.float-badge{position:absolute;background:white;border-radius:1rem;padding:0.6rem 0.9rem;box-shadow:0 12px 30px rgba(194,99,122,0.14);white-space:nowrap;}
+.fb-right{right:-28px;top:28%;}
+.fb-left{left:-28px;bottom:28%;}
+.fb-inner{display:flex;align-items:center;gap:0.5rem;}
+.fb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.fb-dot-green{background:var(--sage);}
+.fb-dot-mauve{background:var(--mauve);}
+.fb-text{font-size:0.68rem;font-weight:500;color:var(--ink);}
+.fb-sub{font-size:0.58rem;color:var(--ink-muted);font-weight:300;margin-top:0.05rem;}
+.dash-section{background:var(--cream);}
+.dash-section-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.dash-text p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--ink-muted);margin-top:1.5rem;}
+.dash-bullets{margin-top:2rem;display:flex;flex-direction:column;gap:0.75rem;}
+.dash-bullet{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;font-weight:300;color:var(--ink-muted);line-height:1.6;}
+.dash-bullet-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);flex-shrink:0;margin-top:0.45rem;}
+
+/* HOLISTIC */
+.holistic-section{background:var(--cream);}
+.holistic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.pillar{padding:2.5rem;border-radius:1.5rem;transition:transform 0.2s;}
+.pillar:hover{transform:translateY(-6px);}
+.pillar-mind{background:var(--mauve-lt);}.pillar-body{background:var(--rose-lt);}.pillar-spirit{background:var(--gold-lt);}
+.pillar-icon{font-size:2.5rem;margin-bottom:1.25rem;}
+.pillar h3{font-family:'Cormorant Garant',serif;font-size:1.8rem;font-weight:500;margin-bottom:0.75rem;color:var(--ink);}
+.pillar p{font-size:0.875rem;font-weight:300;line-height:1.8;color:var(--ink-muted);}
+.pillar-features{margin-top:1.25rem;display:flex;flex-direction:column;gap:0.4rem;}
+.pillar-feat{font-size:0.8rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.5rem;}
+.pillar-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--rose);flex-shrink:0;}
+
+/* DIFFERENTIATORS */
+.diff-section{background:white;}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem;}
+.diff-card{border:1px solid var(--border);border-radius:1.25rem;padding:2.5rem;background:var(--cream);position:relative;overflow:hidden;}
+.diff-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.diff-card.rose::before{background:linear-gradient(90deg,var(--rose),var(--mauve));}
+.diff-card.sage::before{background:linear-gradient(90deg,var(--sage),#9BC2A2);}
+.diff-card.gold::before{background:linear-gradient(90deg,var(--gold),#E8C17A);}
+.diff-card.mauve::before{background:linear-gradient(90deg,var(--mauve),#A082CE);}
+.diff-card h3{font-size:1.1rem;font-weight:500;margin-bottom:0.6rem;margin-top:1rem;}
+.diff-card p{font-size:0.875rem;font-weight:300;line-height:1.8;color:var(--ink-muted);}
+.diff-number{font-family:'Cormorant Garant',serif;font-size:3.5rem;font-weight:300;color:rgba(194,99,122,0.12);position:absolute;top:1rem;right:1.5rem;line-height:1;}
+
+/* CTA */
+.cta-section{background:var(--rose-dk);color:white;text-align:center;padding:8rem 4rem;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 110%,rgba(123,94,167,0.35) 0%,transparent 60%);}
+.cta-section>*{position:relative;z-index:1;}
+.cta-section .section-title{color:white;max-width:700px;margin:0 auto;font-size:clamp(2.5rem,5vw,4rem);}
+.cta-section .section-title em{color:rgba(255,230,240,0.9);}
+.cta-section p{margin-top:1.5rem;font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.7);max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8;}
+.waitlist-form{display:flex;gap:0.75rem;justify-content:center;margin-top:3rem;flex-wrap:wrap;}
+.waitlist-input{padding:1rem 1.5rem;border-radius:3rem;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:white;font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;width:320px;backdrop-filter:blur(8px);transition:border-color 0.2s,background 0.2s;}
+.waitlist-input::placeholder{color:rgba(255,255,255,0.5);}
+.waitlist-input:focus{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.15);}
+.waitlist-btn{padding:1rem 2rem;border-radius:3rem;background:white;color:var(--rose-dk);border:none;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;cursor:pointer;transition:transform 0.15s,background 0.2s;white-space:nowrap;}
+.waitlist-btn:hover{transform:translateY(-2px);background:var(--cream);}
+.cta-note{margin-top:1rem;font-size:0.78rem;color:rgba(255,255,255,0.45);}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,0.4);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+footer .nav-logo{color:rgba(255,255,255,0.7);}
+footer .nav-logo span{color:rgba(194,99,122,0.7);}
+footer p{font-size:0.8rem;font-weight:300;}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.7);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ======================= APP DEMO OVERLAY ======================= */
+.app-overlay{position:fixed;inset:0;z-index:999;background:rgba(20,14,18,0.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.overlay-close{position:absolute;top:2rem;right:2rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;font-size:1.2rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;}
+.overlay-close:hover{background:rgba(194,99,122,0.3);}
+.demo-layout{display:flex;align-items:center;gap:4rem;}
+.demo-info{width:300px;color:white;}
+.demo-info h2{font-family:'Cormorant Garant',serif;font-size:2rem;font-weight:300;line-height:1.2;margin-bottom:0.75rem;}
+.demo-info h2 em{font-style:italic;color:#F5C6D4;}
+.demo-info p{font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.5rem;}
+.api-key-box{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1rem;}
+.api-key-label{font-size:0.6rem;font-weight:500;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;}
+.api-key-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:white;border-radius:0.6rem;padding:0.6rem 0.85rem;font-size:0.78rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+.api-key-input:focus{border-color:rgba(194,99,122,0.5);}
+.api-key-input::placeholder{color:rgba(255,255,255,0.25);}
+.api-key-btn{width:100%;margin-top:0.5rem;background:var(--rose);color:white;border:none;border-radius:0.6rem;padding:0.55rem;font-size:0.75rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.api-key-btn:hover{background:var(--rose-dk);}
+.api-status{font-size:0.65rem;color:rgba(107,143,113,0.9);margin-top:0.4rem;display:none;}
+.demo-phone-wrap{position:relative;}
+.demo-phone{width:310px;background:#12101A;border-radius:3.5rem;padding:14px;box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 60px 120px rgba(0,0,0,0.7),inset 0 0 0 2px rgba(255,255,255,0.03);position:relative;}
+.demo-phone-notch{width:80px;height:7px;background:rgba(255,255,255,0.07);border-radius:4px;margin:0 auto 1rem;}
+.demo-screen{background:#0F0D14;border-radius:2.8rem;height:580px;overflow-y:auto;overflow-x:hidden;position:relative;-webkit-overflow-scrolling:touch;}
+.demo-screen::-webkit-scrollbar{display:none;}
+.demo-home-bar{width:80px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:0.85rem auto 0;}
+
+/* ======================== PHONE SCREEN STYLES ======================== */
+.ps-wrap{padding:1.25rem 1.1rem;min-height:100%;}
+.ps-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
+.ps-logo{font-family:'Cormorant Garant',serif;font-size:1rem;font-weight:600;color:white;}
+.ps-logo span{color:rgba(194,99,122,0.8);font-style:italic;}
+.ps-back{background:rgba(255,255,255,0.1);border:none;color:rgba(255,255,255,0.6);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.7rem;}
+.ps-tag{font-size:0.55rem;color:var(--rose);text-transform:uppercase;letter-spacing:0.1em;font-weight:500;margin-bottom:0.35rem;}
+.ps-title{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:400;color:white;line-height:1.15;margin-bottom:0.35rem;}
+.ps-title em{font-style:italic;color:#F5C6D4;}
+.ps-sub{font-size:0.65rem;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;margin-bottom:1.25rem;}
+
+/* Use case cards */
+.uc-list{display:flex;flex-direction:column;gap:0.65rem;}
+.uc-item{display:flex;align-items:center;gap:0.85rem;padding:0.85rem 0.9rem;border-radius:1rem;border:1.5px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.04);cursor:pointer;transition:all 0.2s;}
+.uc-item:hover{border-color:rgba(194,99,122,0.4);background:rgba(194,99,122,0.1);}
+.uc-item.disabled{opacity:0.45;cursor:default;}
+.uc-icon{font-size:1.4rem;flex-shrink:0;}
+.uc-body-text{}
+.uc-name{font-size:0.75rem;font-weight:500;color:white;margin-bottom:0.1rem;}
+.uc-desc{font-size:0.58rem;color:rgba(255,255,255,0.4);line-height:1.4;}
+.uc-pill{display:inline-block;margin-top:0.25rem;font-size:0.48rem;padding:0.1rem 0.45rem;border-radius:1rem;font-weight:500;}
+.uc-pill.soon{background:rgba(107,143,113,0.2);color:rgba(140,190,148,0.9);border:1px solid rgba(107,143,113,0.2);}
+.uc-pill.ready{background:rgba(194,99,122,0.2);color:rgba(240,180,195,0.9);border:1px solid rgba(194,99,122,0.25);}
+.uc-chevron{margin-left:auto;color:rgba(255,255,255,0.2);font-size:0.7rem;}
+
+/* Trimester selection */
+.trimester-cards{display:flex;flex-direction:column;gap:0.65rem;}
+.tri-card{padding:1rem;border-radius:1rem;border:1.5px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.04);cursor:pointer;transition:all 0.2s;}
+.tri-card:hover{border-color:rgba(194,99,122,0.4);background:rgba(194,99,122,0.1);}
+.tri-num{font-family:'Cormorant Garant',serif;font-size:1.2rem;color:var(--rose);font-weight:600;}
+.tri-name{font-size:0.75rem;font-weight:500;color:white;margin:0.1rem 0;}
+.tri-weeks{font-size:0.58rem;color:rgba(255,255,255,0.4);}
+.tri-size{font-size:0.55rem;color:rgba(255,255,255,0.35);margin-top:0.15rem;}
+
+/* Baby SVG container */
+.baby-showcase{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:1.25rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:1.1rem;}
+.baby-svg-wrap{width:80px;height:90px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.baby-info{}
+.baby-info-label{font-size:0.5rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.2rem;}
+.baby-week{font-family:'Cormorant Garant',serif;font-size:1.2rem;color:white;font-weight:600;}
+.baby-size-compare{font-size:0.58rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;}
+.baby-fruit{font-size:1.3rem;margin-top:0.3rem;}
+.baby-measurement{font-size:0.52rem;color:rgba(255,255,255,0.35);}
+
+/* PCOS Wellness Snapshot */
+.wellness-snap{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:1rem;margin-bottom:0.75rem;}
+.ws-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.85rem;}
+.ws-title{font-size:0.55rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.07em;}
+.ws-log-btn{background:var(--rose);border:none;color:white;border-radius:1rem;padding:0.25rem 0.65rem;font-size:0.52rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.ws-gauge-row{display:flex;align-items:center;gap:1rem;}
+.ws-gauge{position:relative;width:80px;height:80px;flex-shrink:0;}
+.ws-gauge svg{transform:rotate(-90deg);}
+.ws-gauge-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.ws-gauge-num{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:600;color:white;line-height:1;}
+.ws-gauge-lbl{font-size:0.42rem;color:rgba(255,255,255,0.4);}
+.ws-metrics{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;}
+.ws-metric{background:rgba(255,255,255,0.05);border-radius:0.6rem;padding:0.4rem 0.5rem;}
+.ws-metric-label{font-size:0.48rem;color:rgba(255,255,255,0.35);}
+.ws-metric-val{font-size:0.62rem;color:white;font-weight:500;margin-top:0.1rem;}
+.ws-last-log{font-size:0.52rem;color:rgba(255,255,255,0.25);text-align:center;margin-top:0.6rem;}
+
+/* Feature cards grid in phone */
+.ph-feat-label{font-size:0.52rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.5rem;}
+.ph-feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.75rem;}
+.ph-feat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:0.85rem;padding:0.75rem;cursor:pointer;transition:all 0.2s;}
+.ph-feat-card:hover{background:rgba(194,99,122,0.15);border-color:rgba(194,99,122,0.3);}
+.ph-feat-card.wide{grid-column:span 2;}
+.ph-feat-icon{font-size:1.1rem;margin-bottom:0.3rem;}
+.ph-feat-name{font-size:0.6rem;font-weight:500;color:white;margin-bottom:0.1rem;}
+.ph-feat-desc{font-size:0.52rem;color:rgba(255,255,255,0.35);line-height:1.4;}
+.ph-feat-badge{display:inline-block;font-size:0.45rem;padding:0.08rem 0.35rem;border-radius:0.4rem;margin-top:0.25rem;background:rgba(107,143,113,0.2);color:rgba(140,190,148,0.9);border:1px solid rgba(107,143,113,0.2);}
+.ph-feat-badge.ai{background:rgba(123,94,167,0.25);color:rgba(180,160,220,0.9);border:1px solid rgba(123,94,167,0.25);}
+
+/* Symptom logging */
+.log-section{margin-bottom:1rem;}
+.log-sec-title{font-size:0.6rem;font-weight:500;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem;}
+.log-sec-title .ai-tag{font-size:0.45rem;background:rgba(123,94,167,0.25);color:rgba(180,160,220,0.9);border:1px solid rgba(123,94,167,0.2);border-radius:0.3rem;padding:0.05rem 0.3rem;}
+.log-chips{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.log-chip{padding:0.3rem 0.65rem;border-radius:2rem;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.55);font-size:0.58rem;cursor:pointer;transition:all 0.18s;}
+.log-chip:hover,.log-chip.sel{background:rgba(194,99,122,0.2);border-color:rgba(194,99,122,0.4);color:white;}
+.log-chip.period-chip{padding:0.3rem 0.5rem;font-size:0.55rem;}
+.scale-row{display:flex;align-items:center;gap:0.4rem;margin-top:0.35rem;}
+.scale-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.55rem;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.03);}
+.scale-num:hover,.scale-num.sel{background:var(--rose);border-color:var(--rose);color:white;}
+.scale-emoji{font-size:0.85rem;}
+.log-submit-btn{width:100%;background:linear-gradient(135deg,var(--rose),var(--mauve));color:white;border:none;border-radius:1rem;padding:0.75rem;font-size:0.75rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1rem;}
+
+/* AI chat */
+.chat-wrap{display:flex;flex-direction:column;height:480px;}
+.chat-messages{flex:1;overflow-y:auto;padding:0.75rem;display:flex;flex-direction:column;gap:0.65rem;}
+.chat-messages::-webkit-scrollbar{display:none;}
+.chat-msg{max-width:85%;padding:0.6rem 0.75rem;border-radius:1rem;font-size:0.62rem;line-height:1.5;}
+.chat-msg.bot{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);border-bottom-left-radius:0.2rem;align-self:flex-start;}
+.chat-msg.user{background:var(--rose);color:white;border-bottom-right-radius:0.2rem;align-self:flex-end;}
+.chat-msg.thinking{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35);font-style:italic;}
+.chat-input-row{display:flex;gap:0.5rem;padding:0.75rem;border-top:1px solid rgba(255,255,255,0.06);}
+.chat-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:0.75rem;padding:0.5rem 0.75rem;font-size:0.62rem;font-family:'DM Sans',sans-serif;outline:none;}
+.chat-input::placeholder{color:rgba(255,255,255,0.25);}
+.chat-send{background:var(--rose);border:none;color:white;border-radius:0.6rem;padding:0.4rem 0.65rem;cursor:pointer;font-size:0.7rem;}
+
+/* Predictive warnings */
+.pred-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:0.85rem;margin-bottom:0.65rem;}
+.pred-card-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;}
+.pred-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.pred-dot.soon{background:#E8A04A;}
+.pred-dot.coming{background:var(--rose);}
+.pred-dot.now{background:var(--mauve);}
+.pred-symptom{font-size:0.65rem;font-weight:500;color:white;}
+.pred-days{margin-left:auto;font-size:0.52rem;padding:0.1rem 0.4rem;border-radius:0.4rem;background:rgba(232,160,74,0.2);color:#E8C07A;}
+.pred-days.now{background:rgba(123,94,167,0.2);color:rgba(180,160,220,0.9);}
+.pred-msg{font-size:0.58rem;color:rgba(255,255,255,0.5);line-height:1.5;}
+.pred-cycles{font-size:0.5rem;color:rgba(255,255,255,0.3);margin-top:0.3rem;}
+.gemini-badge{display:flex;align-items:center;gap:0.3rem;font-size:0.5rem;color:rgba(255,255,255,0.25);margin-top:0.85rem;}
+.gemini-badge::before{content:'✦';color:var(--mauve);}
+
+/* Lab test */
+.lab-upload-area{background:rgba(255,255,255,0.04);border:1.5px dashed rgba(255,255,255,0.15);border-radius:1rem;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:0.75rem;}
+.lab-upload-area:hover{border-color:rgba(194,99,122,0.4);background:rgba(194,99,122,0.05);}
+.lab-upload-icon{font-size:1.5rem;margin-bottom:0.4rem;}
+.lab-upload-text{font-size:0.65rem;color:rgba(255,255,255,0.5);}
+.lab-upload-sub{font-size:0.55rem;color:rgba(255,255,255,0.25);margin-top:0.2rem;}
+.lab-result-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:0.85rem;margin-bottom:0.5rem;}
+.lab-test-row{display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.lab-test-row:last-child{border-bottom:none;}
+.lab-flag{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.lab-flag.high{background:#C94040;}
+.lab-flag.normal{background:var(--sage);}
+.lab-flag.low{background:#E8A04A;}
+.lab-test-name{font-size:0.58rem;color:rgba(255,255,255,0.6);flex:1;}
+.lab-test-val{font-size:0.6rem;font-weight:500;color:white;}
+.lab-test-range{font-size:0.5rem;color:rgba(255,255,255,0.3);}
+.lab-explanation{background:rgba(123,94,167,0.08);border:1px solid rgba(123,94,167,0.15);border-radius:0.75rem;padding:0.75rem;font-size:0.58rem;color:rgba(255,255,255,0.55);line-height:1.6;margin-top:0.5rem;}
+
+/* Phase wheel */
+.phase-wheel-wrap{display:flex;justify-content:center;margin-bottom:0.85rem;}
+.phase-info-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:0.85rem;margin-bottom:0.75rem;}
+.phase-name{font-family:'Cormorant Garant',serif;font-size:1.4rem;color:white;font-weight:500;}
+.phase-day{font-size:0.6rem;color:rgba(255,255,255,0.4);margin-top:0.1rem;}
+.phase-desc{font-size:0.58rem;color:rgba(255,255,255,0.45);line-height:1.55;margin-top:0.5rem;}
+.phase-tips{margin-top:0.6rem;}
+.phase-tip{font-size:0.55rem;color:rgba(255,255,255,0.35);display:flex;align-items:flex-start;gap:0.35rem;margin-bottom:0.25rem;line-height:1.4;}
+.phase-tip::before{content:'•';color:var(--rose);flex-shrink:0;}
+
+/* Date input screen */
+.date-input-group{margin-bottom:1.25rem;}
+.date-label{font-size:0.62rem;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;}
+.date-inp{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:white;border-radius:0.75rem;padding:0.65rem 0.85rem;font-size:0.78rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+.date-inp:focus{border-color:rgba(194,99,122,0.5);}
+.date-continue{width:100%;background:var(--rose);color:white;border:none;border-radius:1rem;padding:0.75rem;font-size:0.75rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:0.5rem;}
+
+/* Coming soon */
+.cs-wrap{text-align:center;padding:2rem 1rem;}
+.cs-emoji{font-size:3rem;margin-bottom:1rem;}
+.cs-title{font-family:'Cormorant Garant',serif;font-size:1.5rem;color:white;margin-bottom:0.5rem;}
+.cs-sub{font-size:0.65rem;color:rgba(255,255,255,0.4);line-height:1.6;}
+.cs-pill{display:inline-block;margin-top:1rem;padding:0.35rem 1rem;background:rgba(107,143,113,0.2);color:rgba(140,190,148,0.9);border:1px solid rgba(107,143,113,0.2);border-radius:2rem;font-size:0.6rem;}
+
+/* Correlation cards */
+.corr-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:0.85rem;margin-bottom:0.65rem;}
+.corr-strength{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;}
+.corr-bar-wrap{flex:1;background:rgba(255,255,255,0.08);border-radius:2px;height:4px;}
+.corr-bar{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--mauve),var(--rose));}
+.corr-val{font-size:0.52rem;color:rgba(255,255,255,0.4);}
+.corr-insight{font-size:0.6rem;color:rgba(255,255,255,0.6);line-height:1.55;}
+.corr-action{font-size:0.55rem;color:var(--sage);margin-top:0.35rem;line-height:1.4;}
+
+/* Log success */
+.log-success{text-align:center;padding:1.5rem 1rem;}
+.log-success-icon{font-size:2.5rem;margin-bottom:0.75rem;}
+.log-success-title{font-family:'Cormorant Garant',serif;font-size:1.3rem;color:white;margin-bottom:0.5rem;}
+.log-success-sub{font-size:0.62rem;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:1rem;}
+.log-insight{background:rgba(194,99,122,0.1);border:1px solid rgba(194,99,122,0.2);border-radius:0.85rem;padding:0.75rem;font-size:0.6rem;color:rgba(255,255,255,0.6);line-height:1.55;margin-bottom:1rem;text-align:left;}
+.log-back-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);border-radius:1rem;padding:0.6rem 1.25rem;font-size:0.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+@media (max-width:960px){
+  nav{padding:1.25rem 2rem;}.nav-links{display:none;}
+  .section{padding:5rem 2rem;}.hero{padding:7rem 2rem 4rem;}
+  .hero-inner{grid-template-columns:1fr;}.hero-visual{display:none;}
+  .features-intro,.dash-section-inner,.companion-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .feature-grid{grid-template-columns:1fr 1fr;}.problem-grid{grid-template-columns:1fr;}
+  .holistic-grid,.diff-grid{grid-template-columns:1fr;}
+  .cta-section{padding:5rem 2rem;}
+  footer{flex-direction:column;align-items:flex-start;padding:2.5rem 2rem;}
+  .fb-right,.fb-left{display:none;}.legend-grid{grid-template-columns:1fr;}
+  .demo-layout{flex-direction:column;gap:2rem;}
+  .demo-info{width:280px;}
+  .try-section{padding:4rem 2rem;}
+}
+@media (max-width:600px){.feature-grid{grid-template-columns:1fr;}.hero-stats{flex-direction:column;gap:1.5rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="nav-logo">Valk<span>yria</span></div>
+    <div class="nav-sub">Predictive · Preventive · Personalized</div>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#companion">Our Approach</a>
+    <a href="#waitlist">Join Waitlist</a>
+  </div>
+  <button class="nav-cta" onclick="openDemo()">Try the App ✦</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><div class="badge-dot"></div>Coming Soon — Join the Waitlist</div>
+      <h1>A companion for<br><em>every phase</em> of<br><strong>womanhood</strong></h1>
+      <div class="hero-tagline">Predictive · Preventive · Personalized</div>
+      <p class="hero-sub">Valkyria is a women's health platform built for pregnancy, PCOS, and period wellness. Evidence-based AI, Ayurvedic wisdom, and predictive care — all in one place.</p>
+      <div class="hero-actions">
+        <button class="btn-try" onclick="openDemo()">✦ Try the App</button>
+        <button class="btn-ghost" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join the Waitlist</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">3</div><div class="stat-label">Focus areas: pregnancy, PCOS and periods</div></div>
+        <div><div class="stat-num">6+</div><div class="stat-label">AI-powered features for real insights</div></div>
+        <div><div class="stat-num">1</div><div class="stat-label">Personalized dashboard, uniquely yours</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="try-app-visual">
+        <div class="tav-header">
+          <div class="tav-title">Select your use case</div>
+          <div class="tav-use-cases">
+            <div class="tav-uc active">
+              <div class="tav-uc-icon">🔴</div>
+              <div class="tav-uc-text">PCOS / PCOD Monitoring</div>
+            </div>
+            <div class="tav-uc">
+              <div class="tav-uc-icon">🤰</div>
+              <div class="tav-uc-text">Pregnancy Care</div>
+            </div>
+            <div class="tav-uc">
+              <div class="tav-uc-icon">🗓️</div>
+              <div class="tav-uc-text">Period Wellness</div>
+            </div>
+            <div class="tav-uc">
+              <div class="tav-uc-icon">💙</div>
+              <div class="tav-uc-text">Postpartum Depression</div>
+              <div class="tav-uc-badge">Soon</div>
+            </div>
+          </div>
+        </div>
+        <div class="tav-body">
+          <div class="tav-feature-label">PCOS Dashboard Features</div>
+          <div class="tav-features">
+            <div class="tav-feat hl"><div class="tav-feat-icon">🔬</div><div class="tav-feat-lbl">Assessment</div></div>
+            <div class="tav-feat"><div class="tav-feat-icon">📊</div><div class="tav-feat-lbl">Symptom Log</div></div>
+            <div class="tav-feat"><div class="tav-feat-icon">🔮</div><div class="tav-feat-lbl">Predictions</div></div>
+            <div class="tav-feat"><div class="tav-feat-icon">🧪</div><div class="tav-feat-lbl">Lab Tests</div></div>
+            <div class="tav-feat"><div class="tav-feat-icon">🤖</div><div class="tav-feat-lbl">AI Agent</div></div>
+            <div class="tav-feat"><div class="tav-feat-icon">🔗</div><div class="tav-feat-lbl">Correlations</div></div>
+          </div>
+        </div>
+        <div class="tav-cta-strip">
+          <div class="tav-cta-text">✦ Powered by Gemini AI</div>
+          <button class="tav-cta-btn" onclick="openDemo()">Try It Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRY THE APP CTA SECTION -->
+<section class="try-section reveal">
+  <div class="section-label">Live Demo</div>
+  <div class="section-title">Experience <em>Valkyria</em> right now</div>
+  <p>Tap into an interactive prototype. Log symptoms, get AI-powered predictions, interpret lab reports, and chat with the PCOS AI agent — all running live in your browser.</p>
+  <button class="btn-try" onclick="openDemo()" style="font-size:1.05rem;padding:1.1rem 3rem;">✦ Try the App</button>
+  <div class="try-features-row">
+    <div class="try-feat-pill">📊 Daily Symptom Logging</div>
+    <div class="try-feat-pill">🔮 Predictive Warnings</div>
+    <div class="try-feat-pill">🧪 Lab Test Interpretation</div>
+    <div class="try-feat-pill">🤖 PCOS AI Agent</div>
+    <div class="try-feat-pill">🔗 Mood-Pain Correlations</div>
+    <div class="try-feat-pill">👶 Pregnancy Tracking</div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section problem-section reveal" id="problem">
+  <div class="section-label">The problem with existing apps</div>
+  <div class="section-title">Women deserve more than<br><em>commercial, one-size-fits-all apps</em></div>
+  <div class="problem-grid">
+    <div class="problem-item"><div class="problem-icon">🔬</div><h3>Not evidence-based</h3><p>Most apps are driven by commercial interests, not peer-reviewed research. Your health decisions deserve better foundations.</p></div>
+    <div class="problem-item"><div class="problem-icon">👤</div><h3>Zero personalisation</h3><p>Generic advice built for the average user ignores your unique medical history, lifestyle, and cultural context.</p></div>
+    <div class="problem-item"><div class="problem-icon">🧠</div><h3>Mental health is an afterthought</h3><p>PCOS, pregnancy, and postpartum affect mental health profoundly. Most apps rarely acknowledge this.</p></div>
+    <div class="problem-item"><div class="problem-icon">👩‍⚕️</div><h3>No connection to real care</h3><p>There is a critical gap between your app and your doctor. Valkyria bridges that gap with real integration.</p></div>
+    <div class="problem-item"><div class="problem-icon">🏃‍♀️</div><h3>Body and spirit neglected</h3><p>Physical activity, Ayurvedic practices, and spiritual wellness are rarely part of the picture.</p></div>
+    <div class="problem-item"><div class="problem-icon">🌐</div><h3>Language and access barriers</h3><p>Women across India face real barriers to quality health information. Language should never be one of them.</p></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-section reveal" id="features">
+  <div class="features-intro">
+    <div>
+      <div class="section-label">Everything you need</div>
+      <div class="section-title">Built for every chapter<br>of a <em>woman's life</em></div>
+    </div>
+    <p>From trying to conceive, through pregnancy and into postpartum recovery, Valkyria is with you at every step — tracking, advising, supporting, and connecting you to the care you deserve.</p>
+  </div>
+  <div class="features-tabs">
+    <button class="tab-btn active" onclick="showFeatures('pregnancy',this)">Pregnancy</button>
+    <button class="tab-btn" onclick="showFeatures('pcos',this)">PCOS / PCOD</button>
+    <button class="tab-btn" onclick="showFeatures('period',this)">Period Wellness</button>
+    <button class="tab-btn" onclick="showFeatures('postpartum',this)">Postpartum</button>
+  </div>
+  <div class="feature-grid" id="feature-grid"></div>
+</section>
+
+<!-- COMPANION -->
+<section class="section companion-section reveal" id="companion">
+  <div class="companion-inner">
+    <div class="companion-content">
+      <div class="section-label">Research, personalised</div>
+      <div class="section-title">Guidance rooted in<br><em>trusted evidence</em></div>
+      <p>Every recommendation in Valkyria is grounded in peer-reviewed research. Start with a questionnaire and Valkyria uses your answers to predict risk, generate personalised recommendations, and ensure every insight is specific to you — not some average user.</p>
+      <div class="trust-badges">
+        <div class="trust-badge">Evidence-based guidance</div>
+        <div class="trust-badge">Research-backed recommendations</div>
+        <div class="trust-badge">Learns from your data</div>
+        <div class="trust-badge">Clinically graded sources</div>
+      </div>
+      <div class="evidence-legend">
+        <div class="legend-title">Evidence grading system</div>
+        <div class="legend-grid">
+          <div class="legend-item"><strong>EBR</strong> — Evidence-based recommendation</div>
+          <div class="legend-item"><strong>CCR</strong> — Clinical consensus recommendation</div>
+          <div class="legend-item"><strong>⊕⊕⊕⊕</strong> High quality evidence</div>
+          <div class="legend-item"><strong>⊕⊕⊕○</strong> Moderate quality evidence</div>
+          <div class="legend-item"><strong>****</strong> Strong recommendation</div>
+          <div class="legend-item"><strong>***</strong> Conditional recommendation</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="ph2-screen">
+          <div class="ph2-header">
+            <div class="ph2-back">←</div>
+            <div class="ph2-title">PCOS Risk Assessment</div>
+            <div class="ph2-badge">EBR</div>
+          </div>
+          <div class="ph2-progress"><div class="ph2-progress-fill"></div></div>
+          <div class="ph2-q">
+            <div class="ph2-q-text">How regular are your menstrual cycles?</div>
+            <div class="ph2-opts">
+              <div class="ph2-opt sel">Irregular (more than 35 days apart)</div>
+              <div class="ph2-opt">Regular (21–35 days)</div>
+              <div class="ph2-opt">Very irregular or absent</div>
+            </div>
+          </div>
+          <div class="ph2-q" style="margin-top:0.5rem;">
+            <div class="ph2-q-text">Do you experience acne, hair fall, or excess facial hair?</div>
+            <div class="ph2-opts">
+              <div class="ph2-opt">Rarely</div>
+              <div class="ph2-opt sel">Sometimes — acne and hair fall</div>
+              <div class="ph2-opt">Frequently and noticeably</div>
+            </div>
+          </div>
+          <div class="ph2-divider"></div>
+          <div class="ph2-result">
+            <div class="ph2-result-top">
+              <div class="ph2-risk-dot"></div>
+              <div class="ph2-risk-label">Shows markers associated with PCOS</div>
+              <div class="ph2-risk-level">Moderate risk</div>
+            </div>
+            <div class="ph2-recs-title">Personalised recommendations</div>
+            <div class="ph2-rec"><div class="ph2-rec-dot"></div><div class="ph2-rec-text">Consult a gynaecologist for hormonal panel (LH, FSH, testosterone)</div></div>
+            <div class="ph2-rec"><div class="ph2-rec-dot"></div><div class="ph2-rec-text">Begin anti-inflammatory nutrition plan — tailored to your profile</div></div>
+            <div class="ph2-rec"><div class="ph2-rec-dot"></div><div class="ph2-rec-text">Shatavari and Ashwagandha guidance for hormonal balance</div></div>
+          </div>
+          <div class="ph2-evb">
+            <span class="ph2-evb-chip ph2-evb-type">EBR</span>
+            <span class="ph2-evb-chip ph2-evb-q">⊕⊕⊕○ Moderate</span>
+            <span class="ph2-evb-chip ph2-evb-s">*** Conditional</span>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge fb-right">
+        <div class="fb-inner"><div class="fb-dot fb-dot-mauve"></div><div><div class="fb-text">Rule-based risk scoring</div><div class="fb-sub">Built on clinical markers</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOLISTIC -->
+<section class="section holistic-section reveal" id="wellness">
+  <div style="text-align:center;max-width:640px;margin:0 auto;">
+    <div class="section-label">Holistic wellness philosophy</div>
+    <div class="section-title">Mind. Body. <em>Spirit.</em></div>
+    <p style="margin-top:1rem;font-size:1rem;font-weight:300;line-height:1.9;color:var(--ink-muted);">Valkyria is built on the belief that true health cannot be reduced to data points alone. We address the whole woman — integrating modern medicine with ancient Ayurvedic wisdom.</p>
+  </div>
+  <div class="holistic-grid">
+    <div class="pillar pillar-mind">
+      <div class="pillar-icon">🧠</div><h3>Mind</h3>
+      <p>Mental health is healthcare. Valkyria provides genuine psychological support through every hormonal shift and life stage.</p>
+      <div class="pillar-features">
+        <div class="pillar-feat">Mood-pain correlation engine</div>
+        <div class="pillar-feat">Anxiety and mood tracking</div>
+        <div class="pillar-feat">Personal journal for emotional wellbeing</div>
+        <div class="pillar-feat">Postpartum depression monitoring</div>
+        <div class="pillar-feat">Stress cortisol education</div>
+      </div>
+    </div>
+    <div class="pillar pillar-body">
+      <div class="pillar-icon">💪</div><h3>Body</h3>
+      <p>Evidence-based physical guidance tailored to your trimester, cycle stage, or PCOS journey.</p>
+      <div class="pillar-features">
+        <div class="pillar-feat">Predictive symptom warnings</div>
+        <div class="pillar-feat">Lab test interpretation</div>
+        <div class="pillar-feat">Adaptive symptom logging</div>
+        <div class="pillar-feat">Ovulation and cycle tracking</div>
+        <div class="pillar-feat">Pregnancy milestone monitoring</div>
+      </div>
+    </div>
+    <div class="pillar pillar-spirit">
+      <div class="pillar-icon">✨</div><h3>Spirit</h3>
+      <p>Rooted in Ayurvedic tradition, Valkyria helps restore balance naturally.</p>
+      <div class="pillar-features">
+        <div class="pillar-feat">Ayurvedic hormonal regulation guidance</div>
+        <div class="pillar-feat">Herb and supplement recommendations</div>
+        <div class="pillar-feat">Reducing pharmaceutical dependence</div>
+        <div class="pillar-feat">Breathwork and mindfulness practices</div>
+        <div class="pillar-feat">Cultural wellness traditions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="section diff-section reveal">
+  <div class="section-label">Why Valkyria is different</div>
+  <div class="section-title">Not just another <em>period tracker</em></div>
+  <div class="diff-grid">
+    <div class="diff-card rose"><div class="diff-number">01</div><h3>Predictive, not reactive</h3><p>Valkyria learns your symptom patterns across cycles and predicts what's coming — before you feel it. That's the difference between reactive tracking and genuine preventive care.</p></div>
+    <div class="diff-card mauve"><div class="diff-number">02</div><h3>AI that actually understands PCOS</h3><p>A purpose-built knowledge base of 27 clinical clusters powers a PCOS AI agent that can answer nuanced questions with evidence-backed, compassionate responses.</p></div>
+    <div class="diff-card sage"><div class="diff-number">03</div><h3>Lab test interpretation in plain language</h3><p>Upload your lab report. Valkyria cross-references your values against clinical thresholds and explains every abnormal result in warm, human language you can actually act on.</p></div>
+    <div class="diff-card gold"><div class="diff-number">04</div><h3>Ayurveda meets modern guidance</h3><p>The only platform that genuinely integrates Ayurvedic practice with modern health intelligence, reducing drug dependence and achieving sustainable hormonal balance.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section" id="waitlist">
+  <div class="section-label" style="color:rgba(255,255,255,0.5);">Join Valkyria</div>
+  <div class="section-title">Be among the first women to experience <em>healthcare that truly sees you</em></div>
+  <p>We are building Valkyria in close collaboration with women, doctors, and researchers. Join our waitlist to get early access.</p>
+  <div class="waitlist-form">
+    <input type="email" class="waitlist-input" placeholder="Enter your email address" id="email-input">
+    <button class="waitlist-btn" onclick="handleWaitlist()">Join the Waitlist</button>
+  </div>
+  <div class="cta-note" id="waitlist-msg">Your data is private. No spam, ever. Just meaningful updates.</div>
+</section>
+
+<footer>
+  <div>
+    <div class="nav-logo">Valk<span>yria</span></div>
+    <div style="font-size:0.6rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;margin-top:2px;">PREDICTIVE · PREVENTIVE · PERSONALIZED</div>
+  </div>
+  <p>© 2025 Valkyria Health Technologies. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<!-- ===================== APP DEMO OVERLAY ===================== -->
+<div class="app-overlay" id="appOverlay" style="display:none;">
+  <button class="overlay-close" onclick="closeDemo()">✕</button>
+  <div class="demo-layout">
+    <div class="demo-info">
+      <h2>Try <em>Valkyria</em></h2>
+      <p>Select a use case and explore the features. The AI-powered features require a free Gemini API key.</p>
+      <div class="api-key-box">
+        <div class="api-key-label">Gemini API Key — for AI features</div>
+        <input class="api-key-input" id="geminiKeyInp" type="password" placeholder="AIza...your Gemini key" oninput="updateKey()">
+        <button class="api-key-btn" onclick="saveKey()">Activate AI Features</button>
+        <div class="api-status" id="apiStatus">✓ AI features activated</div>
+      </div>
+      <div style="margin-top:1.25rem;font-size:0.68rem;color:rgba(255,255,255,0.3);line-height:1.7;">
+        <strong style="color:rgba(255,255,255,0.45);">What works:</strong><br>
+        PCOS dashboard · Symptom logging · Phase wheel · Pregnancy tracker<br><br>
+        <strong style="color:rgba(255,255,255,0.45);">With Gemini key:</strong><br>
+        Predictive warnings · Mood-Pain correlations · Lab test interpretation · PCOS AI Agent
+      </div>
+    </div>
+    <div class="demo-phone-wrap">
+      <div class="demo-phone">
+        <div class="demo-phone-notch"></div>
+        <div class="demo-screen" id="demoScreen"></div>
+        <div class="demo-home-bar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// =================== LANDING PAGE JS ===================
+const features = {
+  pregnancy:[
+    {icon:'📋',cls:'icon-rose',title:'Take the Questionnaire',desc:'Start with a detailed health assessment. Coming soon — pregnancy-specific questionnaire in development.'},
+    {icon:'🥗',cls:'icon-gold',title:'Nutritional Guidance',desc:'Trimester-specific meal plans and Ayurvedic nutritional advice built around your dietary preferences.'},
+    {icon:'👶',cls:'icon-sage',title:'Baby Kick Counter',desc:'Log and track foetal movement patterns to stay connected to your baby and spot any changes early.'},
+    {icon:'📸',cls:'icon-rose',title:'Belly Photo Journal',desc:'A beautiful, auto-organised timeline of your pregnancy journey, week by week.'},
+    {icon:'🏷️',cls:'icon-mauve',title:'Baby Name Finder',desc:'Discover names by origin, meaning, and style. Shortlist your favourites and share with your partner.'},
+    {icon:'🎯',cls:'icon-gold',title:'Milestone Tracking',desc:'Celebrate every step of your journey. Watch your progress grow as you reach each milestone.'},
+  ],
+  pcos:[
+    {icon:'🔬',cls:'icon-rose',title:'PCOS Risk Assessment',desc:'A rule-based risk assessment that identifies your PCOS markers and generates personalised recommendations.'},
+    {icon:'📊',cls:'icon-mauve',title:'Daily Symptom Logging',desc:'Tappable widgets for mood, pain, energy, sleep, cravings, stress — with adaptive AI grouping.'},
+    {icon:'🔮',cls:'icon-gold',title:'Predictive Symptom Warnings',desc:'Based on your last 3-6 cycles, Valkyria predicts upcoming symptoms in warm human language.'},
+    {icon:'🔗',cls:'icon-sage',title:'Mood-Pain Correlation Engine',desc:'Discovers hidden patterns — like migraines following restless sleep — with statistical precision.'},
+    {icon:'🧪',cls:'icon-rose',title:'Lab Test Interpretation',desc:'Upload your lab report. Gemini cross-references values against clinical thresholds and explains results.'},
+    {icon:'🤖',cls:'icon-mauve',title:'PCOS AI Agent',desc:'Powered by a 27-cluster clinical knowledge base. Answers nuanced PCOS questions with evidence.'},
+  ],
+  period:[
+    {icon:'🗓️',cls:'icon-mauve',title:'Period and Cycle Tracker',desc:'Intelligent cycle tracking that learns your unique rhythm and flags anything worth discussing with a doctor.'},
+    {icon:'🥚',cls:'icon-sage',title:'Ovulation Tracker',desc:'Pinpoint your fertile window with multi-signal tracking including temperature and physical indicators.'},
+    {icon:'📝',cls:'icon-gold',title:'Symptom Tracker',desc:'Log and understand your symptoms across your cycle, with pattern recognition that builds over time.'},
+    {icon:'🌿',cls:'icon-rose',title:'Ayurvedic Remedies',desc:'Curated natural and Ayurvedic interventions for period pain, PMS, and cycle irregularities.'},
+    {icon:'🏃',cls:'icon-mauve',title:'Lifestyle Management',desc:'Movement, nutrition, and daily routine guidance adapted to each phase of your menstrual cycle.'},
+    {icon:'🧘',cls:'icon-sage',title:'Phase-Based Guidance',desc:'Visual cycle wheel showing your current phase with personalized nutrition and exercise tips.'},
+  ],
+  postpartum:[
+    {icon:'💙',cls:'icon-rose',title:'Emotional Wellbeing Check-ins',desc:'Regular, sensitive check-ins designed to surface signs of postpartum depression early.'},
+    {icon:'📦',cls:'icon-mauve',title:'Everything You Should Know',desc:'Breastfeeding guidance, practical checklists, and postpartum essentials in one place.'},
+    {icon:'🏃',cls:'icon-gold',title:'Recovery Movement Plans',desc:'Safe, progressive return-to-movement plans designed for postpartum recovery.'},
+    {icon:'🎯',cls:'icon-sage',title:'Milestone Tracking',desc:'Track both your recovery and your baby\'s development side by side.'},
+    {icon:'📓',cls:'icon-rose',title:'Personal Journal',desc:'A private, safe space to process the complexity of new motherhood, free of judgement.'},
+    {icon:'👩‍⚕️',cls:'icon-mauve',title:'Doctor Integration',desc:'Share relevant data with your OB-GYN or specialist directly from within the app.'},
+  ]
+};
+function showFeatures(key,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid=document.getElementById('feature-grid');
+  grid.style.opacity='0';grid.style.transform='translateY(10px)';
+  setTimeout(()=>{
+    grid.innerHTML=features[key].map(f=>`<div class="feature-card"><div class="feature-icon ${f.cls}">${f.icon}</div><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+    grid.style.transition='opacity 0.4s ease,transform 0.4s ease';
+    grid.style.opacity='1';grid.style.transform='translateY(0)';
+  },150);
+}
+function handleWaitlist(){
+  const email=document.getElementById('email-input').value;
+  const msg=document.getElementById('waitlist-msg');
+  if(!email||!email.includes('@')){msg.textContent='Please enter a valid email address.';msg.style.color='#FFB3C0';return;}
+  msg.textContent="You're on the list. We'll be in touch soon. Thank you for believing in Valkyria.";
+  msg.style.color='rgba(255,255,255,0.8)';
+  document.getElementById('email-input').value='';
+}
+showFeatures('pregnancy',document.querySelector('.tab-btn.active'));
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+reveals.forEach(r=>observer.observe(r));
+
+// =================== APP DEMO ===================
+const App={
+  screen:'use-case',
+  useCase:null,
+  trimester:null,
+  lastPeriodDate:null,
+  geminiKey:'',
+  keyActive:false,
+  symptoms:{},
+  chatHistory:[],
+  logState:{},
+};
+
+function openDemo(){document.getElementById('appOverlay').style.display='flex';renderPhone();}
+function closeDemo(){document.getElementById('appOverlay').style.display='none';}
+function updateKey(){App.geminiKey=document.getElementById('geminiKeyInp').value;}
+function saveKey(){
+  App.geminiKey=document.getElementById('geminiKeyInp').value.trim();
+  if(App.geminiKey.length>10){App.keyActive=true;document.getElementById('apiStatus').style.display='block';}
+}
+function nav(screen){App.screen=screen;renderPhone();document.getElementById('demoScreen').scrollTop=0;}
+
+function renderPhone(){
+  const el=document.getElementById('demoScreen');
+  switch(App.screen){
+    case 'use-case': el.innerHTML=screenUseCase(); break;
+    case 'preg-trimester': el.innerHTML=screenPregTrimester(); break;
+    case 'preg-dash': el.innerHTML=screenPregDash(); break;
+    case 'pcos-dash': el.innerHTML=screenPCOSDash(); break;
+    case 'pcos-log': el.innerHTML=screenPCOSLog(); break;
+    case 'pcos-log-success': el.innerHTML=screenLogSuccess(); break;
+    case 'pcos-predictive': el.innerHTML=screenPCOSPredictive(); break;
+    case 'pcos-correlation': el.innerHTML=screenPCOSCorrelation(); break;
+    case 'pcos-lab': el.innerHTML=screenPCOSLab(); break;
+    case 'pcos-ai': el.innerHTML=screenPCOSAI(); setTimeout(initChat,100); break;
+    case 'pcos-questionnaire': el.innerHTML=screenPCOSQuestionnaire(); break;
+    case 'period-date': el.innerHTML=screenPeriodDate(); break;
+    case 'period-dash': el.innerHTML=screenPeriodDash(); break;
+    case 'postpartum-soon': el.innerHTML=screenPostpartumSoon(); break;
+  }
+}
+
+// ========== SCREENS ==========
+
+function screenUseCase(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div class="ps-tag">Welcome</div>
+    <div class="ps-title">What brings you<br>to <em>Valkyria</em>?</div>
+    <div class="ps-sub">We personalise your entire experience based on your needs.</div>
+    <div class="uc-list">
+      <div class="uc-item" onclick="App.useCase='pcos';nav('pcos-dash')">
+        <div class="uc-icon">🔴</div>
+        <div class="uc-body-text">
+          <div class="uc-name">PCOS / PCOD Monitoring</div>
+          <div class="uc-desc">Risk assessment, symptom tracking, AI agent, lab interpretation</div>
+          <div class="uc-pill ready">Full experience available</div>
+        </div>
+        <div class="uc-chevron">›</div>
+      </div>
+      <div class="uc-item" onclick="App.useCase='pregnancy';nav('preg-trimester')">
+        <div class="uc-icon">🤰</div>
+        <div class="uc-body-text">
+          <div class="uc-name">Pregnancy Care</div>
+          <div class="uc-desc">Track your baby's growth, milestones, and get trimester guidance</div>
+          <div class="uc-pill ready">Dashboard available</div>
+        </div>
+        <div class="uc-chevron">›</div>
+      </div>
+      <div class="uc-item" onclick="App.useCase='period';nav('period-date')">
+        <div class="uc-icon">🗓️</div>
+        <div class="uc-body-text">
+          <div class="uc-name">Period & Cycle Wellness</div>
+          <div class="uc-desc">Track your phases, understand your hormonal health</div>
+          <div class="uc-pill ready">Phase wheel available</div>
+        </div>
+        <div class="uc-chevron">›</div>
+      </div>
+      <div class="uc-item disabled">
+        <div class="uc-icon">💙</div>
+        <div class="uc-body-text">
+          <div class="uc-name">Postpartum Depression Screening</div>
+          <div class="uc-desc">Edinburgh Scale, emotional check-ins, support pathways</div>
+          <div class="uc-pill soon">Coming soon</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function screenPregTrimester(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header">
+      <button class="ps-back" onclick="nav('use-case')">←</button>
+      <div class="ps-logo">Valk<span>yria</span></div>
+    </div>
+    <div class="ps-tag">Pregnancy Care</div>
+    <div class="ps-title">Which trimester<br>are you <em>in</em>?</div>
+    <div class="ps-sub">Your dashboard will be personalised based on your stage.</div>
+    <div class="trimester-cards">
+      <div class="tri-card" onclick="App.trimester=1;nav('preg-dash')">
+        <div class="tri-num">First</div>
+        <div class="tri-name">Weeks 1 – 12</div>
+        <div class="tri-weeks">Baby is the size of a lime 🍋</div>
+        <div class="tri-size">~5.4 cm, ~14g</div>
+      </div>
+      <div class="tri-card" onclick="App.trimester=2;nav('preg-dash')">
+        <div class="tri-num">Second</div>
+        <div class="tri-name">Weeks 13 – 26</div>
+        <div class="tri-weeks">Baby is the size of a mango 🥭</div>
+        <div class="tri-size">~33 cm, ~750g</div>
+      </div>
+      <div class="tri-card" onclick="App.trimester=3;nav('preg-dash')">
+        <div class="tri-num">Third</div>
+        <div class="tri-name">Weeks 27 – 40</div>
+        <div class="tri-weeks">Baby is the size of a coconut 🥥</div>
+        <div class="tri-size">~46 cm, ~3.2 kg</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function getBabySVG(tri){
+  if(tri===1) return `<svg viewBox="0 0 90 110" width="70" height="85">
+    <ellipse cx="45" cy="78" rx="16" ry="22" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="45" cy="42" r="22" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="38" cy="38" r="2.5" fill="#C2637A" opacity="0.5"/>
+    <circle cx="52" cy="38" r="2.5" fill="#C2637A" opacity="0.5"/>
+    <ellipse cx="45" cy="48" rx="5" ry="2" fill="#C2637A" opacity="0.2"/>
+    <ellipse cx="30" cy="73" rx="7" ry="3.5" fill="#FFD4DB" opacity="0.7" transform="rotate(-25 30 73)"/>
+    <ellipse cx="60" cy="73" rx="7" ry="3.5" fill="#FFD4DB" opacity="0.7" transform="rotate(25 60 73)"/>
+    <ellipse cx="35" cy="95" rx="5" ry="3" fill="#FFD4DB" opacity="0.6" transform="rotate(15 35 95)"/>
+    <ellipse cx="55" cy="95" rx="5" ry="3" fill="#FFD4DB" opacity="0.6" transform="rotate(-15 55 95)"/>
+  </svg>`;
+  if(tri===2) return `<svg viewBox="0 0 90 120" width="72" height="95">
+    <ellipse cx="45" cy="82" rx="18" ry="28" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="45" cy="40" r="24" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="37" cy="36" r="3" fill="#C2637A" opacity="0.55"/>
+    <circle cx="53" cy="36" r="3" fill="#C2637A" opacity="0.55"/>
+    <ellipse cx="45" cy="47" rx="5" ry="2.5" fill="#C2637A" opacity="0.2"/>
+    <ellipse cx="27" cy="72" rx="9" ry="4" fill="#FFD4DB" opacity="0.8" transform="rotate(-30 27 72)"/>
+    <ellipse cx="63" cy="72" rx="9" ry="4" fill="#FFD4DB" opacity="0.8" transform="rotate(30 63 72)"/>
+    <ellipse cx="27" cy="86" rx="6" ry="3.5" fill="#FFD4DB" opacity="0.6" transform="rotate(-10 27 86)"/>
+    <ellipse cx="63" cy="86" rx="6" ry="3.5" fill="#FFD4DB" opacity="0.6" transform="rotate(10 63 86)"/>
+    <ellipse cx="35" cy="104" rx="7" ry="3.5" fill="#FFD4DB" opacity="0.7" transform="rotate(20 35 104)"/>
+    <ellipse cx="55" cy="104" rx="7" ry="3.5" fill="#FFD4DB" opacity="0.7" transform="rotate(-20 55 104)"/>
+  </svg>`;
+  return `<svg viewBox="0 0 100 130" width="78" height="100">
+    <ellipse cx="50" cy="88" rx="22" ry="32" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="50" cy="42" r="28" fill="#FFD4DB" opacity="0.9"/>
+    <circle cx="41" cy="37" r="3.5" fill="#C2637A" opacity="0.6"/>
+    <circle cx="59" cy="37" r="3.5" fill="#C2637A" opacity="0.6"/>
+    <ellipse cx="50" cy="50" rx="7" ry="3" fill="#C2637A" opacity="0.2"/>
+    <ellipse cx="27" cy="76" rx="12" ry="5" fill="#FFD4DB" opacity="0.85" transform="rotate(-35 27 76)"/>
+    <ellipse cx="73" cy="76" rx="12" ry="5" fill="#FFD4DB" opacity="0.85" transform="rotate(35 73 76)"/>
+    <ellipse cx="26" cy="94" rx="8" ry="4.5" fill="#FFD4DB" opacity="0.65" transform="rotate(-12 26 94)"/>
+    <ellipse cx="74" cy="94" rx="8" ry="4.5" fill="#FFD4DB" opacity="0.65" transform="rotate(12 74 94)"/>
+    <ellipse cx="34" cy="114" rx="9" ry="4.5" fill="#FFD4DB" opacity="0.75" transform="rotate(22 34 114)"/>
+    <ellipse cx="66" cy="114" rx="9" ry="4.5" fill="#FFD4DB" opacity="0.75" transform="rotate(-22 66 114)"/>
+    <ellipse cx="20" cy="84" rx="5" ry="3" fill="#FFD4DB" opacity="0.55" transform="rotate(-40 20 84)"/>
+    <ellipse cx="80" cy="84" rx="5" ry="3" fill="#FFD4DB" opacity="0.55" transform="rotate(40 80 84)"/>
+  </svg>`;
+}
+
+const triData={
+  1:{weeks:'Week 10',fruit:'🍋',fruitName:'Lime',size:'~5.4 cm · ~14g',
+     thoughts:'"Every cell in your body is working overtime right now. Rest is part of the work."',
+     features:['📋 Questionnaire (Coming Soon)','🥗 Nutrition Guide','🌿 Ayurvedic Prep','📓 Journal','🎯 Milestones','💊 Supplements']},
+  2:{weeks:'Week 20',fruit:'🥭',fruitName:'Mango',size:'~33 cm · ~750g',
+     thoughts:'"You are halfway there. Your body has built a whole new person. Take a breath and marvel at that."',
+     features:['👶 Kick Counter','🔬 Ultrasound Tracker','🥗 Nutrition Guide','📓 Journal','🏷️ Name Finder','🎯 Milestones']},
+  3:{weeks:'Week 32',fruit:'🥥',fruitName:'Coconut',size:'~42 cm · ~2 kg',
+     thoughts:'"Your baby can hear your voice now. Every word you say is already making them feel safe."',
+     features:['👶 Kick Counter','📦 Hospital Bag','🥗 Nutrition Guide','😴 Sleep Guide','📓 Journal','🎯 Milestones']},
+};
+
+function screenPregDash(){
+  const t=triData[App.trimester||2];
+  const featureTiles=t.features.map(f=>`<div class="ph-feat-card" style="display:flex;align-items:center;gap:0.4rem;grid-column:auto;">
+    <span style="font-size:1rem;">${f.split(' ')[0]}</span>
+    <span style="font-size:0.58rem;color:rgba(255,255,255,0.6);">${f.substring(f.indexOf(' ')+1)}</span>
+  </div>`).join('');
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header">
+      <button class="ps-back" onclick="nav('preg-trimester')">←</button>
+      <div class="ps-logo">Valk<span>yria</span></div>
+    </div>
+    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">Good morning, Priya 👋</div>
+    <div class="baby-showcase">
+      <div class="baby-svg-wrap">${getBabySVG(App.trimester||2)}</div>
+      <div class="baby-info">
+        <div class="baby-info-label">Your baby this week</div>
+        <div class="baby-week">${t.weeks}</div>
+        <div class="baby-size-compare">About the size of a</div>
+        <div class="baby-fruit">${t.fruit}</div>
+        <div style="font-size:0.62rem;font-weight:500;color:rgba(255,255,255,0.7);">${t.fruitName}</div>
+        <div class="baby-measurement">${t.size}</div>
+      </div>
+    </div>
+    <div style="background:rgba(194,99,122,0.08);border-left:2px solid rgba(194,99,122,0.4);padding:0.6rem 0.75rem;border-radius:0 0.5rem 0.5rem 0;margin-bottom:0.85rem;font-size:0.58rem;color:rgba(255,255,255,0.45);font-style:italic;line-height:1.5;">${t.thoughts}</div>
+    <div class="ph-feat-label">Your features</div>
+    <div style="display:flex;flex-direction:column;gap:0.4rem;">${featureTiles}</div>
+  </div>`;
+}
+
+function screenPCOSDash(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">Good morning, Priya 👋</div>
+    <div class="wellness-snap">
+      <div class="ws-header">
+        <div class="ws-title">Today's Wellness Snapshot</div>
+        <button class="ws-log-btn" onclick="nav('pcos-log')">+ Log</button>
+      </div>
+      <div class="ws-gauge-row">
+        <div class="ws-gauge">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="url(#wg)" stroke-width="8" stroke-linecap="round"
+              stroke-dasharray="201" stroke-dashoffset="50" transform="rotate(-90 40 40)"/>
+            <defs><linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#C2637A"/><stop offset="100%" style="stop-color:#7B5EA7"/></linearGradient></defs>
+          </svg>
+          <div class="ws-gauge-center"><div class="ws-gauge-num">72</div><div class="ws-gauge-lbl">WELLNESS</div></div>
+        </div>
+        <div class="ws-metrics">
+          <div class="ws-metric"><div class="ws-metric-label">😊 Mood</div><div class="ws-metric-val">Good</div></div>
+          <div class="ws-metric"><div class="ws-metric-label">⚡ Energy</div><div class="ws-metric-val">Moderate</div></div>
+          <div class="ws-metric"><div class="ws-metric-label">🌙 Sleep</div><div class="ws-metric-val">6.5 hrs</div></div>
+          <div class="ws-metric"><div class="ws-metric-label">🔴 Pain</div><div class="ws-metric-val">Mild</div></div>
+        </div>
+      </div>
+      <div class="ws-last-log">Last logged: 2 days ago · Tap + Log to update</div>
+    </div>
+    <div class="ph-feat-label">Your PCOS Features</div>
+    <div class="ph-feat-grid">
+      <div class="ph-feat-card" onclick="nav('pcos-questionnaire')">
+        <div class="ph-feat-icon">🔬</div>
+        <div class="ph-feat-name">PCOS Assessment</div>
+        <div class="ph-feat-desc">Full risk scoring with clinical markers</div>
+        <div class="ph-feat-badge">EBR</div>
+      </div>
+      <div class="ph-feat-card" onclick="nav('pcos-log')">
+        <div class="ph-feat-icon">📊</div>
+        <div class="ph-feat-name">Daily Symptom Log</div>
+        <div class="ph-feat-desc">Mood, pain, energy, sleep & more</div>
+        <div class="ph-feat-badge ai">Adaptive AI</div>
+      </div>
+      <div class="ph-feat-card" onclick="nav('pcos-predictive')">
+        <div class="ph-feat-icon">🔮</div>
+        <div class="ph-feat-name">Predictive Warnings</div>
+        <div class="ph-feat-desc">Upcoming symptoms based on your cycles</div>
+        <div class="ph-feat-badge ai">AI</div>
+      </div>
+      <div class="ph-feat-card" onclick="nav('pcos-correlation')">
+        <div class="ph-feat-icon">🔗</div>
+        <div class="ph-feat-name">Mood-Pain Insights</div>
+        <div class="ph-feat-desc">Discover hidden symptom patterns</div>
+        <div class="ph-feat-badge ai">AI</div>
+      </div>
+      <div class="ph-feat-card" onclick="nav('pcos-lab')">
+        <div class="ph-feat-icon">🧪</div>
+        <div class="ph-feat-name">Lab Interpretation</div>
+        <div class="ph-feat-desc">Upload report · Get plain-language results</div>
+        <div class="ph-feat-badge ai">Gemini</div>
+      </div>
+      <div class="ph-feat-card" onclick="nav('pcos-ai')">
+        <div class="ph-feat-icon">🤖</div>
+        <div class="ph-feat-name">PCOS AI Agent</div>
+        <div class="ph-feat-desc">27-cluster clinical knowledge base</div>
+        <div class="ph-feat-badge ai">Live AI</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Symptom log state
+let logSelections={period:null,spotting:null,feelings:new Set(),pain:new Set(),sleepScale:null,sleepQual:new Set(),energy:null,cravings:new Set(),mind:new Set(),stress:null};
+
+function screenPCOSLog(){
+  const chips=(arr,key,multi=true)=>arr.map(v=>`<div class="log-chip${multi?'':' period-chip'}${multi?(logSelections[key]?.has(v)?' sel':''):(logSelections[key]===v?' sel':'')}" onclick="${multi?`toggleChip('${key}','${v}',this)`:`pickChip('${key}','${v}',this)`}">${v}</div>`).join('');
+  const scale=(key,emojis)=>`<div class="scale-row">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<div class="scale-num${logSelections[key]===n?' sel':''}" onclick="pickScale('${key}',${n},this)">${n}</div>`).join('')}<span class="scale-emoji">${emojis}</span></div>`;
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header">
+      <button class="ps-back" onclick="nav('pcos-dash')">←</button>
+      <div style="font-size:0.75rem;font-weight:500;color:white;">Today's Log</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🔴 Period Flow</div>
+      <div class="log-chips">${chips(['Light','Medium','Heavy','Super Heavy'],'period',false)}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🩸 Spotting</div>
+      <div class="log-chips">${chips(['Red Spotting','Brown Spotting'],'spotting',false)}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">😊 Feelings</div>
+      <div class="log-chips">${chips(['Feeling Good','Okay','Happy','Sad','Moody','Angry','Sensitive','Confident','Excited','Irritated','Agitated'],'feelings')}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🔴 Pain <span class="ai-tag">🧠 AI grouped</span></div>
+      <div class="log-chips">
+        <div class="log-chip" style="background:rgba(194,99,122,0.1);border-color:rgba(194,99,122,0.2);padding:0.3rem 0.65rem;font-size:0.56rem;color:rgba(255,255,255,0.6);" onclick="togglePainGroup(this)">🔗 Cramps + Lower Back</div>
+        ${chips(['Ovulation Pain','Breast Tenderness','Headache','Migraine','Leg Pain'],'pain')}
+      </div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🌙 Sleep Quality</div>
+      ${scale('sleepScale','😴 😊')}
+      <div class="log-chips" style="margin-top:0.5rem;">${chips(['Trouble Falling Asleep','Woke Refreshed','Woke Tired','Restless Sleep','Weird Dreams'],'sleepQual')}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">⚡ Energy Level</div>
+      <div class="log-chips">${chips(['Exhausted','Tired','Okay','Energetic','Fully Energized'],'energy',false)}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🍫 Cravings</div>
+      <div class="log-chips">${chips(['Sweet','Salty','Greasy','Spicy','Carbs'],'cravings')}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">🧠 Mind</div>
+      <div class="log-chips">${chips(['Brain Fog','Calm','Forgetful','Stressed','Focused','Distracted','Motivated','Creative','Productive','Unproductive'],'mind')}</div>
+    </div>
+    <div class="log-section">
+      <div class="log-sec-title">😰 Stress Intensity</div>
+      ${scale('stress','😌 😰')}
+      <div id="cortisol-note" style="display:none;margin-top:0.5rem;background:rgba(196,146,58,0.1);border:1px solid rgba(196,146,58,0.2);border-radius:0.65rem;padding:0.5rem 0.65rem;font-size:0.55rem;color:rgba(210,175,100,0.9);line-height:1.5;">⚠️ High stress levels for prolonged periods can elevate cortisol, which worsens androgen excess in PCOS. Consider a brief mindfulness break today.</div>
+    </div>
+    <button class="log-submit-btn" onclick="submitLog()">Save Today's Log ✓</button>
+  </div>`;
+}
+
+function toggleChip(key,val,el){
+  if(!logSelections[key]) logSelections[key]=new Set();
+  el.classList.toggle('sel');
+  el.classList.contains('sel')?logSelections[key].add(val):logSelections[key].delete(val);
+}
+function pickChip(key,val,el){
+  el.closest('.log-chips').querySelectorAll('.log-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); logSelections[key]=val;
+}
+function pickScale(key,val,el){
+  el.closest('.scale-row').querySelectorAll('.scale-num').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); logSelections[key]=val;
+  if(key==='stress'&&val>=7){const n=document.getElementById('cortisol-note');if(n)n.style.display='block';}
+  else if(key==='stress'){const n=document.getElementById('cortisol-note');if(n)n.style.display='none';}
+}
+function togglePainGroup(el){el.classList.toggle('sel');}
+async function submitLog(){
+  nav('pcos-log-success');
+  if(App.keyActive){
+    const insight=await callGemini('Give a warm, single-sentence personalized insight for someone who logged these PCOS symptoms today: '+JSON.stringify(logSelections)+'. Be brief and kind.','You are Valkyria, a compassionate PCOS health companion. Respond in one warm, actionable sentence.');
+    const el=document.getElementById('log-insight-text');if(el)el.textContent=insight;
+  }
+}
+function screenLogSuccess(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="log-success">
+      <div class="log-success-icon">✅</div>
+      <div class="log-success-title">Logged successfully</div>
+      <div class="log-success-sub">Your wellness data has been recorded. Valkyria is learning your patterns.</div>
+      <div class="log-insight" id="log-insight-box">
+        <div style="font-size:0.5rem;color:rgba(194,99,122,0.7);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">✦ Valkyria Insight</div>
+        <div id="log-insight-text">${App.keyActive?'Generating your personalized insight...':'Add your Gemini API key to get AI-powered insights after logging.'}</div>
+      </div>
+      <button class="log-back-btn" onclick="nav('pcos-dash')">← Back to Dashboard</button>
+    </div>
+  </div>`;
+}
+
+const MOCK_PREDS=[
+  {sym:'Brain fog',day:20,cycles:4,occ:3,daysAway:3,color:'soon',msg:"Based on your last 4 cycles, brain fog tends to show up around day 20. That's 3 days away — staying hydrated and scheduling lighter tasks could really help."},
+  {sym:'Cramps',day:2,cycles:4,occ:4,daysAway:11,color:'coming',msg:"Cramps have appeared on day 2 in all 4 of your logged cycles. They're about 11 days away — having a heating pad ready and starting magnesium 2-3 days before could make a difference."},
+  {sym:'Energy dip',day:15,cycles:3,occ:3,daysAway:-2,color:'now',msg:"Your energy tends to dip around day 15. If you're feeling it now, you're right on schedule — gentle movement and iron-rich foods like spinach or lentils can help you through."},
+];
+function screenPCOSPredictive(){
+  const cards=MOCK_PREDS.map(p=>{
+    const label=p.daysAway<0?'Happening now':p.daysAway===0?'Today!':p.daysAway+' days away';
+    const cls=p.daysAway<0?'now':p.daysAway<=3?'soon':'coming';
+    return `<div class="pred-card">
+      <div class="pred-card-top">
+        <div class="pred-dot ${cls}"></div>
+        <div class="pred-symptom">${p.sym}</div>
+        <div class="pred-days${p.daysAway<0?' now':''}">${label}</div>
+      </div>
+      <div class="pred-msg" id="pred-msg-${p.sym.replace(/\s/g,'')}">${p.msg}</div>
+      <div class="pred-cycles">Based on ${p.occ} of ${p.cycles} past cycles · Cycle day ${p.day}</div>
+    </div>`;
+  }).join('');
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('pcos-dash')">←</button><div style="font-size:0.75rem;font-weight:500;color:white;">Predictive Warnings</div></div>
+    <div class="ps-tag">Feature 2</div>
+    <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:0.85rem;line-height:1.5;">Based on your last 4 cycles of logged data, Valkyria identified these upcoming patterns:</div>
+    ${cards}
+    <div class="gemini-badge">Descriptions generated by Gemini AI · Based on mock cycle data</div>
+  </div>`;
+}
+
+const MOCK_CORR=[
+  {strength:0.73,a:'Restless sleep (2+ nights)',b:'Migraine next day',insight:"I've noticed your migraines tend to appear after 2 nights of restless sleep — that's happened 3 out of 4 times in your logs.",action:'A consistent wind-down routine tonight could help. Magnesium glycinate before bed may also reduce both sleep issues and migraines.'},
+  {strength:0.68,a:'High-sugar day',b:'Brain fog next morning',insight:"Days with more sugar in your logs tend to be followed by brain fog the next morning.",action:'Swapping afternoon snacks for something low-GI — nuts, fruit, or whole-grain crackers — could break that pattern for you.'},
+  {strength:0.61,a:'Sedentary day',b:'Lower energy 2 days later',insight:"On days you logged little or no movement, your energy scores drop noticeably two days later.",action:'Even a 20-minute walk on quieter days could help break this cycle.'},
+];
+function screenPCOSCorrelation(){
+  const cards=MOCK_CORR.map(c=>`<div class="corr-card">
+    <div class="corr-strength">
+      <div class="corr-bar-wrap"><div class="corr-bar" style="width:${c.strength*100}%"></div></div>
+      <div class="corr-val">${c.strength} r</div>
+    </div>
+    <div style="font-size:0.52rem;color:rgba(255,255,255,0.3);margin-bottom:0.4rem;">${c.a} → ${c.b}</div>
+    <div class="corr-insight">${c.insight}</div>
+    <div class="corr-action">💡 ${c.action}</div>
+  </div>`).join('');
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('pcos-dash')">←</button><div style="font-size:0.75rem;font-weight:500;color:white;">Mood-Pain Correlations</div></div>
+    <div class="ps-tag">Feature 3</div>
+    <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-bottom:0.85rem;line-height:1.5;">After 56+ days of logging, Valkyria found these statistically significant patterns in your data:</div>
+    ${cards}
+    <div class="gemini-badge">Insights written by Gemini AI · r = Pearson correlation coefficient</div>
+  </div>`;
+}
+
+// Lab test reference data
+const LAB_REF={
+  'total testosterone':{normal:'15-70 ng/dL',flag:'>70 ng/dL',reason:'High androgens in PCOS are driven by the ovaries (stimulated by LH and insulin) overproducing testosterone. This causes many of the physical symptoms of PCOS including acne, hirsutism, and hair loss.'},
+  'free testosterone':{normal:'0.7-3.6 pg/mL',flag:'>3.6 pg/mL',reason:'Free testosterone is the active form. High levels are more clinically significant than total testosterone, especially when SHBG is low.'},
+  'lh':{normal:'5-20 mIU/mL',flag:'>20 mIU/mL',reason:'In PCOS, the pituitary releases abnormally high LH relative to FSH. This imbalance prevents follicles from maturing properly, causing the irregular ovulation patterns seen in PCOS.'},
+  'fsh':{normal:'5-20 mIU/mL',flag:'LH:FSH ratio >2:1',reason:'FSH levels are often normal in PCOS, but the LH:FSH ratio becomes elevated, which is a key diagnostic marker.'},
+  'amh':{normal:'Varies by age',flag:'2-4x above age-matched normal',reason:'AMH is produced by small, early-stage follicles. Women with PCOS have an abnormally high number of arrested follicles, so AMH is naturally elevated — often 2-4 times higher than normal.'},
+  'fasting insulin':{normal:'5-15 μU/mL',flag:'>15 μU/mL',reason:'High fasting insulin indicates insulin resistance. Elevated insulin stimulates the ovaries to produce more testosterone and reduces SHBG, worsening all androgenic symptoms.'},
+};
+
+const SAMPLE_LAB=`HORMONAL PROFILE REPORT
+Patient: Priya Sharma, Age: 26
+Date: 12 April 2025
+
+Total Testosterone: 82 ng/dL (Ref: 15-70 ng/dL)
+Free Testosterone: 4.2 pg/mL (Ref: 0.7-3.6 pg/mL)
+LH: 18.4 mIU/mL (Ref: 5-20 mIU/mL)
+FSH: 7.1 mIU/mL (Ref: 5-20 mIU/mL)
+LH:FSH Ratio: 2.6:1
+AMH: 8.9 ng/mL (Ref: 1.0-3.5 ng/mL)
+Fasting Insulin: 22 μU/mL (Ref: 5-15 μU/mL)
+Fasting Glucose: 98 mg/dL (Ref: <100 mg/dL)
+TSH: 2.1 mIU/L (Ref: 0.4-4.0 mIU/L)`;
+
+function screenPCOSLab(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('pcos-dash')">←</button><div style="font-size:0.75rem;font-weight:500;color:white;">Lab Interpretation</div></div>
+    <div class="ps-tag">Feature 6</div>
+    <div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-bottom:0.85rem;line-height:1.5;">Upload your lab report PDF. Valkyria cross-references your values against clinical thresholds and explains results in plain language.</div>
+    <div class="lab-upload-area" onclick="runSampleLab()">
+      <div class="lab-upload-icon">📄</div>
+      <div class="lab-upload-text">Tap to use sample lab report</div>
+      <div class="lab-upload-sub">Or upload your own PDF</div>
+      <input type="file" id="lab-file" accept=".pdf,.txt" style="display:none;" onchange="handleLabUpload(event)">
+    </div>
+    <div style="text-align:center;margin-bottom:0.75rem;">
+      <button onclick="document.getElementById('lab-file').click()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);border-radius:1rem;padding:0.4rem 1rem;font-size:0.62rem;cursor:pointer;font-family:'DM Sans',sans-serif;">📎 Upload PDF</button>
+    </div>
+    <div id="lab-results-wrap"></div>
+  </div>`;
+}
+
+async function runSampleLab(){renderLabResults(SAMPLE_LAB);}
+async function handleLabUpload(e){
+  const file=e.target.files[0];if(!file)return;
+  const text=await file.text();
+  renderLabResults(text);
+}
+async function renderLabResults(text){
+  const wrap=document.getElementById('lab-results-wrap');
+  if(!wrap)return;
+  wrap.innerHTML=`<div style="font-size:0.62rem;color:rgba(255,255,255,0.35);margin-bottom:0.65rem;">Analysing report...</div>`;
+  const results=[
+    {name:'Total Testosterone',val:'82 ng/dL',range:'15–70 ng/dL',flag:'high'},
+    {name:'Free Testosterone',val:'4.2 pg/mL',range:'0.7–3.6 pg/mL',flag:'high'},
+    {name:'LH:FSH Ratio',val:'2.6:1',range:'~1:1',flag:'high'},
+    {name:'AMH',val:'8.9 ng/mL',range:'1.0–3.5 ng/mL',flag:'high'},
+    {name:'Fasting Insulin',val:'22 μU/mL',range:'5–15 μU/mL',flag:'high'},
+    {name:'Fasting Glucose',val:'98 mg/dL',range:'<100 mg/dL',flag:'normal'},
+    {name:'TSH',val:'2.1 mIU/L',range:'0.4–4.0 mIU/L',flag:'normal'},
+  ];
+  const rows=results.map(r=>`<div class="lab-test-row"><div class="lab-flag ${r.flag}"></div><div class="lab-test-name">${r.name}</div><div><div class="lab-test-val">${r.val}</div><div class="lab-test-range">${r.range}</div></div></div>`).join('');
+  let explanation=`Your results show elevated androgens (testosterone), high AMH, and elevated fasting insulin — all consistent with PCOS and insulin resistance. The LH:FSH ratio of 2.6:1 also supports this picture. Your thyroid and fasting glucose are normal. We recommend discussing these results with an endocrinologist or gynaecologist promptly.`;
+  if(App.keyActive){
+    explanation=await callGemini(`Interpret these PCOS lab results in warm, plain language (2-3 sentences): Total Testosterone 82 ng/dL (high), Free Testosterone 4.2 pg/mL (high), LH:FSH ratio 2.6:1 (elevated), AMH 8.9 ng/mL (very high), Fasting Insulin 22 μU/mL (elevated). End with recommending they discuss with a doctor.`,
+    'You are Valkyria, a compassionate PCOS health companion. Explain lab results in warm, plain language without medical jargon. Always end by recommending consulting a healthcare professional.');
+  }
+  wrap.innerHTML=`<div class="lab-result-card">${rows}</div><div class="lab-explanation"><div style="font-size:0.5rem;color:rgba(194,99,122,0.7);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">✦ Valkyria Interpretation</div>${explanation}</div>`;
+}
+
+function screenPCOSAI(){
+  const initMsg='Hi! I\'m Valkyria\'s PCOS companion, trained on 27 clinical clusters covering everything from insulin resistance to fertility and Ayurvedic care. What can I help you understand today?';
+  App.chatHistory=[{role:'assistant',content:initMsg}];
+  const msgs=App.chatHistory.map(m=>`<div class="chat-msg ${m.role==='user'?'user':'bot'}">${m.content}</div>`).join('');
+  return `<div style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);">
+    <div style="padding:0.85rem 1.1rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:0.5rem;">
+      <button class="ps-back" onclick="nav('pcos-dash')">←</button>
+      <div>
+        <div style="font-size:0.72rem;font-weight:500;color:white;">PCOS AI Agent</div>
+        <div style="font-size:0.52rem;color:rgba(107,143,113,0.8);">${App.keyActive?'● Connected · 27 clusters active':'● Add Gemini key to activate'}</div>
+      </div>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-messages" id="chat-msgs">${msgs}</div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-inp" placeholder="Ask anything about PCOS..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">↑</button>
+      </div>
+    </div>
+    ${!App.keyActive?`<div style="text-align:center;padding:0.5rem;font-size:0.55rem;color:rgba(255,255,255,0.2);">Enter Gemini API key in the sidebar to enable live responses</div>`:''}
+  </div>`;
+}
+function initChat(){const msgs=document.getElementById('chat-msgs');if(msgs)msgs.scrollTop=msgs.scrollHeight;}
+async function sendChat(){
+  const inp=document.getElementById('chat-inp');if(!inp)return;
+  const txt=inp.value.trim();if(!txt)return;
+  inp.value='';
+  App.chatHistory.push({role:'user',content:txt});
+  const msgs=document.getElementById('chat-msgs');
+  if(msgs){msgs.innerHTML+=`<div class="chat-msg user">${txt}</div><div class="chat-msg thinking" id="typing">thinking...</div>`;msgs.scrollTop=msgs.scrollHeight;}
+  let reply='I\'d be happy to help with that! For the best experience, add your Gemini API key in the sidebar to get live, evidence-based responses powered by Valkyria\'s 27-cluster PCOS knowledge base.';
+  if(App.keyActive){
+    reply=await callGemini(txt,`You are Valkyria's PCOS/PCOD health companion. You have deep knowledge of PCOS including: Rotterdam criteria diagnosis, insulin resistance (70% of PCOS women), menstrual irregularities, androgenic symptoms (acne, hirsutism, alopecia), mental health (2-3x higher anxiety/depression), fertility (letrozole first-line), diet (low-GI, anti-inflammatory), exercise (150min/week), medications (Metformin, COCP), supplements (myo-inositol, Vitamin D, omega-3), Ayurveda (Shatavari, Ashwagandha), and stress-cortisol connection. Be warm, compassionate, and non-judgmental. Use plain language. Consider South Asian context. End responses by recommending consultation with a healthcare professional. Keep responses concise (2-4 sentences for simple questions).`);
+  }
+  App.chatHistory.push({role:'assistant',content:reply});
+  const typing=document.getElementById('typing');if(typing)typing.remove();
+  if(msgs){msgs.innerHTML+=`<div class="chat-msg bot">${reply}</div>`;msgs.scrollTop=msgs.scrollHeight;}
+}
+
+function screenPCOSQuestionnaire(){
+  return `<div style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;padding:1rem 1rem 2rem;">
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
+      <button class="ps-back" onclick="nav('pcos-dash')">←</button>
+      <div style="font-size:0.72rem;font-weight:500;color:white;">PCOS Risk Assessment</div>
+    </div>
+    <div style="background:rgba(194,99,122,0.1);border:1px solid rgba(194,99,122,0.2);border-radius:1rem;padding:1rem;margin-bottom:0.75rem;">
+      <div style="font-size:0.6rem;color:var(--rose);font-weight:500;margin-bottom:0.35rem;">✦ Full Assessment Available</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.6);line-height:1.55;">The complete 7-section PCOS risk assessment — with Rotterdam criteria scoring, mFG hirsutism grid, phenotype classification, and personalized clinical flags — is ready to use.</div>
+      <a href="valkyria_questionnaire.html" target="_blank" style="display:inline-block;margin-top:0.75rem;background:var(--rose);color:white;border-radius:1rem;padding:0.5rem 1rem;font-size:0.65rem;font-weight:500;text-decoration:none;">Open Full Assessment →</a>
+    </div>
+    <div style="font-size:0.6rem;color:rgba(255,255,255,0.3);text-align:center;margin:0.5rem 0;">or try a quick 2-question preview below</div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1rem;padding:0.85rem;">
+      <div style="font-size:0.58rem;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">How regular are your menstrual cycles?</div>
+      ${['Regular (21–35 days)','Slightly irregular (36–45 days)','Irregular (>45 days)','Absent for 3+ months'].map(o=>`<div style="padding:0.35rem 0.65rem;margin-bottom:0.3rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.08);font-size:0.55rem;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="this.style.background='rgba(194,99,122,0.2)';this.style.borderColor='rgba(194,99,122,0.35)';this.style.color='white';">${o}</div>`).join('')}
+      <div style="font-size:0.58rem;color:rgba(255,255,255,0.5);margin:0.75rem 0 0.5rem;">Do you have acne, excess facial/body hair, or hair thinning?</div>
+      ${['No, none of these','Yes — acne (especially jaw/chin)','Yes — excess hair growth','Yes — hair thinning at crown','Multiple of the above'].map(o=>`<div style="padding:0.35rem 0.65rem;margin-bottom:0.3rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.08);font-size:0.55rem;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="this.style.background='rgba(194,99,122,0.2)';this.style.borderColor='rgba(194,99,122,0.35)';this.style.color='white';">${o}</div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function screenPeriodDate(){
+  const today=new Date();
+  const maxDate=today.toISOString().split('T')[0];
+  const defaultDate=new Date(today-14*24*60*60*1000).toISOString().split('T')[0];
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('use-case')">←</button><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div class="ps-tag">Period & Cycle Wellness</div>
+    <div class="ps-title">When did your<br>last period <em>start</em>?</div>
+    <div class="ps-sub">We'll use this to calculate your current cycle phase and show personalized guidance.</div>
+    <div class="date-input-group">
+      <div class="date-label">First day of last period</div>
+      <input class="date-inp" type="date" id="period-date-inp" value="${defaultDate}" max="${maxDate}">
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1rem;padding:0.85rem;margin-bottom:1rem;font-size:0.6rem;color:rgba(255,255,255,0.4);line-height:1.6;">
+      💡 We assume a standard 28-day cycle for this demo. In the full app, Valkyria learns your actual cycle length over time and adjusts accordingly.
+    </div>
+    <button class="date-continue" onclick="App.lastPeriodDate=document.getElementById('period-date-inp').value;nav('period-dash')">Show My Phase →</button>
+  </div>`;
+}
+
+function calculatePhase(dateStr){
+  const today=new Date();
+  const last=new Date(dateStr);
+  const days=Math.floor((today-last)/(1000*60*60*24));
+  const day=((days%28)+28)%28+1;
+  if(day<=5) return {phase:'Menstrual',day,color:'#C2637A',light:'rgba(194,99,122,0.3)',emoji:'🌑',desc:'Your body is shedding the uterine lining. Estrogen and progesterone are at their lowest. This is a time for rest and self-compassion.',tips:['Rest as much as you need — this is not weakness, it\'s physiology','Warmth helps: hot water bottle for cramps, warm foods','Iron-rich foods: lentils, spinach, dates to replenish lost iron','Avoid high-intensity exercise; gentle yoga is ideal']};
+  if(day<=13) return {phase:'Follicular',day,color:'#7B5EA7',light:'rgba(123,94,167,0.3)',emoji:'🌒',desc:'Estrogen is rising as follicles develop. Energy and mood tend to improve. Cognitive sharpness and motivation are often higher in this phase.',tips:['Great time for new projects, creative work, and social events','Start or increase exercise — your body responds well now','Focus on protein and complex carbs to support energy','Shatavari can support follicular development naturally']};
+  if(day<=16) return {phase:'Ovulatory',day,color:'#C4923A',light:'rgba(196,146,58,0.3)',emoji:'🌕',desc:'A brief surge in LH triggers ovulation. Estrogen peaks, making you feel your most energetic, confident, and socially magnetic.',tips:['Your most fertile window — if trying to conceive, this is it','Peak energy and communication skills — great for presentations','High-intensity workouts feel easier and more rewarding now','Eat antioxidant-rich foods: berries, leafy greens, nuts']};
+  return {phase:'Luteal',day,color:'#6B8F71',light:'rgba(107,143,113,0.3)',emoji:'🌗',desc:'Progesterone rises after ovulation. PMS symptoms may begin toward the end of this phase. Your body is working hard.',tips:['Reduce caffeine and alcohol — they worsen PMS symptoms','Complex carbs help manage cravings and stabilise mood','Magnesium supplementation reduces bloating and cramping','Ashwagandha helps manage the cortisol-progesterone interaction']};
+}
+
+function buildPhaseWheel(current,day){
+  const R=52,cx=65,cy=65;
+  const phases=[
+    {name:'Menstrual',days:5,color:'#C2637A'},
+    {name:'Follicular',days:8,color:'#7B5EA7'},
+    {name:'Ovulatory',days:3,color:'#C4923A'},
+    {name:'Luteal',days:12,color:'#6B8F71'},
+  ];
+  const total=28;
+  let svg=`<svg width="130" height="130" viewBox="0 0 130 130">`;
+  let startAngle=-90;
+  let activeMid=0;
+  let dayCount=0;
+  phases.forEach(p=>{
+    const angle=(p.days/total)*360;
+    const endAngle=startAngle+angle;
+    const midAngle=startAngle+angle/2;
+    if(p.name===current) activeMid=midAngle;
+    const x1=cx+R*Math.cos(startAngle*Math.PI/180);
+    const y1=cy+R*Math.sin(startAngle*Math.PI/180);
+    const x2=cx+R*Math.cos(endAngle*Math.PI/180);
+    const y2=cy+R*Math.sin(endAngle*Math.PI/180);
+    const large=angle>180?1:0;
+    const opacity=p.name===current?1:0.3;
+    svg+=`<path d="M${cx},${cy} L${x1},${y1} A${R},${R} 0 ${large},1 ${x2},${y2} Z" fill="${p.color}" opacity="${opacity}"/>`;
+    const lx=cx+(R*0.65)*Math.cos(midAngle*Math.PI/180);
+    const ly=cy+(R*0.65)*Math.sin(midAngle*Math.PI/180);
+    svg+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="5.5" fill="white" opacity="${p.name===current?1:0.5}" font-family="DM Sans,sans-serif">${p.name.substring(0,3)}</text>`;
+    startAngle=endAngle;
+  });
+  const dotR=R+8;
+  const dotAngle=((day-1)/total)*360-90;
+  const dx=cx+dotR*Math.cos(dotAngle*Math.PI/180);
+  const dy=cy+dotR*Math.sin(dotAngle*Math.PI/180);
+  svg+=`<circle cx="${cx}" cy="${cy}" r="16" fill="#0F0D14"/>
+    <text x="${cx}" y="${cy-3}" text-anchor="middle" font-size="9" fill="white" font-family="Cormorant Garant,serif" font-weight="600">${day}</text>
+    <text x="${cx}" y="${cy+7}" text-anchor="middle" font-size="5" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif">day</text>
+    <circle cx="${dx}" cy="${dy}" r="5" fill="white" opacity="0.9"/>
+    <circle cx="${dx}" cy="${dy}" r="3" fill="${phases.find(p=>p.name===current)?.color||'#C2637A'}"/>
+  </svg>`;
+  return svg;
+}
+
+function screenPeriodDash(){
+  const date=App.lastPeriodDate||new Date(Date.now()-14*24*60*60*1000).toISOString().split('T')[0];
+  const p=calculatePhase(date);
+  const wheel=buildPhaseWheel(p.phase,p.day);
+  const tips=p.tips.map(t=>`<div class="phase-tip">${t}</div>`).join('');
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('period-date')">←</button><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">Good morning, Priya 👋</div>
+    <div class="phase-wheel-wrap">${wheel}</div>
+    <div class="phase-info-card">
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;">
+        <div style="width:10px;height:10px;border-radius:50%;background:${p.color};"></div>
+        <div class="phase-name">${p.emoji} ${p.phase} Phase</div>
+      </div>
+      <div class="phase-day">Cycle Day ${p.day} · 28-day cycle</div>
+      <div class="phase-desc">${p.desc}</div>
+      <div class="phase-tips" style="margin-top:0.65rem;">
+        <div style="font-size:0.52rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">Phase-specific guidance</div>
+        ${tips}
+      </div>
+    </div>
+    <div class="ph-feat-label">Period Features</div>
+    <div class="ph-feat-grid">
+      <div class="ph-feat-card" onclick="nav('pcos-log')">
+        <div class="ph-feat-icon">📊</div>
+        <div class="ph-feat-name">Log Symptoms</div>
+        <div class="ph-feat-desc">Track today's mood, pain & energy</div>
+      </div>
+      <div class="ph-feat-card">
+        <div class="ph-feat-icon">🌿</div>
+        <div class="ph-feat-name">Ayurvedic Tips</div>
+        <div class="ph-feat-desc">Phase-specific herbal guidance</div>
+        <div class="ph-feat-badge">Coming Soon</div>
+      </div>
+      <div class="ph-feat-card wide">
+        <div class="ph-feat-icon">📅</div>
+        <div class="ph-feat-name">Cycle History & Predictions</div>
+        <div class="ph-feat-desc">Full cycle tracking with pattern learning — available in the full app</div>
+        <div class="ph-feat-badge">Coming Soon</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function screenPostpartumSoon(){
+  return `<div class="ps-wrap" style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;">
+    <div class="ps-header"><button class="ps-back" onclick="nav('use-case')">←</button><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div class="cs-wrap">
+      <div class="cs-emoji">💙</div>
+      <div class="cs-title">Coming Soon</div>
+      <div class="cs-sub">Postpartum Depression Screening is our next major feature. It will include the Edinburgh Postnatal Depression Scale, daily emotional check-ins, risk flagging, and direct pathways to support.</div>
+      <div class="cs-pill">Expected — Q3 2025</div>
+      <div style="margin-top:1.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1rem;padding:1rem;text-align:left;">
+        <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.6rem;">Planned features</div>
+        ${['Edinburgh Postnatal Scale (EPDS)','Daily emotional check-ins','Risk escalation to doctor','Breastfeeding guidance','Recovery movement plans','New mother support community'].map(f=>`<div style="font-size:0.58rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.4rem;margin-bottom:0.3rem;"><span style="color:var(--rose);">◦</span>${f}</div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+// =================== GEMINI API ===================
+async function callGemini(userMsg,systemPrompt){
+  if(!App.geminiKey||!App.keyActive) return null;
+  try{
+    const resp=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${App.geminiKey}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{role:'user',parts:[{text:userMsg}]}],
+        systemInstruction:{parts:[{text:systemPrompt}]},
+        generationConfig:{maxOutputTokens:400,temperature:0.7}
+      })
+    });
+    const data=await resp.json();
+    if(data.candidates&&data.candidates[0]&&data.candidates[0].content){
+      return data.candidates[0].content.parts[0].text;
+    }
+    return 'Unable to generate response. Please check your API key and try again.';
+  }catch(e){return 'Connection error. Please check your API key and network.';}
+}
+</script>
+</body>
+</html>

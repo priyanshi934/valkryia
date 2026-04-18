@@ -757,17 +757,16 @@ footer p{font-size:0.8rem;font-weight:300;}
     <div class="demo-info">
       <h2>Try <em>Valkyria</em></h2>
       <p>Select a use case and explore the features. The AI-powered features require a free Gemini API key.</p>
-      <div class="api-key-box">
-        <div class="api-key-label">Gemini API Key — for AI features</div>
-        <input class="api-key-input" id="geminiKeyInp" type="password" placeholder="AIza...your Gemini key" oninput="updateKey()">
-        <button class="api-key-btn" onclick="saveKey()">Activate AI Features</button>
-        <div class="api-status" id="apiStatus">✓ AI features activated</div>
+      <div class="api-key-box" style="background:rgba(107,143,113,0.12);border-color:rgba(107,143,113,0.25);">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#6B8F71;flex-shrink:0;"></div>
+          <div style="font-size:0.7rem;font-weight:500;color:rgba(140,190,148,0.9);">AI Features Active</div>
+        </div>
+        <div style="font-size:0.62rem;color:rgba(255,255,255,0.35);margin-top:0.4rem;line-height:1.6;">Gemini AI is powering the PCOS agent, predictive warnings, lab interpretation, and mood-pain insights.</div>
       </div>
       <div style="margin-top:1.25rem;font-size:0.68rem;color:rgba(255,255,255,0.3);line-height:1.7;">
-        <strong style="color:rgba(255,255,255,0.45);">What works:</strong><br>
-        PCOS dashboard · Symptom logging · Phase wheel · Pregnancy tracker<br><br>
-        <strong style="color:rgba(255,255,255,0.45);">With Gemini key:</strong><br>
-        Predictive warnings · Mood-Pain correlations · Lab test interpretation · PCOS AI Agent
+        <strong style="color:rgba(255,255,255,0.45);">All features active:</strong><br>
+        PCOS dashboard · Symptom logging · Phase wheel · Pregnancy tracker · Predictive warnings · Lab interpretation · PCOS AI Agent
       </div>
     </div>
     <div class="demo-phone-wrap">
@@ -846,8 +845,8 @@ const App={
   useCase:null,
   trimester:null,
   lastPeriodDate:null,
-  geminiKey:'',
-  keyActive:false,
+  geminiKey:'AIzaSyCdShgwFBNrSl8nlVzt6-gj7pPepZ9USNk',
+  keyActive:true,
   symptoms:{},
   chatHistory:[],
   logState:{},
@@ -855,11 +854,7 @@ const App={
 
 function openDemo(){document.getElementById('appOverlay').style.display='flex';renderPhone();}
 function closeDemo(){document.getElementById('appOverlay').style.display='none';}
-function updateKey(){App.geminiKey=document.getElementById('geminiKeyInp').value;}
-function saveKey(){
-  App.geminiKey=document.getElementById('geminiKeyInp').value.trim();
-  if(App.geminiKey.length>10){App.keyActive=true;document.getElementById('apiStatus').style.display='block';}
-}
+
 function nav(screen){App.screen=screen;renderPhone();document.getElementById('demoScreen').scrollTop=0;}
 
 function renderPhone(){
@@ -1202,7 +1197,7 @@ function screenLogSuccess(){
       <div class="log-success-sub">Your wellness data has been recorded. Valkyria is learning your patterns.</div>
       <div class="log-insight" id="log-insight-box">
         <div style="font-size:0.5rem;color:rgba(194,99,122,0.7);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">✦ Valkyria Insight</div>
-        <div id="log-insight-text">${App.keyActive?'Generating your personalized insight...':'Add your Gemini API key to get AI-powered insights after logging.'}</div>
+        <div id="log-insight-text">Generating your personalized insight...</div>
       </div>
       <button class="log-back-btn" onclick="nav('pcos-dash')">← Back to Dashboard</button>
     </div>
@@ -1340,7 +1335,7 @@ function screenPCOSAI(){
       <button class="ps-back" onclick="nav('pcos-dash')">←</button>
       <div>
         <div style="font-size:0.72rem;font-weight:500;color:white;">PCOS AI Agent</div>
-        <div style="font-size:0.52rem;color:rgba(107,143,113,0.8);">${App.keyActive?'● Connected · 27 clusters active':'● Add Gemini key to activate'}</div>
+        <div style="font-size:0.52rem;color:rgba(107,143,113,0.8);">● Connected · 27 clusters active</div>
       </div>
     </div>
     <div class="chat-wrap">
@@ -1350,7 +1345,6 @@ function screenPCOSAI(){
         <button class="chat-send" onclick="sendChat()">↑</button>
       </div>
     </div>
-    ${!App.keyActive?`<div style="text-align:center;padding:0.5rem;font-size:0.55rem;color:rgba(255,255,255,0.2);">Enter Gemini API key in the sidebar to enable live responses</div>`:''}
   </div>`;
 }
 function initChat(){const msgs=document.getElementById('chat-msgs');if(msgs)msgs.scrollTop=msgs.scrollHeight;}
@@ -1361,7 +1355,7 @@ async function sendChat(){
   App.chatHistory.push({role:'user',content:txt});
   const msgs=document.getElementById('chat-msgs');
   if(msgs){msgs.innerHTML+=`<div class="chat-msg user">${txt}</div><div class="chat-msg thinking" id="typing">thinking...</div>`;msgs.scrollTop=msgs.scrollHeight;}
-  let reply='I\'d be happy to help with that! For the best experience, add your Gemini API key in the sidebar to get live, evidence-based responses powered by Valkyria\'s 27-cluster PCOS knowledge base.';
+  let reply='Let me look into that for you...';
   if(App.keyActive){
     reply=await callGemini(txt,`You are Valkyria's PCOS/PCOD health companion. You have deep knowledge of PCOS including: Rotterdam criteria diagnosis, insulin resistance (70% of PCOS women), menstrual irregularities, androgenic symptoms (acne, hirsutism, alopecia), mental health (2-3x higher anxiety/depression), fertility (letrozole first-line), diet (low-GI, anti-inflammatory), exercise (150min/week), medications (Metformin, COCP), supplements (myo-inositol, Vitamin D, omega-3), Ayurveda (Shatavari, Ashwagandha), and stress-cortisol connection. Be warm, compassionate, and non-judgmental. Use plain language. Consider South Asian context. End responses by recommending consultation with a healthcare professional. Keep responses concise (2-4 sentences for simple questions).`);
   }
@@ -1527,7 +1521,6 @@ function screenPostpartumSoon(){
 
 // =================== GEMINI API ===================
 async function callGemini(userMsg,systemPrompt){
-  if(!App.geminiKey||!App.keyActive) return null;
   try{
     const resp=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${App.geminiKey}`,{
       method:'POST',

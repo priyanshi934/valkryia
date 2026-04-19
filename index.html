@@ -1616,25 +1616,290 @@ async function sendChat(){
   if(msgs){msgs.innerHTML+=`<div class="chat-msg bot">${reply}</div>`;msgs.scrollTop=msgs.scrollHeight;}
 }
 
+// =================== EMBEDDED QUESTIONNAIRE ===================
+let qAnswers={};
+let qStep=1;
+const Q_TOTAL=7;
+
 function screenPCOSQuestionnaire(){
-  return `<div style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;padding:1rem 1rem 2rem;">
-    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-      <button class="ps-back" onclick="nav('pcos-dash')">←</button>
-      <div style="font-size:0.72rem;font-weight:500;color:white;">PCOS Risk Assessment</div>
+  qAnswers={};qStep=1;
+  return buildQScreen();
+}
+
+function buildQScreen(){
+  const labels=['About You','Menstrual History','Androgenic Symptoms','Metabolic Health','Mental Wellbeing','Fertility & Hormones','Lifestyle & Nutrition'];
+  const pct=Math.round((qStep/Q_TOTAL)*100);
+  const dots=Array.from({length:Q_TOTAL},(_,i)=>`<div style="width:7px;height:7px;border-radius:50%;background:${i+1===qStep?'#7B5EA7':i+1<qStep?'#C2637A':'rgba(255,255,255,0.15)'};flex-shrink:0;transition:all 0.3s;"></div>`).join('');
+
+  const sections=[null,buildQS1,buildQS2,buildQS3,buildQS4,buildQS5,buildQS6,buildQS7];
+  const body=sections[qStep]();
+
+  return `<div style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;padding:0.85rem 0.9rem 2rem;">
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+      <button class="ps-back" onclick="${qStep===1?"nav('pcos-dash')":"qStep--;document.getElementById('demoScreen').innerHTML=buildQScreen();document.getElementById('demoScreen').scrollTop=0;"}">←</button>
+      <div style="flex:1;">
+        <div style="font-size:0.6rem;font-weight:500;color:white;">PCOS Assessment — Section ${qStep} of ${Q_TOTAL}</div>
+        <div style="font-size:0.5rem;color:rgba(255,255,255,0.3);">${labels[qStep-1]}</div>
+      </div>
     </div>
-    <div style="background:rgba(194,99,122,0.1);border:1px solid rgba(194,99,122,0.2);border-radius:1rem;padding:1rem;margin-bottom:0.75rem;">
-      <div style="font-size:0.6rem;color:var(--rose);font-weight:500;margin-bottom:0.35rem;">✦ Full Assessment Available</div>
-      <div style="font-size:0.62rem;color:rgba(255,255,255,0.6);line-height:1.55;">The complete 7-section PCOS risk assessment — with Rotterdam criteria scoring, mFG hirsutism grid, phenotype classification, and personalized clinical flags — is ready to use.</div>
-      <a href="questionnaire.html" target="_blank" style="display:inline-block;margin-top:0.75rem;background:var(--rose);color:white;border-radius:1rem;padding:0.5rem 1rem;font-size:0.65rem;font-weight:500;text-decoration:none;">Open Full Assessment →</a>
+    <div style="margin-bottom:0.75rem;">
+      <div style="display:flex;justify-content:space-between;font-size:0.48rem;color:rgba(255,255,255,0.3);margin-bottom:0.35rem;"><span>${labels[qStep-1]}</span><span>${pct}%</span></div>
+      <div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#C2637A,#7B5EA7);border-radius:2px;transition:width 0.4s;"></div></div>
+      <div style="display:flex;gap:0.3rem;margin-top:0.4rem;justify-content:center;">${dots}</div>
     </div>
-    <div style="font-size:0.6rem;color:rgba(255,255,255,0.3);text-align:center;margin:0.5rem 0;">or try a quick 2-question preview below</div>
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1rem;padding:0.85rem;">
-      <div style="font-size:0.58rem;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">How regular are your menstrual cycles?</div>
-      ${['Regular (21–35 days)','Slightly irregular (36–45 days)','Irregular (>45 days)','Absent for 3+ months'].map(o=>`<div style="padding:0.35rem 0.65rem;margin-bottom:0.3rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.08);font-size:0.55rem;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="this.style.background='rgba(194,99,122,0.2)';this.style.borderColor='rgba(194,99,122,0.35)';this.style.color='white';">${o}</div>`).join('')}
-      <div style="font-size:0.58rem;color:rgba(255,255,255,0.5);margin:0.75rem 0 0.5rem;">Do you have acne, excess facial/body hair, or hair thinning?</div>
-      ${['No, none of these','Yes — acne (especially jaw/chin)','Yes — excess hair growth','Yes — hair thinning at crown','Multiple of the above'].map(o=>`<div style="padding:0.35rem 0.65rem;margin-bottom:0.3rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.08);font-size:0.55rem;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="this.style.background='rgba(194,99,122,0.2)';this.style.borderColor='rgba(194,99,122,0.35)';this.style.color='white';">${o}</div>`).join('')}
-    </div>
+    ${body}
   </div>`;
+}
+
+function qOpt(key,val,label,sub='',flag=''){
+  const isSel=qAnswers[key]===val;
+  return `<div onclick="qPick('${key}','${val}',this)" style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.6rem 0.75rem;border:1.5px solid ${isSel?'#C2637A':'rgba(220,150,170,0.15)'};border-radius:0.75rem;cursor:pointer;background:${isSel?'rgba(194,99,122,0.15)':'rgba(255,255,255,0.05)'};margin-bottom:0.3rem;transition:all 0.18s;">
+    <div style="width:14px;height:14px;border-radius:50%;border:2px solid ${isSel?'#C2637A':'rgba(194,99,122,0.3)'};flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:${isSel?'#C2637A':'transparent'};">${isSel?'<div style="width:5px;height:5px;border-radius:50%;background:white;"></div>':''}</div>
+    <div style="flex:1;"><div style="font-size:0.6rem;color:${isSel?'white':'rgba(255,255,255,0.7)'};">${label}</div>${sub?`<div style="font-size:0.52rem;color:rgba(255,255,255,0.35);margin-top:0.1rem;">${sub}</div>`:''}</div>
+    ${flag?`<div style="font-size:0.45rem;padding:0.1rem 0.35rem;border-radius:0.4rem;flex-shrink:0;background:rgba(194,99,122,0.2);color:rgba(240,180,195,0.9);border:1px solid rgba(194,99,122,0.25);">${flag}</div>`:''}
+  </div>`;
+}
+
+function qPick(key,val,el){
+  qAnswers[key]=val;
+  const ds=document.getElementById('demoScreen');
+  const scroll=ds.scrollTop;
+  ds.innerHTML=buildQScreen();
+  ds.scrollTop=scroll;
+}
+
+function qNext(){
+  if(qStep<Q_TOTAL){qStep++;const ds=document.getElementById('demoScreen');ds.innerHTML=buildQScreen();ds.scrollTop=0;}
+  else{showQResults();}
+}
+
+function qNavBtns(isLast=false){
+  return `<div style="display:flex;gap:0.5rem;margin-top:0.85rem;">
+    ${qStep>1?`<button onclick="qStep--;const ds=document.getElementById('demoScreen');ds.innerHTML=buildQScreen();ds.scrollTop=0;" style="flex:1;padding:0.6rem;border:1px solid rgba(220,150,170,0.2);border-radius:0.75rem;background:transparent;color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.62rem;cursor:pointer;">← Back</button>`:''}
+    <button onclick="qNext()" style="flex:2;padding:0.6rem;background:linear-gradient(135deg,#C2637A,#7B5EA7);border:none;border-radius:0.75rem;color:white;font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:500;cursor:pointer;">${isLast?'See My Results ✓':'Continue →'}</button>
+  </div>`;
+}
+
+function qSectionTitle(title,sub,badge){
+  return `<div style="margin-bottom:0.75rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(220,150,170,0.12);">
+    <div style="font-family:'Cormorant Garant',serif;font-size:1.1rem;color:white;font-weight:400;margin-bottom:0.2rem;">${title}</div>
+    <div style="font-size:0.52rem;color:rgba(255,255,255,0.4);line-height:1.5;">${sub}</div>
+    <div style="display:inline-block;margin-top:0.3rem;font-size:0.45rem;padding:0.1rem 0.45rem;border-radius:1rem;background:rgba(123,94,167,0.2);color:rgba(180,160,220,0.9);border:1px solid rgba(123,94,167,0.2);">${badge}</div>
+  </div>`;
+}
+
+function qLabel(text){return `<div style="font-size:0.6rem;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:0.35rem;margin-top:0.6rem;">${text}</div>`;}
+
+function buildQS1(){
+  return qSectionTitle('About You','Basic info helps us contextualise your risk profile.','Clinical context')
+  +qLabel('Your age group')
+  +qOpt('age','13-17','13 – 17 years','Adolescent — some irregularity is normal')
+  +qOpt('age','18-25','18 – 25 years','Peak PCOS prevalence window')
+  +qOpt('age','26-35','26 – 35 years','Common diagnostic age')
+  +qOpt('age','35+','35 years and above')
+  +qLabel('BMI range (South Asian threshold: ≥23 = elevated risk)')
+  +qOpt('bmi','<18.5','Under 18.5 — Underweight','','Note')
+  +qOpt('bmi','18.5-23','18.5 – 23 — Healthy','South Asian standard','Normal')
+  +qOpt('bmi','23-27.5','23 – 27.5 — Overweight','','Elevated')
+  +qOpt('bmi','27.5+','27.5+ — Obese','','High risk')
+  +qOpt('bmi','unsure','Not sure of my BMI')
+  +qLabel('Family history of PCOS or Type 2 Diabetes?')
+  +qOpt('family','yes-pcos','Yes — PCOS in family','','+Risk')
+  +qOpt('family','yes-t2d','Yes — Type 2 Diabetes in family','','+Risk')
+  +qOpt('family','yes-both','Both PCOS and diabetes in family','','High risk')
+  +qOpt('family','no','No family history','','Lower risk')
+  +qNavBtns();
+}
+
+function buildQS2(){
+  return qSectionTitle('Menstrual History','Oligo/anovulation is Rotterdam Criterion 1 of 3.','Rotterdam Criterion 1')
+  +qLabel('How regular are your cycles?')
+  +qOpt('cycle','regular','Regular — 21 to 35 days','Clinically normal','R:0')
+  +qOpt('cycle','slightly-irreg','Slightly irregular — 36 to 45 days','','R:1')
+  +qOpt('cycle','very-irreg','Very irregular — more than 45 days','','R:2')
+  +qOpt('cycle','absent-3','Absent — no period for 3+ months','Requires prompt medical attention','⚠ Urgent')
+  +qOpt('cycle','was-regular','Were regular, recently became irregular','','Noted')
+  +qLabel('Period duration')
+  +qOpt('duration','1-2','1 – 2 days','May indicate anovulation or low progesterone')
+  +qOpt('duration','3-5','3 – 5 days (normal)')
+  +qOpt('duration','6-7','6 – 7 days')
+  +qOpt('duration','7+','More than 7 days','','Note')
+  +qLabel('Menstrual flow')
+  +qOpt('flow','very-light','Very light — spotting only')
+  +qOpt('flow','light','Light')
+  +qOpt('flow','moderate','Moderate (normal)')
+  +qOpt('flow','heavy','Heavy — soaks through in under 2 hours','','Note')
+  +qNavBtns();
+}
+
+function buildQS3(){
+  return qSectionTitle('Androgenic Symptoms','Hyperandrogenism is Rotterdam Criterion 2.','Rotterdam Criterion 2 — mFG Scale')
+  +qLabel('Do you experience acne?')
+  +qOpt('acne','none','No acne')
+  +qOpt('acne','mild','Mild — mostly forehead or nose')
+  +qOpt('acne','moderate-jaw','Moderate — jaw, chin, lower cheeks','Characteristic androgenic pattern','mFG signal')
+  +qOpt('acne','severe','Severe — cystic, persistent despite treatment','','High signal')
+  +qLabel('Excess body or facial hair? (tap all that apply)')
+  +`<div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.35rem;">
+    ${['Upper Lip','Chin','Sideburns','Chest','Upper Abdomen','Lower Abdomen','Upper Back','Inner Thighs','None'].map(a=>`<div onclick="this.style.background=this.style.background?'':'rgba(194,99,122,0.2)';this.style.borderColor=this.style.borderColor?'':'rgba(194,99,122,0.4)';" style="padding:0.25rem 0.55rem;border-radius:2rem;font-size:0.52rem;border:1px solid rgba(220,150,170,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;">${a}</div>`).join('')}
+  </div>`
+  +qLabel('Hair loss or thinning on scalp?')
+  +qOpt('hairloss','none','No hair thinning')
+  +qOpt('hairloss','diffuse','Diffuse thinning all over')
+  +qOpt('hairloss','crown','Crown/top thinning — Ludwig pattern','Androgenic alopecia, characteristic of PCOS','Strong signal')
+  +qLabel('Dark velvety patches? (Acanthosis Nigricans)')
+  +qOpt('an','no','No dark patches')
+  +qOpt('an','mild','Possibly — slight darkening on neck/underarms','','IR signal')
+  +qOpt('an','clear','Yes — clear dark velvety patches','','IR signal')
+  +qNavBtns();
+}
+
+function buildQS4(){
+  return qSectionTitle('Metabolic & Insulin Resistance','Affects up to 70% of women with PCOS.','⊕⊕⊕⊕ Strong evidence')
+  +qLabel('Sugar or carb cravings?')
+  +qOpt('cravings','rarely','Rarely or never')
+  +qOpt('cravings','sometimes','Sometimes — especially afternoons')
+  +qOpt('cravings','frequently','Frequently — strong and hard to resist','','IR signal')
+  +qOpt('cravings','always','Almost constantly throughout the day','','Strong IR')
+  +qLabel('Activity level on most days')
+  +qOpt('activity','sedentary','Mostly sedentary — sitting most of the day','','High risk')
+  +qOpt('activity','light','Light — occasional walks','','Moderate')
+  +qOpt('activity','moderate','Moderately active — 30 min, 3-4 days/week')
+  +qOpt('activity','active','Very active — 5+ days/week','','Protective')
+  +qLabel('Metabolic symptoms (tap all that apply)')
+  +`<div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.35rem;">
+    ${['Belly weight gain','Hungry again 1-2hrs after eating','Energy crash after carbs','Difficulty losing weight','Constant hunger','Brain fog after eating','None of the above'].map(s=>`<div onclick="this.style.background=this.style.background?'':'rgba(194,99,122,0.15)';this.style.borderColor=this.style.borderColor?'':'rgba(194,99,122,0.35)';" style="padding:0.35rem 0.65rem;border-radius:0.6rem;font-size:0.55rem;border:1px solid rgba(220,150,170,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;">${s}</div>`).join('')}
+  </div>`
+  +qNavBtns();
+}
+
+function buildQS5(){
+  return qSectionTitle('Mental Wellbeing & Stress','Women with PCOS have 2-3× higher rates of anxiety and depression.','⊕⊕⊕○ Moderate evidence')
+  +qLabel('How often do you feel anxious or overwhelmed?')
+  +qOpt('anxiety','rarely','Rarely — I manage stress well')
+  +qOpt('anxiety','sometimes','Sometimes — especially around my period')
+  +qOpt('anxiety','often','Often — anxiety is a regular part of my life','','Noted')
+  +qOpt('anxiety','severely','Severely — it impacts my daily functioning','','Support needed')
+  +qLabel('How is your sleep?')
+  +qOpt('sleep','good','Good — 7-9 hours, feel rested')
+  +qOpt('sleep','troubled','Troubled — difficulty falling or staying asleep','','Cortisol signal')
+  +qOpt('sleep','poor','Poor — under 6 hours or unrefreshing','','High cortisol')
+  +qLabel('Mood or cognitive symptoms (tap all)')
+  +`<div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.35rem;">
+    ${['Mood swings around period','Brain fog / poor concentration','Low self-esteem or body image concerns','Persistent low mood','Feeling overwhelmed easily','Irritability or anger outbursts','I feel fine — no mood concerns'].map(s=>`<div onclick="this.style.background=this.style.background?'':'rgba(194,99,122,0.15)';this.style.borderColor=this.style.borderColor?'':'rgba(194,99,122,0.35)';" style="padding:0.35rem 0.65rem;border-radius:0.6rem;font-size:0.55rem;border:1px solid rgba(220,150,170,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;">${s}</div>`).join('')}
+  </div>`
+  +qNavBtns();
+}
+
+function buildQS6(){
+  return qSectionTitle('Fertility & Hormonal History','Ovarian morphology is Rotterdam Criterion 3.','Rotterdam Criterion 3')
+  +qLabel('Ultrasound showing ovarian cysts?')
+  +qOpt('ovarian-morph','yes-multiple','Yes — multiple small follicles (PCO morphology)','≥20 follicles per ovary or >10cm³ volume','Rotterdam: Met')
+  +qOpt('ovarian-morph','yes-1-2','Yes — a small number of cysts','','Partial')
+  +qOpt('ovarian-morph','no','No — ultrasound was normal','','Not met')
+  +qOpt('ovarian-morph','not-done','Not done — no pelvic ultrasound yet')
+  +qLabel('Trying to conceive?')
+  +qOpt('fertility','not-trying','Not currently trying to conceive')
+  +qOpt('fertility','conceived-naturally','Yes, conceived naturally without issues')
+  +qOpt('fertility','trying-6m','Trying 6-12 months without success','','Noted')
+  +qOpt('fertility','trying-12m+','Trying 12+ months without success','','Referral advised')
+  +qLabel('Hormonal blood tests done?')
+  +`<div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.35rem;">
+    ${['Testosterone (elevated)','LH/FSH ratio (elevated)','AMH (elevated)','Fasting insulin (elevated)','DHEA-S (elevated)','Results all normal','Tests not done yet'].map(s=>`<div onclick="this.style.background=this.style.background?'':'rgba(194,99,122,0.15)';this.style.borderColor=this.style.borderColor?'':'rgba(194,99,122,0.35)';" style="padding:0.35rem 0.65rem;border-radius:0.6rem;font-size:0.55rem;border:1px solid rgba(220,150,170,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;">${s}</div>`).join('')}
+  </div>`
+  +qNavBtns();
+}
+
+function buildQS7(){
+  return qSectionTitle('Lifestyle & Nutrition','Dietary patterns and lifestyle significantly modify PCOS severity.','Personalisation factors')
+  +qLabel('Typical diet')
+  +qOpt('diet','low-gi','Balanced — whole grains, vegetables, moderate protein','','Protective')
+  +qOpt('diet','moderate-carb','Mixed — some healthy, some refined carbs')
+  +qOpt('diet','high-carb','High in refined carbs — maida, white rice, snacks','','IR risk')
+  +qOpt('diet','very-poor','High sugar, fried, or fast food — irregular meals','','High risk')
+  +qLabel('Medications or supplements used?')
+  +`<div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.5rem;">
+    ${['Metformin','OCP','Letrozole','Myo-Inositol','Vitamin D','Shatavari/Ashwagandha','None'].map(s=>`<div onclick="this.style.background=this.style.background?'':'rgba(194,99,122,0.2)';this.style.borderColor=this.style.borderColor?'':'rgba(194,99,122,0.4)';" style="padding:0.25rem 0.6rem;border-radius:2rem;font-size:0.52rem;border:1px solid rgba(220,150,170,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;">${s}</div>`).join('')}
+  </div>`
+  +qLabel('Primary goal right now')
+  +qOpt('goal','manage-symptoms','Manage my PCOS symptoms better')
+  +qOpt('goal','conceive','Improve my chances of conceiving')
+  +qOpt('goal','understand','Better understand my diagnosis')
+  +qOpt('goal','lifestyle','Make sustainable lifestyle changes')
+  +qOpt('goal','mental','Support my mental and emotional wellbeing')
+  +qNavBtns(true);
+}
+
+function showQResults(){
+  let score=0,rotterdam=[];
+  if(['slightly-irreg','very-irreg','absent-3','was-regular'].includes(qAnswers.cycle)){score+=20;rotterdam.push('Oligo/anovulation');}
+  if(['moderate-jaw','severe'].includes(qAnswers.acne)||qAnswers.hairloss==='crown'){score+=20;rotterdam.push('Hyperandrogenism');}
+  if(qAnswers['ovarian-morph']==='yes-multiple'){score+=20;rotterdam.push('Polycystic ovarian morphology');}
+  if(['23-27.5','27.5+'].includes(qAnswers.bmi))score+=5;
+  if(['yes-pcos','yes-both'].includes(qAnswers.family))score+=5;
+  if(['frequently','always'].includes(qAnswers.cravings))score+=5;
+  if(qAnswers.activity==='sedentary')score+=5;
+  if(['often','severely'].includes(qAnswers.anxiety))score+=5;
+  if(['high-carb','very-poor'].includes(qAnswers.diet))score+=5;
+  if(qAnswers.an==='clear')score+=5;
+  score=Math.min(score,100);
+  const riskLevel=rotterdam.length>=2||score>=60?'High':rotterdam.length===1||score>=35?'Moderate':'Low';
+  const riskColor=riskLevel==='High'?'#C94040':riskLevel==='Moderate'?'#C4923A':'#6B8F71';
+  const noMenses=['slightly-irreg','very-irreg','absent-3','was-regular'].includes(qAnswers.cycle);
+  const HA=['moderate-jaw','severe'].includes(qAnswers.acne)||qAnswers.hairloss==='crown';
+  const PCO=qAnswers['ovarian-morph']==='yes-multiple';
+  let phenoName='Subclinical Features';
+  if(noMenses&&HA&&PCO)phenoName='Phenotype A — Classic Full';
+  else if(noMenses&&HA)phenoName='Phenotype B — Classic (no cysts)';
+  else if(noMenses&&PCO)phenoName='Phenotype C — Ovulatory PCOS';
+  else if(HA&&PCO)phenoName='Phenotype D — Non-classic';
+  const C=2*Math.PI*35;
+  const dash=C-(score/100)*C;
+  const allCriteria=['Oligo/anovulation','Hyperandrogenism','Polycystic ovarian morphology'];
+  const ds=document.getElementById('demoScreen');
+  ds.innerHTML=`<div style="background:linear-gradient(160deg,#1A1030 0%,#2D1020 100%);min-height:100%;padding:0.85rem 0.9rem 2rem;">
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.85rem;">
+      <button class="ps-back" onclick="nav('pcos-questionnaire')">←</button>
+      <div style="font-size:0.72rem;font-weight:500;color:white;">Your Results</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(220,150,170,0.2);border-radius:1rem;padding:1rem;margin-bottom:0.75rem;">
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="position:relative;width:80px;height:80px;flex-shrink:0;">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="35" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/>
+            <circle cx="40" cy="40" r="35" fill="none" stroke="${riskColor}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${dash}" transform="rotate(-90 40 40)"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
+            <div style="font-family:'Cormorant Garant',serif;font-size:1.3rem;font-weight:600;color:${riskColor};line-height:1;">${score}</div>
+            <div style="font-size:0.42rem;color:rgba(255,255,255,0.35);">/100</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.5rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.2rem;">Risk Level</div>
+          <div style="font-size:0.85rem;font-weight:600;color:${riskColor};">${riskLevel} Risk</div>
+          <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);margin-top:0.25rem;">${phenoName}</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.25rem;flex-wrap:wrap;">
+            ${allCriteria.map(c=>`<div style="font-size:0.45rem;padding:0.1rem 0.4rem;border-radius:0.35rem;background:${rotterdam.includes(c)?'rgba(194,99,122,0.2)':'rgba(255,255,255,0.05)'};color:${rotterdam.includes(c)?'rgba(240,180,195,0.9)':'rgba(255,255,255,0.3)'};border:1px solid ${rotterdam.includes(c)?'rgba(194,99,122,0.3)':'rgba(255,255,255,0.08)'};">${rotterdam.includes(c)?'✓':''} ${c.split(' ')[0]}</div>`).join('')}
+          </div>
+          <div style="font-size:0.48rem;color:rgba(255,255,255,0.25);margin-top:0.35rem;">${rotterdam.length} of 3 Rotterdam criteria identified</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.5rem;">Key recommendations</div>
+    ${[
+      {i:'👩‍⚕️',t:'Consult a gynaecologist',d:'Request hormonal panel: testosterone, LH, FSH, AMH, fasting insulin.'},
+      ...((['slightly-irreg','very-irreg','absent-3'].includes(qAnswers.cycle))?[{i:'🗓️',t:'Cycle regulation',d:'Irregular cycles need medical review to protect endometrial health.'}]:[]),
+      ...((['high-carb','very-poor'].includes(qAnswers.diet)||['frequently','always'].includes(qAnswers.cravings))?[{i:'🥗',t:'Low-GI nutrition plan',d:'Replace maida & white rice with ragi, jowar, oats. Add turmeric & berries.'}]:[]),
+      {i:'💊',t:'Consider Myo-Inositol 2g + D-chiro 50mg',d:'Strong evidence for insulin sensitivity and cycle regularity.'},
+      {i:'🌿',t:'Ayurveda: Shatavari for hormonal balance',d:'Supports follicular development. Consult an Ayurvedic practitioner.'},
+    ].map(r=>`<div style="display:flex;gap:0.6rem;padding:0.65rem 0.75rem;background:rgba(255,255,255,0.05);border:1px solid rgba(220,150,170,0.12);border-radius:0.85rem;margin-bottom:0.4rem;">
+      <div style="font-size:1rem;flex-shrink:0;">${r.i}</div>
+      <div><div style="font-size:0.6rem;font-weight:500;color:white;margin-bottom:0.15rem;">${r.t}</div><div style="font-size:0.52rem;color:rgba(255,255,255,0.45);line-height:1.5;">${r.d}</div></div>
+    </div>`).join('')}
+    <div style="margin-top:0.75rem;background:rgba(196,146,58,0.1);border:1px solid rgba(196,146,58,0.2);border-radius:0.75rem;padding:0.65rem;font-size:0.52rem;color:rgba(210,175,100,0.85);line-height:1.5;">⚠ This is a screening tool, not a diagnosis. Please share results with your gynaecologist.</div>
+    <button onclick="nav('pcos-dash')" style="width:100%;margin-top:0.75rem;background:rgba(255,255,255,0.08);border:1px solid rgba(220,150,170,0.2);color:rgba(255,255,255,0.6);border-radius:0.75rem;padding:0.6rem;font-size:0.62rem;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back to Dashboard</button>
+  </div>`;
+  ds.scrollTop=0;
 }
 
 function screenPeriodDate(){

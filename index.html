@@ -843,6 +843,7 @@ reveals.forEach(r=>observer.observe(r));
 const App={
   screen:'use-case',
   modalHistory:[],
+  pcosLastPeriod:null,
   useCase:null,
   trimester:null,
   lastPeriodDate:null,
@@ -1132,32 +1133,44 @@ function screenPregDash(){
 }
 
 function screenPCOSDash(){
+  // Ask for last period if not set, otherwise show phase
+  if(!App.pcosLastPeriod){
+    return screenPCOSAskPeriod();
+  }
+  const p = calculatePhase(App.pcosLastPeriod);
+  const phaseColors = {Menstrual:'#C2637A',Follicular:'#7B5EA7',Ovulatory:'#C4923A',Luteal:'#6B8F71'};
+  const phaseEmojis = {Menstrual:'🌑',Follicular:'🌒',Ovulatory:'🌕',Luteal:'🌗'};
+  const phaseTips = {
+    Menstrual:'Rest, warmth, and iron-rich foods. Avoid intense exercise.',
+    Follicular:'Energy rising — good time for new habits and movement.',
+    Ovulatory:'Peak energy and confidence. Great for high-effort tasks.',
+    Luteal:'Progesterone rising. Reduce caffeine, prioritise sleep.'
+  };
+  const col = phaseColors[p.phase] || '#C2637A';
+  const wheel = buildPhaseWheel(p.phase, p.day);
   return `<div class="ps-wrap" style="background:transparent;min-height:100%;">
-    <div class="ps-header"><div class="ps-logo">Valk<span>yria</span></div></div>
-    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">Good morning, Priya 👋</div>
-    <div class="wellness-snap">
-      <div class="ws-header">
-        <div class="ws-title">Today's Wellness Snapshot</div>
-        <button class="ws-log-btn" onclick="nav('pcos-log')">+ Log</button>
-      </div>
-      <div class="ws-gauge-row">
-        <div class="ws-gauge">
-          <svg width="80" height="80" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
-            <circle cx="40" cy="40" r="32" fill="none" stroke="url(#wg)" stroke-width="8" stroke-linecap="round"
-              stroke-dasharray="201" stroke-dashoffset="50" transform="rotate(-90 40 40)"/>
-            <defs><linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#C2637A"/><stop offset="100%" style="stop-color:#7B5EA7"/></linearGradient></defs>
-          </svg>
-          <div class="ws-gauge-center"><div class="ws-gauge-num">72</div><div class="ws-gauge-lbl">WELLNESS</div></div>
-        </div>
-        <div class="ws-metrics">
-          <div class="ws-metric"><div class="ws-metric-label">😊 Mood</div><div class="ws-metric-val">Good</div></div>
-          <div class="ws-metric"><div class="ws-metric-label">⚡ Energy</div><div class="ws-metric-val">Moderate</div></div>
-          <div class="ws-metric"><div class="ws-metric-label">🌙 Sleep</div><div class="ws-metric-val">6.5 hrs</div></div>
-          <div class="ws-metric"><div class="ws-metric-label">🔴 Pain</div><div class="ws-metric-val">Mild</div></div>
+    <div class="ps-header"><div class="ps-logo">Valk<span>yria</span></div>
+      <button onclick="App.pcosLastPeriod=null;nav('pcos-dash')" style="background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.4);border-radius:1rem;padding:0.2rem 0.55rem;font-size:0.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Update period</button>
+    </div>
+    <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);margin-bottom:0.65rem;">Good morning, Priya 👋</div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(220,150,170,0.2);border-radius:1.25rem;padding:1rem;margin-bottom:0.75rem;">
+      <div style="font-size:0.5rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.6rem;">Your likely cycle phase</div>
+      <div style="display:flex;align-items:center;gap:0.85rem;">
+        <div style="flex-shrink:0;">${wheel}</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.2rem;">
+            <div style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0;"></div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:1.1rem;color:white;font-weight:500;">${phaseEmojis[p.phase]} ${p.phase}</div>
+          </div>
+          <div style="font-size:0.55rem;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;">Cycle day ~${p.day}</div>
+          <div style="font-size:0.58rem;color:rgba(255,255,255,0.55);line-height:1.5;">${phaseTips[p.phase]}</div>
+          <div style="margin-top:0.5rem;display:flex;align-items:flex-start;gap:0.3rem;background:rgba(196,146,58,0.1);border:1px solid rgba(196,146,58,0.2);border-radius:0.5rem;padding:0.4rem 0.5rem;">
+            <span style="font-size:0.7rem;flex-shrink:0;">⚠️</span>
+            <span style="font-size:0.5rem;color:rgba(210,175,100,0.85);line-height:1.4;">PCOS cycles are irregular. This is an estimate based on your last period — your actual phase may differ.</span>
+          </div>
         </div>
       </div>
-      <div class="ws-last-log">Last logged: 2 days ago · Tap + Log to update</div>
+      <button onclick="nav('pcos-log')" style="width:100%;margin-top:0.75rem;background:linear-gradient(135deg,#C2637A,#7B5EA7);border:none;color:white;border-radius:0.75rem;padding:0.55rem;font-size:0.62rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;">+ Log Today's Symptoms</button>
     </div>
     <div class="ph-feat-label">Your PCOS Features</div>
     <!-- Floating bird AI button -->
@@ -1243,6 +1256,27 @@ function screenPCOSDash(){
       </div>
 
     </div>
+  </div>`;
+}
+
+
+function screenPCOSAskPeriod(){
+  const today = new Date();
+  const maxDate = today.toISOString().split('T')[0];
+  const defaultDate = new Date(today - 20*24*60*60*1000).toISOString().split('T')[0];
+  return `<div class="ps-wrap" style="background:transparent;min-height:100%;">
+    <div class="ps-header"><div class="ps-logo">Valk<span>yria</span></div></div>
+    <div class="ps-tag">PCOS Dashboard</div>
+    <div class="ps-title">When did your<br>last period <em>start</em>?</div>
+    <div class="ps-sub" style="margin-bottom:1rem;">We'll use this to estimate your likely phase. Since PCOS cycles are irregular, this is just a guide.</div>
+    <div class="date-input-group">
+      <div class="date-label">First day of last period</div>
+      <input class="date-inp" type="date" id="pcos-period-inp" value="${defaultDate}" max="${maxDate}">
+    </div>
+    <div style="background:rgba(123,94,167,0.1);border:1px solid rgba(123,94,167,0.2);border-radius:1rem;padding:0.75rem;margin-bottom:1rem;font-size:0.58rem;color:rgba(180,160,220,0.8);line-height:1.6;">
+      💡 In PCOS, cycles can range from 35 to 90+ days. Your phase estimate will be shown with this in mind — not as a definitive answer, but as a helpful guide.
+    </div>
+    <button class="date-continue" onclick="App.pcosLastPeriod=document.getElementById('pcos-period-inp').value;nav('pcos-dash')">Show My Likely Phase →</button>
   </div>`;
 }
 

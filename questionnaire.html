@@ -3,22 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valkyria — PCOS Risk Assessment</title>
+<title>Valkryia — PCOS Risk Assessment</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --rose:#C2637A;--rose-lt:#F5E6EB;--rose-dk:#8A3A50;
-  --mauve:#7B5EA7;--mauve-lt:#EDE8F5;
-  --sage:#6B8F71;--sage-lt:#E7F0E8;
-  --gold:#C4923A;--gold-lt:#FBF0DC;
-  --cream:#FBF7F2;--ink:#1E1618;--ink-muted:#6B5860;
-  --border:rgba(194,99,122,0.15);
-}
+:root{--rose:#C2637A;--rose-lt:#F5E6EB;--rose-dk:#8A3A50;--mauve:#7B5EA7;--mauve-lt:#EDE8F5;--sage:#6B8F71;--sage-lt:#E7F0E8;--gold:#C4923A;--gold-lt:#FBF0DC;--cream:#FBF7F2;--ink:#1E1618;--ink-muted:#6B5860;--border:rgba(194,99,122,0.15);}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;}
-
-/* NAV */
 .q-nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:white;border-bottom:1px solid var(--border);}
 .q-logo{font-family:'Cormorant Garant',serif;font-size:1.6rem;font-weight:600;color:var(--rose-dk);letter-spacing:-0.02em;text-decoration:none;}
 .q-logo span{color:var(--mauve);font-style:italic;}
@@ -26,8 +17,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .q-back:hover{color:var(--rose);}
 .q-back::before{content:'←';}
 .q-badge{font-size:0.7rem;padding:0.35rem 0.9rem;border-radius:2rem;background:var(--rose-lt);color:var(--rose-dk);border:1px solid var(--border);font-weight:500;}
-
-/* LAYOUT */
 .q-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 6rem;}
 .q-intro{text-align:center;margin-bottom:3rem;}
 .q-intro-label{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--rose);margin-bottom:0.75rem;}
@@ -39,8 +28,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .q-evb-ebr{background:var(--mauve-lt);color:var(--mauve);border:1px solid rgba(123,94,167,0.2);}
 .q-evb-ccr{background:var(--gold-lt);color:var(--gold);border:1px solid rgba(196,146,58,0.2);}
 .q-evb-sa{background:var(--rose-lt);color:var(--rose-dk);border:1px solid var(--border);}
-
-/* PROGRESS */
 .q-progress-wrap{margin-bottom:2.5rem;}
 .q-progress-label{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--ink-muted);margin-bottom:0.65rem;}
 .q-progress-label span:last-child{font-weight:500;color:var(--rose);}
@@ -50,8 +37,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .q-step-dot{width:8px;height:8px;border-radius:50%;background:rgba(194,99,122,0.2);transition:all 0.3s;cursor:pointer;}
 .q-step-dot.done{background:var(--rose);}
 .q-step-dot.active{background:var(--mauve);transform:scale(1.3);}
-
-/* SECTION CARD */
 .q-section{background:white;border:1px solid var(--border);border-radius:1.75rem;padding:2.5rem;margin-bottom:1.5rem;display:none;}
 .q-section.active{display:block;animation:slideIn 0.35s ease;}
 @keyframes slideIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
@@ -62,8 +47,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .q-section-badge{margin-top:0.4rem;font-size:0.65rem;display:inline-flex;align-items:center;gap:0.35rem;padding:0.25rem 0.7rem;border-radius:2rem;}
 .badge-ebr{background:var(--mauve-lt);color:var(--mauve);border:1px solid rgba(123,94,167,0.2);}
 .badge-ccr{background:var(--gold-lt);color:var(--gold);border:1px solid rgba(196,146,58,0.2);}
-
-/* QUESTIONS */
 .q-group{margin-bottom:2rem;}
 .q-label{font-size:0.88rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem;line-height:1.5;}
 .q-label-note{font-size:0.78rem;font-weight:300;color:var(--ink-muted);display:block;margin-top:0.15rem;}
@@ -81,8 +64,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .flag-high{background:#FDE8E8;color:#C94040;border:1px solid rgba(201,64,64,0.2);}
 .flag-mod{background:var(--gold-lt);color:var(--gold);border:1px solid rgba(196,146,58,0.2);}
 .flag-norm{background:var(--sage-lt);color:var(--sage);border:1px solid rgba(107,143,113,0.2);}
-
-/* Multi-select */
 .q-multi-opts{display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;margin-top:0.65rem;}
 .q-multi-opt{padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:0.85rem;cursor:pointer;transition:all 0.18s;background:var(--cream);font-size:0.82rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.5rem;}
 .q-multi-opt:hover{border-color:rgba(194,99,122,0.4);background:var(--rose-lt);}
@@ -90,34 +71,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .q-multi-opt .q-check{width:16px;height:16px;border:2px solid rgba(194,99,122,0.3);border-radius:3px;flex-shrink:0;transition:all 0.18s;display:flex;align-items:center;justify-content:center;}
 .q-multi-opt.sel .q-check{background:var(--rose);border-color:var(--rose);}
 .q-multi-opt.sel .q-check::after{content:'✓';font-size:0.6rem;color:white;font-weight:700;}
-
-/* Divider */
 .q-divider{height:1px;background:var(--border);margin:1.75rem 0;}
-
-/* mFG Grid */
 .mfg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-top:0.75rem;}
 .mfg-cell{padding:0.6rem 0.4rem;border:1px solid var(--border);border-radius:0.75rem;text-align:center;cursor:pointer;background:var(--cream);transition:all 0.18s;}
 .mfg-cell:hover,.mfg-cell.sel{border-color:var(--rose);background:var(--rose-lt);}
 .mfg-cell-area{font-size:0.68rem;font-weight:500;color:var(--ink);margin-bottom:0.15rem;}
 .mfg-cell-score{font-size:0.55rem;color:var(--ink-muted);}
-
-/* Slider */
-.q-slider-wrap{margin-top:0.65rem;}
-.q-slider{width:100%;accent-color:var(--rose);}
-.q-slider-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--ink-muted);margin-top:0.35rem;}
-.q-slider-val{text-align:center;font-family:'Cormorant Garant',serif;font-size:1.8rem;font-weight:600;color:var(--rose);margin-top:0.5rem;}
-
-/* Navigation buttons */
 .q-nav-btns{display:flex;gap:1rem;margin-top:2.5rem;align-items:center;}
 .q-btn-back{padding:0.85rem 1.75rem;border:1.5px solid var(--border);border-radius:3rem;background:transparent;color:var(--ink-muted);font-family:'DM Sans',sans-serif;font-size:0.875rem;cursor:pointer;transition:all 0.2s;}
 .q-btn-back:hover{border-color:var(--rose);color:var(--rose);}
 .q-btn-next{padding:0.85rem 2.25rem;border-radius:3rem;background:var(--rose);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:500;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
 .q-btn-next:hover{background:var(--rose-dk);transform:translateY(-1px);}
 .q-btn-next::after{content:'→';}
-.q-skip{font-size:0.78rem;color:var(--ink-muted);cursor:pointer;transition:color 0.2s;background:none;border:none;margin-left:auto;}
-.q-skip:hover{color:var(--rose);}
-
-/* Results */
 .q-results{display:none;animation:slideIn 0.35s ease;}
 .result-card{background:white;border:1px solid var(--border);border-radius:1.75rem;padding:2.5rem;margin-bottom:1.5rem;}
 .result-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
@@ -138,8 +103,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .rotterdam-criteria{font-size:0.68rem;padding:0.25rem 0.65rem;border-radius:1rem;}
 .rotterdam-met{background:var(--rose-lt);color:var(--rose-dk);border:1px solid var(--border);}
 .rotterdam-unmet{background:var(--cream);color:var(--ink-muted);border:1px solid var(--border);}
-
-/* Recommendations */
 .rec-section{margin-bottom:1.5rem;}
 .rec-title{font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
 .rec-list{display:flex;flex-direction:column;gap:0.75rem;}
@@ -150,188 +113,108 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .rec-detail{font-size:0.78rem;font-weight:300;color:var(--ink-muted);margin-top:0.15rem;line-height:1.6;}
 .rec-evb{margin-top:0.35rem;display:flex;gap:0.35rem;flex-wrap:wrap;}
 .rec-badge{font-size:0.62rem;padding:0.12rem 0.5rem;border-radius:1rem;}
-
-/* Clinical flags */
 .flag-section{background:var(--gold-lt);border:1px solid rgba(196,146,58,0.25);border-radius:1.25rem;padding:1.25rem;margin-bottom:1rem;}
 .flag-title{font-size:0.7rem;font-weight:500;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.65rem;display:flex;align-items:center;gap:0.4rem;}
 .flag-title::before{content:'⚠'}
 .flag-list{display:flex;flex-direction:column;gap:0.45rem;}
 .flag-item{font-size:0.8rem;color:var(--ink);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
 .flag-item::before{content:'◦';color:var(--gold);flex-shrink:0;}
-
-/* Emergency note */
 .emergency-note{background:#FDE8E8;border:1px solid rgba(201,64,64,0.2);border-radius:1rem;padding:1rem 1.25rem;font-size:0.78rem;color:#7A2020;line-height:1.6;margin-top:0.5rem;}
 .emergency-note strong{color:#C94040;}
-
-@media(max-width:600px){.q-wrap{padding:2rem 1rem;}.q-nav{padding:1rem 1.5rem;}.q-multi-opts{grid-template-columns:1fr;}.mfg-grid{grid-template-columns:repeat(2,1fr);}
-.q-section{padding:1.5rem;}.result-header{flex-direction:column;}.q-intro-title{font-size:2rem;}}
+@media(max-width:600px){.q-wrap{padding:2rem 1rem;}.q-nav{padding:1rem 1.5rem;}.q-multi-opts{grid-template-columns:1fr;}.mfg-grid{grid-template-columns:repeat(2,1fr);}.q-section{padding:1.5rem;}.result-header{flex-direction:column;}.q-intro-title{font-size:2rem;}}
 </style>
 </head>
 <body>
-
 <nav class="q-nav">
-  <a href="valkyria_index.html" class="q-logo">Valk<span>yria</span></a>
+  <a href="index.html" class="q-logo">Valk<span>ryia</span></a>
   <div class="q-badge">PCOS Risk Assessment</div>
-  <a href="valkyria_index.html" class="q-back">Back to Valkyria</a>
+  <a href="index.html" class="q-back">Back to Valkryia</a>
 </nav>
-
 <div class="q-wrap">
-  <!-- INTRO -->
   <div class="q-intro">
     <div class="q-intro-label">✦ Evidence-Based Screening Tool</div>
     <div class="q-intro-title">PCOS / PCOD<br><em>Risk Assessment</em></div>
-    <div class="q-intro-sub">Answer 7 sections of clinical questions. Valkyria uses Rotterdam Criteria scoring, the mFG hirsutism scale, and multi-axis analysis to generate your personalised PCOS risk profile and recommendations.</div>
+    <div class="q-intro-sub">Answer 7 sections of clinical questions. Valkryia uses Rotterdam Criteria scoring, the mFG hirsutism scale, and multi-axis analysis to generate your personalised PCOS risk profile and recommendations.</div>
     <div class="q-evb-row">
       <div class="q-evb q-evb-ebr">⊕⊕⊕⊕ Evidence-based</div>
       <div class="q-evb q-evb-ccr">Rotterdam Criteria</div>
       <div class="q-evb q-evb-sa">🇮🇳 South Asian context</div>
     </div>
   </div>
-
-  <!-- PROGRESS -->
   <div class="q-progress-wrap">
-    <div class="q-progress-label">
-      <span id="step-label">Section 1 of 7 — About You</span>
-      <span id="step-pct">14%</span>
-    </div>
+    <div class="q-progress-label"><span id="step-label">Section 1 of 7 — About You</span><span id="step-pct">14%</span></div>
     <div class="q-progress-bar"><div class="q-progress-fill" id="progress-fill" style="width:14%"></div></div>
     <div class="q-steps-row" id="steps-row"></div>
   </div>
 
-  <!-- ===================== SECTION 1: ABOUT YOU ===================== -->
   <div class="q-section active" id="s1">
-    <div class="q-section-header">
-      <div class="q-section-num">1</div>
-      <div>
-        <div class="q-section-title">About You</div>
-        <div class="q-section-sub">Basic information helps us contextualise your hormonal risk profile for the South Asian population.</div>
-        <div class="q-section-badge badge-ccr">Clinical context scoring</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">What is your age?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('age','13-17',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">13 – 17 years</div><div class="q-opt-sub">Adolescent — hormonal fluctuation is expected and normal</div></div></div>
-        <div class="q-opt" onclick="pick('age','18-25',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">18 – 25 years</div><div class="q-opt-sub">Peak reproductive years, highest PCOS prevalence window</div></div></div>
-        <div class="q-opt" onclick="pick('age','26-35',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">26 – 35 years</div><div class="q-opt-sub">Common diagnostic age as fertility concerns arise</div></div></div>
-        <div class="q-opt" onclick="pick('age','35+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">35 years and above</div><div class="q-opt-sub">Symptoms may shift but PCOS persists through menopause</div></div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">1</div><div><div class="q-section-title">About You</div><div class="q-section-sub">Basic information helps us contextualise your hormonal risk profile for the South Asian population.</div><div class="q-section-badge badge-ccr">Clinical context scoring</div></div></div>
+    <div class="q-group"><div class="q-label">What is your age?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('age','13-17',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">13 – 17 years</div><div class="q-opt-sub">Adolescent — hormonal fluctuation is expected and normal</div></div></div>
+      <div class="q-opt" onclick="pick('age','18-25',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">18 – 25 years</div><div class="q-opt-sub">Peak reproductive years, highest PCOS prevalence window</div></div></div>
+      <div class="q-opt" onclick="pick('age','26-35',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">26 – 35 years</div><div class="q-opt-sub">Common diagnostic age as fertility concerns arise</div></div></div>
+      <div class="q-opt" onclick="pick('age','35+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">35 years and above</div><div class="q-opt-sub">Symptoms may shift but PCOS persists through menopause</div></div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">What is your BMI range? <span class="q-label-note">For South Asian women, clinical risk thresholds apply at BMI ≥23, not ≥25</span></div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('bmi','<18.5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Under 18.5 (Underweight)</div></div><div class="q-opt-flag flag-mod">Note</div></div>
-        <div class="q-opt" onclick="pick('bmi','18.5-23',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">18.5 – 23 (Healthy — South Asian standard)</div></div><div class="q-opt-flag flag-norm">Normal</div></div>
-        <div class="q-opt" onclick="pick('bmi','23-27.5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">23 – 27.5 (Overweight — South Asian standard)</div></div><div class="q-opt-flag flag-mod">Elevated risk</div></div>
-        <div class="q-opt" onclick="pick('bmi','27.5+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">27.5 and above (Obese — South Asian standard)</div></div><div class="q-opt-flag flag-high">High risk</div></div>
-        <div class="q-opt" onclick="pick('bmi','unsure',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">I'm not sure of my BMI</div></div></div>
-      </div>
-    </div>
-
+    <div class="q-group"><div class="q-label">What is your BMI range? <span class="q-label-note">For South Asian women, clinical risk thresholds apply at BMI ≥23, not ≥25</span></div><div class="q-opts">
+      <div class="q-opt" onclick="pick('bmi','<18.5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Under 18.5 (Underweight)</div></div><div class="q-opt-flag flag-mod">Note</div></div>
+      <div class="q-opt" onclick="pick('bmi','18.5-23',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">18.5 – 23 (Healthy — South Asian standard)</div></div><div class="q-opt-flag flag-norm">Normal</div></div>
+      <div class="q-opt" onclick="pick('bmi','23-27.5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">23 – 27.5 (Overweight — South Asian standard)</div></div><div class="q-opt-flag flag-mod">Elevated risk</div></div>
+      <div class="q-opt" onclick="pick('bmi','27.5+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">27.5 and above (Obese — South Asian standard)</div></div><div class="q-opt-flag flag-high">High risk</div></div>
+      <div class="q-opt" onclick="pick('bmi','unsure',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">I'm not sure of my BMI</div></div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Do you have a family history of PCOS or type 2 diabetes?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('family','yes-pcos',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — family member with PCOS/PCOD</div></div><div class="q-opt-flag flag-high">+Risk</div></div>
-        <div class="q-opt" onclick="pick('family','yes-t2d',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — family member with Type 2 Diabetes</div></div><div class="q-opt-flag flag-high">+Risk</div></div>
-        <div class="q-opt" onclick="pick('family','yes-both',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Both — PCOS and diabetes in family</div></div><div class="q-opt-flag flag-high">High risk</div></div>
-        <div class="q-opt" onclick="pick('family','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No family history</div></div><div class="q-opt-flag flag-norm">Lower risk</div></div>
-      </div>
-    </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-next" onclick="goTo(2)">Continue</button>
-    </div>
+    <div class="q-group"><div class="q-label">Do you have a family history of PCOS or type 2 diabetes?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('family','yes-pcos',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — family member with PCOS/PCOD</div></div><div class="q-opt-flag flag-high">+Risk</div></div>
+      <div class="q-opt" onclick="pick('family','yes-t2d',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — family member with Type 2 Diabetes</div></div><div class="q-opt-flag flag-high">+Risk</div></div>
+      <div class="q-opt" onclick="pick('family','yes-both',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Both — PCOS and diabetes in family</div></div><div class="q-opt-flag flag-high">High risk</div></div>
+      <div class="q-opt" onclick="pick('family','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No family history</div></div><div class="q-opt-flag flag-norm">Lower risk</div></div>
+    </div></div>
+    <div class="q-nav-btns"><button class="q-btn-next" onclick="goTo(2)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 2: MENSTRUAL HISTORY ===================== -->
   <div class="q-section" id="s2">
-    <div class="q-section-header">
-      <div class="q-section-num">2</div>
-      <div>
-        <div class="q-section-title">Menstrual History</div>
-        <div class="q-section-sub">Oligo/anovulation is one of the three Rotterdam Criteria for PCOS diagnosis.</div>
-        <div class="q-section-badge badge-ebr">Rotterdam Criterion 1 of 3</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">How regular are your menstrual cycles?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('cycle','regular',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Regular — 21 to 35 days apart</div><div class="q-opt-sub">This is clinically normal cycle length</div></div><div class="q-opt-flag flag-norm">Rotterdam: 0</div></div>
-        <div class="q-opt" onclick="pick('cycle','slightly-irreg',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Slightly irregular — 36 to 45 days apart</div></div><div class="q-opt-flag flag-mod">Rotterdam: 1</div></div>
-        <div class="q-opt" onclick="pick('cycle','very-irreg',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very irregular — more than 45 days apart</div></div><div class="q-opt-flag flag-high">Rotterdam: 2</div></div>
-        <div class="q-opt" onclick="pick('cycle','absent-3',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Absent — no period for 3 or more months</div><div class="q-opt-sub">Amenorrhoea requires prompt medical attention</div></div><div class="q-opt-flag flag-high">⚠ Urgent</div></div>
-        <div class="q-opt" onclick="pick('cycle','was-regular',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Were regular but have become irregular recently</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">2</div><div><div class="q-section-title">Menstrual History</div><div class="q-section-sub">Oligo/anovulation is one of the three Rotterdam Criteria for PCOS diagnosis.</div><div class="q-section-badge badge-ebr">Rotterdam Criterion 1 of 3</div></div></div>
+    <div class="q-group"><div class="q-label">How regular are your menstrual cycles?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('cycle','regular',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Regular — 21 to 35 days apart</div></div><div class="q-opt-flag flag-norm">Rotterdam: 0</div></div>
+      <div class="q-opt" onclick="pick('cycle','slightly-irreg',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Slightly irregular — 36 to 45 days apart</div></div><div class="q-opt-flag flag-mod">Rotterdam: 1</div></div>
+      <div class="q-opt" onclick="pick('cycle','very-irreg',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very irregular — more than 45 days apart</div></div><div class="q-opt-flag flag-high">Rotterdam: 2</div></div>
+      <div class="q-opt" onclick="pick('cycle','absent-3',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Absent — no period for 3 or more months</div></div><div class="q-opt-flag flag-high">⚠ Urgent</div></div>
+      <div class="q-opt" onclick="pick('cycle','was-regular',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Were regular but have become irregular recently</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">How long does your period typically last?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('duration','1-2',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">1 – 2 days</div><div class="q-opt-sub">Short duration, may indicate anovulation or low progesterone</div></div></div>
-        <div class="q-opt" onclick="pick('duration','3-5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">3 – 5 days (normal)</div></div></div>
-        <div class="q-opt" onclick="pick('duration','6-7',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">6 – 7 days</div></div></div>
-        <div class="q-opt" onclick="pick('duration','7+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">More than 7 days (prolonged bleeding)</div></div><div class="q-opt-flag flag-mod">Note</div></div>
-      </div>
-    </div>
-
+    <div class="q-group"><div class="q-label">How long does your period typically last?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('duration','1-2',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">1 – 2 days</div></div></div>
+      <div class="q-opt" onclick="pick('duration','3-5',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">3 – 5 days (normal)</div></div></div>
+      <div class="q-opt" onclick="pick('duration','6-7',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">6 – 7 days</div></div></div>
+      <div class="q-opt" onclick="pick('duration','7+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">More than 7 days (prolonged bleeding)</div></div><div class="q-opt-flag flag-mod">Note</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">How would you describe your menstrual flow?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('flow','very-light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very light (spotting only)</div></div></div>
-        <div class="q-opt" onclick="pick('flow','light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Light</div></div></div>
-        <div class="q-opt" onclick="pick('flow','moderate',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderate (normal range)</div></div></div>
-        <div class="q-opt" onclick="pick('flow','heavy',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Heavy — soaks through a pad/tampon in 2 hours or less</div></div><div class="q-opt-flag flag-mod">Note</div></div>
-      </div>
-    </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(1)">Back</button>
-      <button class="q-btn-next" onclick="goTo(3)">Continue</button>
-    </div>
+    <div class="q-group"><div class="q-label">How would you describe your menstrual flow?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('flow','very-light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very light (spotting only)</div></div></div>
+      <div class="q-opt" onclick="pick('flow','light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Light</div></div></div>
+      <div class="q-opt" onclick="pick('flow','moderate',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderate (normal range)</div></div></div>
+      <div class="q-opt" onclick="pick('flow','heavy',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Heavy — soaks through in 2 hours or less</div></div><div class="q-opt-flag flag-mod">Note</div></div>
+    </div></div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(1)">Back</button><button class="q-btn-next" onclick="goTo(3)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 3: ANDROGENIC SYMPTOMS ===================== -->
   <div class="q-section" id="s3">
-    <div class="q-section-header">
-      <div class="q-section-num">3</div>
-      <div>
-        <div class="q-section-title">Androgenic Symptoms</div>
-        <div class="q-section-sub">Clinical or biochemical hyperandrogenism is Rotterdam Criterion 2. This section uses a simplified mFG scale assessment.</div>
-        <div class="q-section-badge badge-ebr">Rotterdam Criterion 2 of 3 — mFG Scale</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">Do you experience acne? <span class="q-label-note">Androgenic acne typically appears on the jaw, chin, and lower cheeks</span></div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('acne','none',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No acne</div></div></div>
-        <div class="q-opt" onclick="pick('acne','mild',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mild — few breakouts, mostly forehead or nose</div></div></div>
-        <div class="q-opt" onclick="pick('acne','moderate-jaw',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderate — jaw, chin, or lower cheek acne</div><div class="q-opt-sub">Jawline pattern is characteristic of androgenic acne</div></div><div class="q-opt-flag flag-mod">mFG signal</div></div>
-        <div class="q-opt" onclick="pick('acne','severe',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Severe — cystic acne, persistent despite treatment</div></div><div class="q-opt-flag flag-high">High signal</div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">3</div><div><div class="q-section-title">Androgenic Symptoms</div><div class="q-section-sub">Clinical or biochemical hyperandrogenism is Rotterdam Criterion 2.</div><div class="q-section-badge badge-ebr">Rotterdam Criterion 2 of 3 — mFG Scale</div></div></div>
+    <div class="q-group"><div class="q-label">Do you experience acne?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('acne','none',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No acne</div></div></div>
+      <div class="q-opt" onclick="pick('acne','mild',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mild — few breakouts, mostly forehead or nose</div></div></div>
+      <div class="q-opt" onclick="pick('acne','moderate-jaw',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderate — jaw, chin, or lower cheek acne</div></div><div class="q-opt-flag flag-mod">mFG signal</div></div>
+      <div class="q-opt" onclick="pick('acne','severe',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Severe — cystic acne, persistent despite treatment</div></div><div class="q-opt-flag flag-high">High signal</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Excess body or facial hair (Hirsutism)</div>
-      <div class="q-label-note" style="font-size:0.78rem;color:var(--ink-muted);margin-bottom:0.75rem;">Select all body areas where you have noticeable dark or coarse hair growth. Score ≥4 on the mFG scale in South Asian women indicates clinical hirsutism.</div>
+    <div class="q-group"><div class="q-label">Excess body or facial hair (Hirsutism)</div>
+      <div class="q-label-note" style="font-size:0.78rem;color:var(--ink-muted);margin-bottom:0.75rem;">Select all areas with noticeable dark or coarse hair growth.</div>
       <div class="mfg-grid">
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Upper Lip</div><div class="mfg-cell-score">mFG site</div></div>
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Chin</div><div class="mfg-cell-score">mFG site</div></div>
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Sideburns</div><div class="mfg-cell-score">mFG site</div></div>
-        <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Chest / Breasts</div><div class="mfg-cell-score">mFG site</div></div>
+        <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Chest</div><div class="mfg-cell-score">mFG site</div></div>
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Upper Abdomen</div><div class="mfg-cell-score">mFG site</div></div>
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Lower Abdomen</div><div class="mfg-cell-score">mFG site</div></div>
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">Upper Back</div><div class="mfg-cell-score">mFG site</div></div>
@@ -339,181 +222,96 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
         <div class="mfg-cell" onclick="this.classList.toggle('sel')"><div class="mfg-cell-area">None of these</div><div class="mfg-cell-score">mFG: 0</div></div>
       </div>
     </div>
-
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Hair loss or thinning on your scalp</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('hairloss','none',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No hair thinning</div></div></div>
-        <div class="q-opt" onclick="pick('hairloss','diffuse',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Diffuse thinning all over the scalp</div></div></div>
-        <div class="q-opt" onclick="pick('hairloss','crown',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Thinning at the crown / top of the head (Ludwig I–II)</div><div class="q-opt-sub">Crown-pattern alopecia is androgenic and characteristic of PCOS</div></div><div class="q-opt-flag flag-high">Strong signal</div></div>
-      </div>
-    </div>
-
+    <div class="q-group"><div class="q-label">Hair loss or thinning on your scalp</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('hairloss','none',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No hair thinning</div></div></div>
+      <div class="q-opt" onclick="pick('hairloss','diffuse',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Diffuse thinning all over the scalp</div></div></div>
+      <div class="q-opt" onclick="pick('hairloss','crown',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Thinning at the crown — Ludwig I–II pattern</div></div><div class="q-opt-flag flag-high">Strong signal</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Do you notice dark, velvety patches on your skin? (Acanthosis Nigricans)</div>
-      <div class="q-label-note">Common on the neck, underarms, or inner thighs. Indicates insulin resistance.</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('an','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No dark patches</div></div></div>
-        <div class="q-opt" onclick="pick('an','mild',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Possibly — slight darkening on neck or underarms</div></div><div class="q-opt-flag flag-mod">IR signal</div></div>
-        <div class="q-opt" onclick="pick('an','clear',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — clear dark velvety patches</div></div><div class="q-opt-flag flag-high">IR signal</div></div>
-      </div>
-    </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(2)">Back</button>
-      <button class="q-btn-next" onclick="goTo(4)">Continue</button>
-    </div>
+    <div class="q-group"><div class="q-label">Dark, velvety patches on skin? (Acanthosis Nigricans)</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('an','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No dark patches</div></div></div>
+      <div class="q-opt" onclick="pick('an','mild',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Possibly — slight darkening on neck or underarms</div></div><div class="q-opt-flag flag-mod">IR signal</div></div>
+      <div class="q-opt" onclick="pick('an','clear',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — clear dark velvety patches</div></div><div class="q-opt-flag flag-high">IR signal</div></div>
+    </div></div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(2)">Back</button><button class="q-btn-next" onclick="goTo(4)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 4: METABOLIC & INSULIN ===================== -->
   <div class="q-section" id="s4">
-    <div class="q-section-header">
-      <div class="q-section-num">4</div>
-      <div>
-        <div class="q-section-title">Metabolic Health & Insulin Resistance</div>
-        <div class="q-section-sub">Insulin resistance affects up to 70% of women with PCOS and drives many of the most disruptive symptoms.</div>
-        <div class="q-section-badge badge-ebr">⊕⊕⊕⊕ Strong evidence</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">Do you experience intense or frequent sugar/carb cravings?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('cravings','rarely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Rarely or never</div></div></div>
-        <div class="q-opt" onclick="pick('cravings','sometimes',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Sometimes — especially in the afternoon</div></div></div>
-        <div class="q-opt" onclick="pick('cravings','frequently',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Frequently — strong and hard to resist</div></div><div class="q-opt-flag flag-mod">IR signal</div></div>
-        <div class="q-opt" onclick="pick('cravings','always',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Almost constantly throughout the day</div></div><div class="q-opt-flag flag-high">Strong IR</div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">4</div><div><div class="q-section-title">Metabolic Health & Insulin Resistance</div><div class="q-section-sub">Insulin resistance affects up to 70% of women with PCOS.</div><div class="q-section-badge badge-ebr">⊕⊕⊕⊕ Strong evidence</div></div></div>
+    <div class="q-group"><div class="q-label">Do you experience intense sugar or carb cravings?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('cravings','rarely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Rarely or never</div></div></div>
+      <div class="q-opt" onclick="pick('cravings','sometimes',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Sometimes — especially in the afternoon</div></div></div>
+      <div class="q-opt" onclick="pick('cravings','frequently',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Frequently — strong and hard to resist</div></div><div class="q-opt-flag flag-mod">IR signal</div></div>
+      <div class="q-opt" onclick="pick('cravings','always',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Almost constantly throughout the day</div></div><div class="q-opt-flag flag-high">Strong IR</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Select any metabolic symptoms you experience</div>
+    <div class="q-group"><div class="q-label">Select any metabolic symptoms you experience</div>
       <div class="q-multi-opts">
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Weight gain around the belly</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Feeling hungry again 1-2 hours after eating</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Fatigue or energy crash after carbs</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Difficulty losing weight despite diet</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Belly weight gain</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Hungry again 1-2hrs after eating</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Energy crash after carbs</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Difficulty losing weight</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Constant hunger</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Slow metabolism feeling</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Brain fog after eating</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>None of the above</div>
       </div>
     </div>
-
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">How active are you on most days?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('activity','sedentary',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mostly sedentary — sitting most of the day</div></div><div class="q-opt-flag flag-high">High risk</div></div>
-        <div class="q-opt" onclick="pick('activity','light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Light activity — occasional walks</div></div><div class="q-opt-flag flag-mod">Moderate</div></div>
-        <div class="q-opt" onclick="pick('activity','moderate',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderately active — 30 mins 3-4 days/week</div></div></div>
-        <div class="q-opt" onclick="pick('activity','active',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very active — exercise 5+ days per week</div></div><div class="q-opt-flag flag-norm">Protective</div></div>
-      </div>
-    </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(3)">Back</button>
-      <button class="q-btn-next" onclick="goTo(5)">Continue</button>
-    </div>
+    <div class="q-group"><div class="q-label">How active are you on most days?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('activity','sedentary',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mostly sedentary</div></div><div class="q-opt-flag flag-high">High risk</div></div>
+      <div class="q-opt" onclick="pick('activity','light',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Light activity — occasional walks</div></div><div class="q-opt-flag flag-mod">Moderate</div></div>
+      <div class="q-opt" onclick="pick('activity','moderate',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Moderately active — 30 mins 3-4 days/week</div></div></div>
+      <div class="q-opt" onclick="pick('activity','active',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Very active — 5+ days per week</div></div><div class="q-opt-flag flag-norm">Protective</div></div>
+    </div></div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(3)">Back</button><button class="q-btn-next" onclick="goTo(5)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 5: MENTAL HEALTH ===================== -->
   <div class="q-section" id="s5">
-    <div class="q-section-header">
-      <div class="q-section-num">5</div>
-      <div>
-        <div class="q-section-title">Mental Wellbeing & Stress</div>
-        <div class="q-section-sub">Women with PCOS have 2-3× higher rates of anxiety and depression. Chronic stress elevates cortisol, which worsens androgen excess. Your mental health is part of your PCOS picture.</div>
-        <div class="q-section-badge badge-ccr">⊕⊕⊕○ Moderate evidence</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">How often do you feel anxious, overwhelmed, or excessively worried?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('anxiety','rarely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Rarely — I manage stress well most of the time</div></div></div>
-        <div class="q-opt" onclick="pick('anxiety','sometimes',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Sometimes — particularly around my period</div></div></div>
-        <div class="q-opt" onclick="pick('anxiety','often',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Often — anxiety or worry is a regular part of my life</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
-        <div class="q-opt" onclick="pick('anxiety','severely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Severely — it significantly impacts my daily functioning</div></div><div class="q-opt-flag flag-high">Support needed</div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">5</div><div><div class="q-section-title">Mental Wellbeing & Stress</div><div class="q-section-sub">Women with PCOS have 2-3× higher rates of anxiety and depression.</div><div class="q-section-badge badge-ccr">⊕⊕⊕○ Moderate evidence</div></div></div>
+    <div class="q-group"><div class="q-label">How often do you feel anxious or overwhelmed?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('anxiety','rarely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Rarely — I manage stress well</div></div></div>
+      <div class="q-opt" onclick="pick('anxiety','sometimes',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Sometimes — particularly around my period</div></div></div>
+      <div class="q-opt" onclick="pick('anxiety','often',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Often — anxiety is a regular part of my life</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
+      <div class="q-opt" onclick="pick('anxiety','severely',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Severely — it impacts my daily functioning</div></div><div class="q-opt-flag flag-high">Support needed</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">How is your sleep?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('sleep','good',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Good — I sleep 7-9 hours and feel rested</div></div></div>
-        <div class="q-opt" onclick="pick('sleep','troubled',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Troubled — difficulty falling or staying asleep</div></div><div class="q-opt-flag flag-mod">Cortisol signal</div></div>
-        <div class="q-opt" onclick="pick('sleep','poor',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Poor — regularly fewer than 6 hours or unrefreshing sleep</div></div><div class="q-opt-flag flag-high">High cortisol risk</div></div>
-      </div>
-    </div>
-
+    <div class="q-group"><div class="q-label">How is your sleep?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('sleep','good',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Good — 7-9 hours, feel rested</div></div></div>
+      <div class="q-opt" onclick="pick('sleep','troubled',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Troubled — difficulty falling or staying asleep</div></div><div class="q-opt-flag flag-mod">Cortisol signal</div></div>
+      <div class="q-opt" onclick="pick('sleep','poor',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Poor — fewer than 6 hours or unrefreshing</div></div><div class="q-opt-flag flag-high">High cortisol risk</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Select any mood or cognitive symptoms you experience</div>
+    <div class="q-group"><div class="q-label">Select any mood or cognitive symptoms you experience</div>
       <div class="q-multi-opts">
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Mood swings around period</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Brain fog / poor concentration</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Low self-esteem or body image concerns</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Persistent low mood or depression</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Persistent low mood</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Feeling overwhelmed easily</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Irritability or anger outbursts</div>
-        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>I feel fine — no mood concerns</div>
+        <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>I feel fine</div>
       </div>
     </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(4)">Back</button>
-      <button class="q-btn-next" onclick="goTo(6)">Continue</button>
-    </div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(4)">Back</button><button class="q-btn-next" onclick="goTo(6)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 6: FERTILITY & HORMONES ===================== -->
   <div class="q-section" id="s6">
-    <div class="q-section-header">
-      <div class="q-section-num">6</div>
-      <div>
-        <div class="q-section-title">Fertility & Hormonal History</div>
-        <div class="q-section-sub">Ovarian morphology is the third Rotterdam Criterion. Fertility concerns and hormonal testing history help complete your clinical picture.</div>
-        <div class="q-section-badge badge-ebr">Rotterdam Criterion 3 of 3</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">Have you ever had an ultrasound (transvaginal or abdominal) that showed ovarian cysts?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('ovarian-morph','yes-multiple',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — multiple small follicles (polycystic ovarian morphology)</div><div class="q-opt-sub">≥20 follicles per ovary on 2D USS, or ≥10 cm³ ovarian volume</div></div><div class="q-opt-flag flag-high">Rotterdam: Met</div></div>
-        <div class="q-opt" onclick="pick('ovarian-morph','yes-1-2',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — a single or small number of cysts mentioned</div></div><div class="q-opt-flag flag-mod">Partial</div></div>
-        <div class="q-opt" onclick="pick('ovarian-morph','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No — ultrasound was normal</div></div><div class="q-opt-flag flag-norm">Rotterdam: Not met</div></div>
-        <div class="q-opt" onclick="pick('ovarian-morph','not-done',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Not done — I haven't had a pelvic ultrasound</div></div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">6</div><div><div class="q-section-title">Fertility & Hormonal History</div><div class="q-section-sub">Ovarian morphology is Rotterdam Criterion 3.</div><div class="q-section-badge badge-ebr">Rotterdam Criterion 3 of 3</div></div></div>
+    <div class="q-group"><div class="q-label">Have you had an ultrasound showing ovarian cysts?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('ovarian-morph','yes-multiple',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — multiple small follicles (polycystic morphology)</div></div><div class="q-opt-flag flag-high">Rotterdam: Met</div></div>
+      <div class="q-opt" onclick="pick('ovarian-morph','yes-1-2',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes — a single or small number of cysts</div></div><div class="q-opt-flag flag-mod">Partial</div></div>
+      <div class="q-opt" onclick="pick('ovarian-morph','no',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">No — ultrasound was normal</div></div><div class="q-opt-flag flag-norm">Rotterdam: Not met</div></div>
+      <div class="q-opt" onclick="pick('ovarian-morph','not-done',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Not done — haven't had a pelvic ultrasound</div></div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">If you have been trying to conceive, have you faced difficulties?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('fertility','not-trying',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Not currently trying to conceive</div></div></div>
-        <div class="q-opt" onclick="pick('fertility','conceived-naturally',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes, and have conceived naturally without issues</div></div></div>
-        <div class="q-opt" onclick="pick('fertility','trying-6m',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Trying for 6-12 months without success</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
-        <div class="q-opt" onclick="pick('fertility','trying-12m+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Trying for more than 12 months without success</div></div><div class="q-opt-flag flag-high">Referral advised</div></div>
-      </div>
-    </div>
-
+    <div class="q-group"><div class="q-label">If trying to conceive, have you faced difficulties?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('fertility','not-trying',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Not currently trying to conceive</div></div></div>
+      <div class="q-opt" onclick="pick('fertility','conceived-naturally',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Yes, conceived naturally without issues</div></div></div>
+      <div class="q-opt" onclick="pick('fertility','trying-6m',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Trying for 6-12 months without success</div></div><div class="q-opt-flag flag-mod">Noted</div></div>
+      <div class="q-opt" onclick="pick('fertility','trying-12m+',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Trying for more than 12 months without success</div></div><div class="q-opt-flag flag-high">Referral advised</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Have you had any hormonal blood tests done?</div>
+    <div class="q-group"><div class="q-label">Hormonal blood tests done?</div>
       <div class="q-multi-opts">
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Testosterone (elevated)</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>LH/FSH ratio (elevated)</div>
@@ -524,38 +322,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Tests not done yet</div>
       </div>
     </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(5)">Back</button>
-      <button class="q-btn-next" onclick="goTo(7)">Continue</button>
-    </div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(5)">Back</button><button class="q-btn-next" onclick="goTo(7)">Continue</button></div>
   </div>
 
-  <!-- ===================== SECTION 7: LIFESTYLE & DIET ===================== -->
   <div class="q-section" id="s7">
-    <div class="q-section-header">
-      <div class="q-section-num">7</div>
-      <div>
-        <div class="q-section-title">Lifestyle & Nutrition</div>
-        <div class="q-section-sub">Your dietary patterns, stress levels, and lifestyle choices significantly modify PCOS severity. This helps us tailor Ayurvedic and evidence-based lifestyle recommendations.</div>
-        <div class="q-section-badge badge-ccr">Personalisation factors</div>
-      </div>
-    </div>
-
-    <div class="q-group">
-      <div class="q-label">How would you describe your typical diet?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('diet','low-gi',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Balanced — whole grains, vegetables, moderate protein</div></div><div class="q-opt-flag flag-norm">Protective</div></div>
-        <div class="q-opt" onclick="pick('diet','moderate-carb',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mixed — some healthy choices, some refined carbs (maida, white rice, sugar)</div></div></div>
-        <div class="q-opt" onclick="pick('diet','high-carb',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">High in refined carbs — lots of rice, roti from maida, processed snacks</div></div><div class="q-opt-flag flag-mod">IR risk</div></div>
-        <div class="q-opt" onclick="pick('diet','very-poor',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">High sugar, fried, or fast food — irregular meals</div></div><div class="q-opt-flag flag-high">High IR risk</div></div>
-      </div>
-    </div>
-
+    <div class="q-section-header"><div class="q-section-num">7</div><div><div class="q-section-title">Lifestyle & Nutrition</div><div class="q-section-sub">Your dietary patterns and lifestyle choices significantly modify PCOS severity.</div><div class="q-section-badge badge-ccr">Personalisation factors</div></div></div>
+    <div class="q-group"><div class="q-label">How would you describe your typical diet?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('diet','low-gi',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Balanced — whole grains, vegetables, moderate protein</div></div><div class="q-opt-flag flag-norm">Protective</div></div>
+      <div class="q-opt" onclick="pick('diet','moderate-carb',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Mixed — some healthy, some refined carbs</div></div></div>
+      <div class="q-opt" onclick="pick('diet','high-carb',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">High in refined carbs — maida, white rice, processed snacks</div></div><div class="q-opt-flag flag-mod">IR risk</div></div>
+      <div class="q-opt" onclick="pick('diet','very-poor',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">High sugar, fried, or fast food</div></div><div class="q-opt-flag flag-high">High IR risk</div></div>
+    </div></div>
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">Do you use any of the following? (Select all that apply)</div>
+    <div class="q-group"><div class="q-label">Do you use any of the following?</div>
       <div class="q-multi-opts">
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Metformin</div>
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>Oral contraceptive pill</div>
@@ -566,27 +345,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
         <div class="q-multi-opt" onclick="this.classList.toggle('sel')"><div class="q-check"></div>None of the above</div>
       </div>
     </div>
-
     <div class="q-divider"></div>
-
-    <div class="q-group">
-      <div class="q-label">What is your primary goal right now?</div>
-      <div class="q-opts">
-        <div class="q-opt" onclick="pick('goal','manage-symptoms',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Manage my PCOS symptoms better</div></div></div>
-        <div class="q-opt" onclick="pick('goal','conceive',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Improve my chances of conceiving</div></div></div>
-        <div class="q-opt" onclick="pick('goal','understand',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Better understand my diagnosis</div></div></div>
-        <div class="q-opt" onclick="pick('goal','lifestyle',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Make sustainable lifestyle changes</div></div></div>
-        <div class="q-opt" onclick="pick('goal','mental',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Support my mental and emotional wellbeing</div></div></div>
-      </div>
-    </div>
-
-    <div class="q-nav-btns">
-      <button class="q-btn-back" onclick="goTo(6)">Back</button>
-      <button class="q-btn-next" onclick="showResults()">See My Results →</button>
-    </div>
+    <div class="q-group"><div class="q-label">What is your primary goal right now?</div><div class="q-opts">
+      <div class="q-opt" onclick="pick('goal','manage-symptoms',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Manage my PCOS symptoms better</div></div></div>
+      <div class="q-opt" onclick="pick('goal','conceive',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Improve my chances of conceiving</div></div></div>
+      <div class="q-opt" onclick="pick('goal','understand',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Better understand my diagnosis</div></div></div>
+      <div class="q-opt" onclick="pick('goal','lifestyle',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Make sustainable lifestyle changes</div></div></div>
+      <div class="q-opt" onclick="pick('goal','mental',this)"><div class="q-opt-radio"></div><div class="q-opt-text"><div class="q-opt-main">Support my mental and emotional wellbeing</div></div></div>
+    </div></div>
+    <div class="q-nav-btns"><button class="q-btn-back" onclick="goTo(6)">Back</button><button class="q-btn-next" onclick="showResults()">See My Results</button></div>
   </div>
 
-  <!-- ===================== RESULTS ===================== -->
   <div class="q-results" id="q-results"></div>
 </div>
 
@@ -595,14 +364,13 @@ const TOTAL=7;
 let answers={};
 let currentStep=1;
 
-// Step dots
 function buildDots(){
   const row=document.getElementById('steps-row');
   row.innerHTML='';
   for(let i=1;i<=TOTAL;i++){
     const d=document.createElement('div');
     d.className='q-step-dot'+(i===currentStep?' active':i<currentStep?' done':'');
-    d.onclick=(()=>{const step=i;return()=>goTo(step);}());
+    d.onclick=()=>goTo(i);
     row.appendChild(d);
   }
 }
@@ -627,15 +395,10 @@ function pick(key,val,el){
 }
 
 function computeScore(){
-  let score=0;
-  let rotterdamCriteriaMet=[];
-  // Rotterdam criterion 1: menstrual irregularity
-  if(['slightly-irreg','very-irreg','absent-3','was-regular'].includes(answers.cycle)){score+=20;rotterdamCriteriaMet.push('Oligo/anovulation');}
-  // Rotterdam criterion 2: hyperandrogenism (acne or hirsutism)
-  if(['moderate-jaw','severe'].includes(answers.acne)||answers.hairloss==='crown'){score+=20;rotterdamCriteriaMet.push('Hyperandrogenism');}
-  // Rotterdam criterion 3: polycystic ovaries
-  if(answers['ovarian-morph']==='yes-multiple'){score+=20;rotterdamCriteriaMet.push('Polycystic ovarian morphology');}
-  // Additional risk factors
+  let score=0,rotterdam=[];
+  if(['slightly-irreg','very-irreg','absent-3','was-regular'].includes(answers.cycle)){score+=20;rotterdam.push('Oligo/anovulation');}
+  if(['moderate-jaw','severe'].includes(answers.acne)||answers.hairloss==='crown'){score+=20;rotterdam.push('Hyperandrogenism');}
+  if(answers['ovarian-morph']==='yes-multiple'){score+=20;rotterdam.push('Polycystic ovarian morphology');}
   if(['23-27.5','27.5+'].includes(answers.bmi))score+=5;
   if(['yes-pcos','yes-both'].includes(answers.family))score+=5;
   if(['frequently','always'].includes(answers.cravings))score+=5;
@@ -643,87 +406,56 @@ function computeScore(){
   if(['often','severely'].includes(answers.anxiety))score+=5;
   if(['high-carb','very-poor'].includes(answers.diet))score+=5;
   if(answers.an==='clear')score+=5;
-  if(answers.hairloss==='crown'&&!rotterdamCriteriaMet.includes('Hyperandrogenism')){score+=10;rotterdamCriteriaMet.push('Hyperandrogenism');}
-  return {score:Math.min(score,100),rotterdam:rotterdamCriteriaMet};
+  if(answers.hairloss==='crown'&&!rotterdam.includes('Hyperandrogenism')){score+=10;rotterdam.push('Hyperandrogenism');}
+  return {score:Math.min(score,100),rotterdam};
 }
 
 function getRiskLevel(score,rotterdam){
-  if(rotterdam.length>=2||score>=60) return {level:'High',class:'risk-high',label:'Significant PCOS markers identified'};
-  if(rotterdam.length===1||score>=35) return {level:'Moderate',class:'risk-mod',label:'Some PCOS markers present'};
-  return {level:'Low',class:'risk-low',label:'Fewer PCOS markers identified'};
+  if(rotterdam.length>=2||score>=60)return{level:'High',class:'risk-high'};
+  if(rotterdam.length===1||score>=35)return{level:'Moderate',class:'risk-mod'};
+  return{level:'Low',class:'risk-low'};
 }
 
 function getPhenotype(rotterdam){
-  const has_menses=!['slightly-irreg','very-irreg','absent-3','was-regular'].includes(answers.cycle);
-  const has_HA=['moderate-jaw','severe'].includes(answers.acne)||answers.hairloss==='crown';
-  const has_PCO=answers['ovarian-morph']==='yes-multiple';
-  if(!has_menses&&has_HA&&has_PCO) return {name:'Phenotype A (Classic Full)',desc:'All three Rotterdam criteria present. The most severe PCOS phenotype with highest metabolic and cardiovascular risk. Requires comprehensive management.'};
-  if(!has_menses&&has_HA) return {name:'Phenotype B (Classic — no cysts)',desc:'Irregular cycles and hyperandrogenism without confirmed ovarian morphology. Strong clinical PCOS presentation.'};
-  if(!has_menses&&has_PCO) return {name:'Phenotype C (Ovulatory PCOS)',desc:'Irregular cycles and polycystic ovaries without overt clinical hyperandrogenism. Milder but still requires monitoring.'};
-  if(has_HA&&has_PCO) return {name:'Phenotype D (Non-classic)',desc:'Hyperandrogenism and polycystic ovaries with regular cycles. Can present with normal fertility but carries metabolic risk.'};
-  return {name:'Subclinical Features',desc:'Fewer than 2 Rotterdam criteria confirmed, but multiple PCOS-associated markers are present. Lifestyle interventions and monitoring are recommended.'};
-}
-
-function getRecommendations(score,rotterdam,phenotype){
-  const recs=[];
-  recs.push({icon:'👩‍⚕️',title:'Consult a gynaecologist or endocrinologist',detail:'Based on your responses, a clinical evaluation is strongly recommended. Request a full hormonal panel (testosterone, LH, FSH, AMH) and fasting insulin test.',tags:['EBR','***','⊕⊕⊕⊕']});
-  if(['slightly-irreg','very-irreg','absent-3'].includes(answers.cycle)){
-    recs.push({icon:'🗓️',title:'Cycle regulation and endometrial protection',detail:'Irregular cycles mean unpredictable endometrial shedding. If your period is absent for >90 days, this should be addressed medically to reduce endometrial hyperplasia risk.',tags:['EBR','⊕⊕⊕⊕']});
-  }
-  if(['high-carb','very-poor'].includes(answers.diet)||['frequently','always'].includes(answers.cravings)){
-    recs.push({icon:'🥗',title:'Low-GI nutritional plan for insulin resistance',detail:'Replace maida, white rice, and refined sugars with ragi, jowar, whole wheat, oats, and brown rice. Anti-inflammatory additions: turmeric, ginger, leafy greens, and berries.',tags:['EBR','****','⊕⊕⊕⊕']});
-  }
-  if(answers.activity==='sedentary'||answers.activity==='light'){
-    recs.push({icon:'🏃‍♀️',title:'150 minutes of movement per week',detail:'Resistance training is particularly effective for insulin sensitivity. Start with 20-30 minute walks, yoga, or swimming. Even a 5-10% improvement in activity significantly reduces PCOS symptoms.',tags:['EBR','***','⊕⊕⊕○']});
-  }
-  recs.push({icon:'💊',title:'Supplement consideration: Myo-Inositol',detail:'Myo-inositol (2g) + D-chiro-inositol (50mg) taken daily has strong evidence for improving insulin sensitivity, menstrual regularity, and ovarian function in PCOS. Discuss with your doctor.',tags:['EBR','***','⊕⊕⊕⊕']});
-  if(['often','severely'].includes(answers.anxiety)||answers.sleep==='poor'){
-    recs.push({icon:'🧘',title:'Stress management and cortisol reduction',detail:'Chronic stress elevates cortisol, which worsens androgen levels. Ashwagandha (500mg/day) has clinical evidence for cortisol reduction. Mindfulness and consistent sleep hygiene are equally important.',tags:['CCR','**','⊕⊕○○']});
-  }
-  recs.push({icon:'🌿',title:'Ayurvedic hormonal balance: Shatavari',detail:'Shatavari (Asparagus racemosus) has traditional evidence for hormonal regulation in PCOS, supporting follicular development and reducing estrogenic imbalance. Consult an Ayurvedic practitioner for appropriate dosing.',tags:['CCR','***']});
-  if(answers.goal==='conceive'||answers.fertility==='trying-12m+'){
-    recs.push({icon:'🧬',title:'Fertility support pathway',detail:'Letrozole (not clomiphene) is the current first-line treatment for anovulatory infertility in PCOS. A 5-10% reduction in weight can restore ovulation. Consult a fertility specialist for personalised protocol.',tags:['EBR','****','⊕⊕⊕⊕']});
-  }
-  return recs;
-}
-
-function getClinicalFlags(answers){
-  const flags=[];
-  if(answers.cycle==='absent-3') flags.push('Period absent for 3+ months — risk of endometrial hyperplasia. Medical review needed urgently.');
-  if(answers.an==='clear') flags.push('Dark velvety patches (acanthosis nigricans) detected — this is a visible sign of insulin resistance. Request fasting insulin test.');
-  if(answers.fertility==='trying-12m+') flags.push('12+ months without conception — referral to a fertility specialist with PCOS expertise is recommended.');
-  if(answers.anxiety==='severely') flags.push('Severe anxiety significantly impacting daily life — please consider speaking with a mental health professional. This is not separate from your PCOS — it is part of it.');
-  if(answers.hairloss==='crown') flags.push('Crown-pattern hair thinning detected — this is androgenic alopecia associated with elevated DHT. Dermatology referral may be appropriate alongside PCOS treatment.');
-  return flags;
+  const noMenses=['slightly-irreg','very-irreg','absent-3','was-regular'].includes(answers.cycle);
+  const HA=['moderate-jaw','severe'].includes(answers.acne)||answers.hairloss==='crown';
+  const PCO=answers['ovarian-morph']==='yes-multiple';
+  if(noMenses&&HA&&PCO)return{name:'Phenotype A (Classic Full)',desc:'All three Rotterdam criteria present. The most severe phenotype with highest metabolic risk.'};
+  if(noMenses&&HA)return{name:'Phenotype B (Classic — no cysts)',desc:'Irregular cycles and hyperandrogenism without confirmed ovarian morphology.'};
+  if(noMenses&&PCO)return{name:'Phenotype C (Ovulatory PCOS)',desc:'Irregular cycles and polycystic ovaries without overt hyperandrogenism.'};
+  if(HA&&PCO)return{name:'Phenotype D (Non-classic)',desc:'Hyperandrogenism and polycystic ovaries with regular cycles.'};
+  return{name:'Subclinical Features',desc:'Fewer than 2 Rotterdam criteria confirmed, but PCOS-associated markers are present.'};
 }
 
 function showResults(){
   document.querySelectorAll('.q-section').forEach(s=>s.style.display='none');
   const {score,rotterdam}=computeScore();
   const risk=getRiskLevel(score,rotterdam);
-  const phenotype=getPhenotype(rotterdam);
-  const recs=getRecommendations(score,rotterdam,phenotype);
-  const flags=getClinicalFlags(answers);
-  const circumference=2*Math.PI*42;
-  const dash=circumference-(score/100)*circumference;
-  const scoreColor=score>=60?'#C94040':score>=35?'#C4923A':'#6B8F71';
-  const recHTML=recs.map(r=>`<div class="rec-item">
-    <div class="rec-icon">${r.icon}</div>
-    <div class="rec-text">
-      <div class="rec-title-text">${r.title}</div>
-      <div class="rec-detail">${r.detail}</div>
-      <div class="rec-evb">${r.tags.map(t=>`<span class="rec-badge" style="background:var(--mauve-lt);color:var(--mauve);border:1px solid rgba(123,94,167,0.2);">${t}</span>`).join('')}</div>
-    </div>
-  </div>`).join('');
-  const flagHTML=flags.length?`<div class="flag-section"><div class="flag-title">Clinical attention areas</div><div class="flag-list">${flags.map(f=>`<div class="flag-item">${f}</div>`).join('')}</div></div>`:'';
-  const metCriteria=['Oligo/anovulation','Hyperandrogenism','Polycystic ovarian morphology'];
-  const criteriaHTML=metCriteria.map(c=>`<div class="rotterdam-criteria ${rotterdam.includes(c)?'rotterdam-met':'rotterdam-unmet'}">${rotterdam.includes(c)?'✓ ':''} ${c}</div>`).join('');
-  const resultsEl=document.getElementById('q-results');
-  resultsEl.innerHTML=`
+  const pheno=getPhenotype(rotterdam);
+  const C=2*Math.PI*42;
+  const dash=C-(score/100)*C;
+  const col=score>=60?'#C94040':score>=35?'#C4923A':'#6B8F71';
+  const recs=[];
+  recs.push({icon:'👩\u200d⚕️',t:'Consult a gynaecologist or endocrinologist',d:'Request a full hormonal panel (testosterone, LH, FSH, AMH) and fasting insulin test.'});
+  if(['slightly-irreg','very-irreg','absent-3'].includes(answers.cycle))recs.push({icon:'🗓️',t:'Cycle regulation',d:'Irregular cycles need medical attention to protect endometrial health.'});
+  if(['high-carb','very-poor'].includes(answers.diet)||['frequently','always'].includes(answers.cravings))recs.push({icon:'🥗',t:'Low-GI nutritional plan',d:'Replace maida and white rice with ragi, jowar, and whole wheat. Add turmeric, ginger, and berries.'});
+  if(['sedentary','light'].includes(answers.activity))recs.push({icon:'🏃\u200d♀️',t:'150 minutes of movement per week',d:'Resistance training is most effective for insulin sensitivity. Start with walks or yoga.'});
+  recs.push({icon:'💊',t:'Consider Myo-Inositol (2g) + D-chiro-inositol (50mg)',d:'Strong evidence for improving insulin sensitivity and menstrual regularity. Discuss with your doctor.'});
+  if(['often','severely'].includes(answers.anxiety)||answers.sleep==='poor')recs.push({icon:'🧘',t:'Stress & cortisol management',d:'Ashwagandha (500mg/day) has clinical evidence for cortisol reduction. Prioritise sleep hygiene.'});
+  recs.push({icon:'🌿',t:'Ayurveda: Shatavari for hormonal balance',d:'Supports follicular development and hormonal regulation. Consult an Ayurvedic practitioner for dosing.'});
+  if(answers.goal==='conceive'||answers.fertility==='trying-12m+')recs.push({icon:'🧬',t:'Fertility pathway: Letrozole first-line',d:'5-10% weight reduction can restore ovulation. Consult a fertility specialist for personalised protocol.'});
+  const flags=[];
+  if(answers.cycle==='absent-3')flags.push('Period absent 3+ months — endometrial hyperplasia risk. Urgent medical review needed.');
+  if(answers.an==='clear')flags.push('Acanthosis nigricans detected — visible sign of insulin resistance. Request fasting insulin test.');
+  if(answers.fertility==='trying-12m+')flags.push('12+ months without conception — fertility specialist referral recommended.');
+  if(answers.anxiety==='severely')flags.push('Severe anxiety impacting daily life — mental health support is part of PCOS care.');
+  const metC=['Oligo/anovulation','Hyperandrogenism','Polycystic ovarian morphology'];
+  const el=document.getElementById('q-results');
+  el.innerHTML=`
   <div class="result-card">
     <div style="text-align:center;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);">
-      <div style="font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--rose);margin-bottom:0.75rem;">✦ Your Valkyria Results</div>
-      <div style="font-family:'Cormorant Garant',serif;font-size:2.5rem;font-weight:300;line-height:1.1;">PCOS Risk Profile</div>
+      <div style="font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--rose);margin-bottom:0.75rem;">✦ Your Valkryia Results</div>
+      <div style="font-family:'Cormorant Garant',serif;font-size:2.5rem;font-weight:300;">PCOS Risk Profile</div>
       <div style="font-size:0.85rem;font-weight:300;color:var(--ink-muted);margin-top:0.5rem;">Based on your responses across 7 clinical sections</div>
     </div>
     <div class="result-header">
@@ -731,41 +463,35 @@ function showResults(){
         <div class="result-gauge">
           <svg width="100" height="100" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(194,99,122,0.12)" stroke-width="8"/>
-            <circle cx="50" cy="50" r="42" fill="none" stroke="${scoreColor}" stroke-width="8" stroke-linecap="round"
-              stroke-dasharray="${circumference}" stroke-dashoffset="${dash}" transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="${col}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${dash}" transform="rotate(-90 50 50)"/>
           </svg>
-          <div class="result-gauge-center">
-            <div class="result-gauge-num" style="color:${scoreColor};">${score}</div>
-            <div class="result-gauge-label">/ 100</div>
-          </div>
+          <div class="result-gauge-center"><div class="result-gauge-num" style="color:${col};">${score}</div><div class="result-gauge-label">/ 100</div></div>
         </div>
         <div class="result-risk-label ${risk.class}">${risk.level} Risk</div>
       </div>
       <div class="result-content">
-        <div class="result-pheno-title">PCOS Phenotype Classification</div>
-        <div class="result-pheno">${phenotype.name}</div>
-        <div class="result-pheno-desc">${phenotype.desc}</div>
+        <div class="result-pheno-title">PCOS Phenotype</div>
+        <div class="result-pheno">${pheno.name}</div>
+        <div class="result-pheno-desc">${pheno.desc}</div>
         <div style="margin-top:0.85rem;">
           <div class="result-pheno-title">Rotterdam Criteria Status</div>
-          <div class="rotterdam-wrap">${criteriaHTML}</div>
-          <div style="font-size:0.72rem;color:var(--ink-muted);margin-top:0.35rem;">${rotterdam.length} of 3 criteria identified in your responses · PCOS diagnosis requires ≥2</div>
+          <div class="rotterdam-wrap">${metC.map(c=>`<div class="rotterdam-criteria ${rotterdam.includes(c)?'rotterdam-met':'rotterdam-unmet'}">${rotterdam.includes(c)?'✓ ':''} ${c}</div>`).join('')}</div>
+          <div style="font-size:0.72rem;color:var(--ink-muted);margin-top:0.35rem;">${rotterdam.length} of 3 criteria met · PCOS diagnosis requires ≥2</div>
         </div>
       </div>
     </div>
   </div>
-  ${flagHTML?`<div class="result-card">${flagHTML}</div>`:''}
+  ${flags.length?`<div class="result-card"><div class="flag-section"><div class="flag-title">Clinical attention areas</div><div class="flag-list">${flags.map(f=>`<div class="flag-item">${f}</div>`).join('')}</div></div></div>`:''}
   <div class="result-card">
     <div class="rec-title">Personalised recommendations</div>
-    <div class="rec-list">${recHTML}</div>
+    <div class="rec-list">${recs.map(r=>`<div class="rec-item"><div class="rec-icon">${r.icon}</div><div class="rec-text"><div class="rec-title-text">${r.t}</div><div class="rec-detail">${r.d}</div></div></div>`).join('')}</div>
   </div>
-  <div class="emergency-note">
-    <strong>Important:</strong> This tool is a risk screening aid based on clinical patterns and is not a medical diagnosis. A formal PCOS diagnosis requires clinical examination, blood tests, and ultrasound by a qualified healthcare provider. Please share these results with your gynaecologist or endocrinologist.
-  </div>
+  <div class="emergency-note"><strong>Important:</strong> This is a screening aid, not a diagnosis. Always consult a qualified healthcare professional.</div>
   <div style="text-align:center;margin-top:2rem;">
-    <a href="valkyria_index.html" style="display:inline-block;padding:1rem 2.5rem;background:var(--rose);color:white;text-decoration:none;border-radius:3rem;font-size:0.875rem;font-weight:500;margin-right:1rem;">← Back to Valkyria</a>
+    <a href="index.html" style="display:inline-block;padding:1rem 2.5rem;background:var(--rose);color:white;text-decoration:none;border-radius:3rem;font-size:0.875rem;font-weight:500;margin-right:1rem;">← Back to Valkryia</a>
     <button onclick="window.print()" style="padding:1rem 2rem;border:1.5px solid var(--border);border-radius:3rem;background:transparent;color:var(--ink-muted);font-family:'DM Sans',sans-serif;font-size:0.875rem;cursor:pointer;">Print Results</button>
   </div>`;
-  resultsEl.style.display='block';
+  el.style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('progress-fill').style.width='100%';
   document.getElementById('step-pct').textContent='Complete';
@@ -773,15 +499,7 @@ function showResults(){
   document.getElementById('steps-row').querySelectorAll('.q-step-dot').forEach(d=>{d.classList.remove('active');d.classList.add('done');});
 }
 
-// Init
 buildDots();
-
-// Handle autostart param
-const params=new URLSearchParams(window.location.search);
-if(params.get('autostart')==='pcos'||params.get('start')==='1'){
-  // Already starting at step 1 (default), just ensure visibility
-  document.getElementById('s1').classList.add('active');
-}
 </script>
 </body>
 </html>
